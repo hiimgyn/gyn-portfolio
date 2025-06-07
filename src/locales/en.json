@@ -1,0 +1,19 @@
+{
+  "nav": {
+    "logo": "gyn-nguyen",
+    "about": "_about-me",
+    "hub": "_my-hub",
+    "contact": "_contact-me",
+    "language": "Language",
+    "toggleTheme": "Toggle Theme",
+    "switchLanguage": "Switch Language",
+    "toggleDark": "Switch to Dark Mode",
+    "toggleLight": "Switch to Light Mode"
+  },
+  "hero": {
+    "greeting": "Hi all, I am",
+    "name": "Gyn Nguyen",
+    "role": ">Business Analyst / Back-end developer",
+    "cta": "Check my portfolio"
+  }
+}

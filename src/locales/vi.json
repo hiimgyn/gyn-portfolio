@@ -1,0 +1,19 @@
+{
+  "nav": {
+    "logo": "gyn-nguyen",
+    "about": "_ve-toi",
+    "hub": "_du-an-cua-toi",
+    "contact": "_lien-he",
+    "language": "Ngôn ngữ",
+    "toggleTheme": "Chuyển giao diện",
+    "switchLanguage": "Đổi Ngôn Ngữ",
+    "toggleDark": "Chuyển sang Chế độ Tối",
+    "toggleLight": "Chuyển sang Chế độ Sáng"
+  },
+  "hero": {
+    "greeting": "Chào mọi người, tôi là",
+    "name": "Nguyễn Minh Hùng",
+    "role": ">Business Analyst / Back-end developer",
+    "cta": "Xem chi tiết"
+  }
+}
