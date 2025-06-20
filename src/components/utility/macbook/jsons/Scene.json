@@ -1,0 +1,92 @@
+{
+	"metadata": {
+		"version": 4.7,
+		"type": "Object",
+		"generator": "Object3D.toJSON"
+	},
+	"object": {
+		"uuid": "fdb5d6a5-8083-4706-9667-9b0801887f0e",
+		"type": "Scene",
+		"name": "Scene",
+		"layers": 1,
+		"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
+		"up": [0,1,0],
+		"children": [
+			{
+				"uuid": "05fa0092-93b4-4f20-8cff-415473b710ce",
+				"type": "PerspectiveCamera",
+				"name": "Camera",
+				"layers": 1,
+				"matrix": [1,0,0,0,0,0.9961946980917454,0.08715574274765817,0,0,-0.08715574274765817,0.9961946980917453,0,0,11,45.5,1],
+				"up": [0,1,0],
+				"fov": 50,
+				"zoom": 1,
+				"near": 0.01,
+				"far": 1000,
+				"focus": 10,
+				"aspect": 1.7836965294592413,
+				"filmGauge": 35,
+				"filmOffset": 0
+			},
+			{
+				"uuid": "e258b897-a166-4e1c-b407-e5318e7d66ea",
+				"type": "DirectionalLight",
+				"name": "TopDirectionalLight",
+				"renderOrder": 64,
+				"layers": 1,
+				"matrix": [23.645611014348127,0,0,0,0,1,0,0,0,0,33.05835556615589,0,0,28.22,0,1],
+				"up": [0,1,0],
+				"color": 16777215,
+				"intensity": 3.5,
+				"shadow": {
+					"bias": 1,
+					"radius": 3,
+					"camera": {
+						"uuid": "24cc2033-c880-4ef8-bde3-bc3535a4a3d6",
+						"type": "OrthographicCamera",
+						"layers": 1,
+						"up": [0,1,0],
+						"zoom": 1,
+						"left": -5,
+						"right": 5,
+						"top": 5,
+						"bottom": -5,
+						"near": 0.5,
+						"far": 500
+					}
+				},
+				"target": "1e0bb311-cfa8-4092-a988-2ef65b75f1ca"
+			},
+			{
+				"uuid": "62567318-8be9-4924-965f-e097916b5a7b",
+				"type": "DirectionalLight",
+				"name": "FrontDirectionalLight",
+				"renderOrder": 64,
+				"layers": 1,
+				"matrix": [47.98917833210638,0,0,0,0,45.869970847673635,0,0,0,0,47.86353046662257,0,-20,15.48,30,1],
+				"up": [0,1,0],
+				"color": 16777215,
+				"intensity": 3,
+				"shadow": {
+					"camera": {
+						"uuid": "832bc9fd-f220-4ee8-a684-850629d3467a",
+						"type": "OrthographicCamera",
+						"layers": 1,
+						"up": [0,1,0],
+						"zoom": 1,
+						"left": -5,
+						"right": 5,
+						"top": 5,
+						"bottom": -5,
+						"near": 0.5,
+						"far": 500
+					}
+				},
+				"target": "25211d92-a4c7-4c30-8038-0ca27c49e92c"
+			}],
+		"backgroundRotation": [0,0,0,
+			"XYZ"],
+		"environmentRotation": [0,0,0,
+			"XYZ"]
+	}
+}

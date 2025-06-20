@@ -13,7 +13,36 @@
   "hero": {
     "greeting": "Chào mọi người, tôi là",
     "name": "Nguyễn Minh Hùng",
-    "role": ">Business Analyst / Back-end developer",
+    "roles": {
+      "analyst": "Business Analyst",
+      "developer": "Back-end Developer"
+    },
     "cta": "Xem chi tiết"
+  },
+  "about": {
+    "portfolio": "Thông tin",
+    "overview": "Tổng quan",
+    "overviewContent": "Đây là nội dung tổng quan.",
+    "experiences": "Kinh nghiệm",
+    "experiencesContent": "Đây là nội dung kinh nghiệm.",
+    "projects": "Dự án",
+    "projectsContent": "Đây là nội dung dự án.",
+    "contact": "Liên hệ",
+    "email": "Email",
+    "emailAddress": "hiimgyn{'@'}gmail.com",
+    "emailContent": "Đây là thông tin liên hệ email.",
+    "phone": "Điện thoại",
+    "phoneNumber": "+84 942 451 385",
+    "phoneContent": "Đây là thông tin liên hệ điện thoại.",
+    "overviewNote": "Ghi chú tổng quan",
+    "overviewNoteContent": "Thông tin bổ sung về tổng quan.",
+    "experiencesNote": "Ghi chú kinh nghiệm",
+    "experiencesNoteContent": "Thông tin bổ sung về kinh nghiệm.",
+    "projectsNote": "Ghi chú dự án",
+    "projectsNoteContent": "Thông tin bổ sung về dự án.",
+    "emailNote": "Ghi chú Email",
+    "emailNoteContent": "Thông tin bổ sung liên quan đến email.",
+    "phoneNote": "Ghi chú Điện thoại",
+    "phoneNoteContent": "Thông tin bổ sung liên quan đến điện thoại."
   }
 }

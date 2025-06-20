@@ -13,7 +13,36 @@
   "hero": {
     "greeting": "Hi all, I am",
     "name": "Gyn Nguyen",
-    "role": ">Business Analyst / Back-end developer",
+    "roles": {
+      "analyst": "Business Analyst",
+      "developer": "Back-end Developer"
+    },
     "cta": "Check my portfolio"
+  },
+  "about": {
+    "portfolio": "Portfolio",
+    "overview": "Overview",
+    "overviewContent": "This is the overview content.",
+    "experiences": "Experiences",
+    "experiencesContent": "This is the experiences content.",
+    "projects": "Projects",
+    "projectsContent": "This is the projects content.",
+    "contact": "Contact",
+    "email": "Email",
+    "emailAddress": "hiimgyn{'@'}gmail.com",
+    "emailContent": "This is the email contact information.",
+    "phone": "Phone",
+    "phoneNumber": "+84 942 451 385",
+    "phoneContent": "This is the phone contact information.",
+    "overviewNote": "Overview Note",
+    "overviewNoteContent": "Additional information about the overview.",
+    "experiencesNote": "Experiences Note",
+    "experiencesNoteContent": "Additional information about experiences.",
+    "projectsNote": "Projects Note",
+    "projectsNoteContent": "Additional information about projects.",
+    "emailNote": "Email Note",
+    "emailNoteContent": "Additional email related information.",
+    "phoneNote": "Phone Note",
+    "phoneNoteContent": "Additional phone related information."
   }
 }

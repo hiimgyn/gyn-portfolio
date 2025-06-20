@@ -1,7 +1,7 @@
 <template>
   <header
     :class="[
-      'py-2 fixed inset-x-px top-0 z-50 backdrop-blur-sm border-b transition-colors duration-200',
+      'py-2 inset-x-px top-0 z-50 backdrop-blur-sm border-b transition-colors duration-200',
       isDark ? colors.dark.background.primary : colors.light.background.primary,
       isDark ? colors.dark.border.primary : colors.light.border.primary
     ]"
@@ -9,7 +9,7 @@
     <nav class="max-w mx-auto px-4 flex justify-between items-center">
       <!-- Logo & Left Menu -->
       <div class="flex items-center">
-        <div :class="['logo pr-8 border-r', isDark ? colors.dark.border.primary : colors.light.border.primary]">
+        <div :class="['logo pr-22 border-r', isDark ? colors.dark.border.primary : colors.light.border.primary]">
           <a
             href="/"
             :class="[
@@ -109,7 +109,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed } from '@vue/reactivity'
 import { useStore } from '@/stores/theme'
 import GlitchText from '../utility/GlitchText.vue'
 import { colors } from '@/constants/theme'

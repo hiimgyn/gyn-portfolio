@@ -1,5 +1,6 @@
 <script setup>
-import { onMounted, onUnmounted, computed, ref } from 'vue'
+import { ref, computed }     from '@vue/reactivity'
+import { onMounted, onUnmounted } from '@vue/runtime-core'
 import { useStore } from '@/stores/theme'
 import { colors } from '@/constants/theme'
 

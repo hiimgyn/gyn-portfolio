@@ -103,7 +103,8 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch, nextTick } from 'vue'
+import { ref, computed, watch }                from '@vue/reactivity'
+import { onMounted, nextTick }                 from '@vue/runtime-core'
 import { useI18n } from 'vue-i18n'
 import { createTimeline } from 'animejs' 
 import { useStore } from '@/stores/theme'
@@ -138,7 +139,7 @@ onMounted(() => {
 })
 
 const currentFlag = computed(() => {
-  return locale.value === 'en' ? flagEn : flagVi
+  return locale.value === 'en' ? flagVi : flagEn
 })
 
 const flipContainer = ref(null)

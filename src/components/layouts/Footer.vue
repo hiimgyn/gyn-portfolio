@@ -1,12 +1,12 @@
 <template>
   <footer 
     :class=" [
-      'py-2 w-full backdrop-blur-sm border-t',
+      'py-1 w-full backdrop-blur-sm border-t',
       isDark ? colors.dark.background.primary : colors.light.background.primary,
       isDark ? colors.dark.border.primary : colors.light.border.primary
     ]"
   >
-    <nav class="max-w mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0">
+    <nav class="max-w mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap- md:gap-0">
       <div class="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-0 w-full md:w-auto">
         <!-- Divider border -->
         <div :class=" [
@@ -29,7 +29,7 @@
               ]">
             <a :href="social.url" 
                :class=" [
-                 'px-6 py-2 text-sm font-medium transition-colors duration-200 flex items-center gap-2',
+                 'px-3 py-2 text-sm font-medium transition-colors duration-200 flex items-center gap-2',
                  isDark ? colors.dark.text.secondary : colors.light.text.secondary,
                  isDark ? colors.dark.text.hover : colors.light.text.hover
                ]">
@@ -112,7 +112,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed } from '@vue/reactivity'
 import { useStore } from '@/stores/theme'
 import { socialLinks } from '@/constants/links'
 import { colors } from '@/constants/theme'

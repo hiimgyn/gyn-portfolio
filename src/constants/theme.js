@@ -20,6 +20,11 @@ export const colors = {
       link: 'text-blue-600',
       'link-hover': 'hover:text-blue-700'
     },
+    hover: {
+      primary: 'hover:bg-gray-200/80',
+      secondary: 'hover:bg-gray-300/80',
+      tertiary: 'hover:bg-gray-400/80'
+    },
     border: {
       primary: 'border-gray-200/80',
       secondary: 'border-gray-300/80',
@@ -90,6 +95,11 @@ export const colors = {
       active: 'active:text-gray-200',
       link: 'text-blue-400',
       'link-hover': 'hover:text-blue-300'
+    },
+    hover: {
+      primary: 'hover:bg-white/10',
+      secondary: 'hover:bg-white/20',
+      tertiary: 'hover:bg-white/30'
     },
     border: {
       primary: 'border-white/[0.08]',

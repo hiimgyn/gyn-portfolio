@@ -1,14 +1,21 @@
 <template>
-  <div class="relative min-h-screen">
-    <Background class="fixed inset-0" />
+  <div class="relative min-h-screen flex flex-col">
+    <!-- Background layer -->
+    <Background class="fixed inset-0 -z-10" />
+
+    <!-- Theme + Lang Switcher-->
     <ThemeLangSwitcher />
-    <div class="relative z-20 flex flex-col min-h-screen border-1 border-black dark:border-white/10">
-      <Header />
-      <main class="flex-grow">
-        <router-view></router-view>
-      </main>
-      <Footer />
-    </div>
+
+    <!-- Header -->
+    <Header class="z-20" />
+
+    <!-- Main content -->
+    <main class="flex-1 overflow-y-auto z-10">
+        <router-view />
+    </main>
+
+    <!-- Footer -->
+    <Footer class="z-20" />
   </div>
 </template>
 
