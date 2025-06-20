@@ -13,13 +13,11 @@
     "@tailwindcss/vite": "^4.1.8",
     "@types/three": "^0.176.0",
     "animejs": "^4.0.2",
-    "express": "^5.1.0",
     "gsap": "^3.13.0",
     "pinia": "^3.0.2",
     "tailwindcss": "^4.1.8",
     "three": "^0.177.0",
     "vue": "^3.5.13",
-    "vue-3d-loader": "^2.2.4",
     "vue-i18n": "^11.1.5",
     "vue-router": "^4.5.1"
   },

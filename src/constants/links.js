@@ -1,7 +1,6 @@
 import LinkedInIcon from '@/assets/Icons/LinkedIn.vue'
 import FacebookIcon from '@/assets/Icons/Facebook.vue'
 import InstagramIcon from '@/assets/Icons/Instagram.vue'
-import GithubIcon from '@/assets/Icons/Github.vue'
 
 export const socialLinks = [
   {
@@ -19,9 +18,4 @@ export const socialLinks = [
     url: 'https://instagram.com/mhung01',
     icon: InstagramIcon
   },
-/*   {
-    name: 'github',
-    url: 'https://github.com/hiimgyn',
-    icon: GithubIcon
-  } */
 ]
