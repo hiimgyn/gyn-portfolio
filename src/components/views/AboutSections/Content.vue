@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import { computed, watch } from 'vue'
+import { computed } from 'vue'
 import { defineAsyncComponent } from 'vue'
 
 const props = defineProps({
@@ -32,9 +32,4 @@ const sectionComponents = {
 const sectionComponent = computed(() => {
   return sectionComponents[props.section] || sectionComponents.overview
 })
-
-// Lưu section vào localStorage khi thay đổi
-watch(() => props.section, (newSection) => {
-  localStorage.setItem('selectedSection', newSection)
-}, { immediate: true })
 </script>

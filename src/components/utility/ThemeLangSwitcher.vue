@@ -1,13 +1,8 @@
 <!-- src/components/utility/ThemeLangSwitcher.vue -->
 <template>
   <div :class="[
-    // Desktop: góc phải giữa màn hình
-    'fixed right-4 top-1/2 transform -translate-y-1/2',
-    // Mobile: góc dưới phải
-    'md:right-4 md:top-1/2 md:transform md:-translate-y-1/6',
-
-    'right-4 transform-none',
-    'md:transform md:-translate-y-1/2',
+    'fixed right-4 bottom-4',
+    'md:top-1/2 md:bottom-auto md:-translate-y-1/2',
     'flex flex-col items-center space-y-4 p-2 rounded-lg z-50',
     isDark ? colors.dark.background.secondary : colors.light.background.secondary,
     'opacity-50 hover:opacity-100 transition-opacity duration-200 backdrop-blur-md'
@@ -147,6 +142,7 @@ const switchLanguageWithAnimation = async () => {
 
     tl.call(() => {
       locale.value = newLocale
+      localStorage.setItem('locale', newLocale)
 
       nextTick().then(() => {
         if (flagImg.value) {
@@ -167,6 +163,7 @@ const switchLanguageWithAnimation = async () => {
 
   } catch (error) {
     locale.value = newLocale
+    localStorage.setItem('locale', newLocale)
     if (flagImg.value) {
       flagImg.value.style.transform = 'rotateY(0deg)'
     }

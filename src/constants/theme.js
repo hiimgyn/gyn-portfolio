@@ -4,11 +4,11 @@ export const colors = {
   light: {
     background: {
       primary: 'bg-white/90',
-      secondary: 'bg-gray-50/95',
+      secondary: 'bg-gray-200/95',
       tertiary: 'bg-gray-100/90',
       hover: 'hover:bg-gray-100/95',
       active: 'active:bg-gray-200/95',
-      overlay: 'bg-gray/80',
+      overlay: 'bg-gray-300/80',
     },
     pattern: {
       color: 'text-slate-400',

@@ -1,7 +1,7 @@
 <template>
   <div class="flex min-h-[calc(100vh-4rem-1.4rem)] relative">
     <!-- Mobile Overlay -->
-    <div v-if="isMobileMenuOpen" :class="['fixed inset-0 bg-opacity-90 z-40 lg:hidden',
+    <div v-if="isMobileMenuOpen" :class="['fixed inset-0 bg-opacity-95 z-40 lg:hidden',
       isDark ? colors.dark.background.overlay : colors.light.background.overlay
     ]" @click="closeMobileMenu"></div>
 
@@ -9,10 +9,10 @@
     <div :class="[
       'transition-transform duration-300 ease-in-out z-50',
       'lg:relative lg:translate-x-0 lg:w-auto',
-      'fixed left-0 top-0 overflow-y-auto shadow-lg',
-      isMobileMenuOpen ? ' h-full translate-x-0' : '-translate-x-full lg:translate-x-0' 
+      'fixed min-h-full left-0 overflow-y-auto shadow-lg',
+      isMobileMenuOpen ? 'h-full translate-x-0' : '-translate-x-full lg:translate-x-0' 
     ]">
-      <Sidebar @select="handleSectionSelect" />
+      <Sidebar @select="handleSectionSelect" :selectedSection="currentSection" />
     </div>
 
     <!-- Mobile Toggle Button -->
@@ -46,7 +46,7 @@
 
 <script setup>
 import { ref } from '@vue/reactivity'
-import { computed, defineAsyncComponent, onMounted, onUnmounted } from '@vue/runtime-core'
+import { computed, defineAsyncComponent, onMounted, onUnmounted, watch } from '@vue/runtime-core'
 import { colors } from '@/constants/theme'
 import { useStore } from '@/stores/theme'
 
@@ -91,11 +91,15 @@ const handleResize = () => {
 }
 
 onMounted(() => {
-   const saved = localStorage.getItem('selectedSection')
+  const saved = localStorage.getItem('selectedSection')
   if (saved) {
     currentSection.value = saved
   }
   window.addEventListener('resize', handleResize)
+})
+
+watch(currentSection, (newSection) => {
+  localStorage.setItem('selectedSection', newSection)
 })
 
 onUnmounted(() => {

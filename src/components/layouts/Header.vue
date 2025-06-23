@@ -1,7 +1,7 @@
 <template>
   <header
     :class="[
-      'py-2 inset-x-px top-0 z-50 backdrop-blur-sm border-b transition-colors duration-200',
+      'fixed top-0 left-0 right-0 py-2 z-50 backdrop-blur-sm border-b transition-colors duration-200',
       isDark ? colors.dark.background.primary : colors.light.background.primary,
       isDark ? colors.dark.border.primary : colors.light.border.primary
     ]"

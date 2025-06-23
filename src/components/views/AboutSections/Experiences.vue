@@ -1,52 +1,52 @@
 <template>
-  <div class="min-h-[calc(100vh-4rem-1.4rem)] flex items-center justify-left">
+  <div class="min-h-[calc(100vh-4rem-1.4rem)] flex items-center justify-left sm:justify-center">
     <div :class="[
-      'max-w p-6 min-h-full',
+      'max-w p-2 sm:p-6 min-h-full w-full sm:w-auto',
       isDark ? colors.dark.text.primary : colors.light.text.primary
     ]">
       <!-- Timeline Container -->
       <div class="relative">
         <!-- Timeline Line -->
         <div :class="[
-          'absolute left-8 top-0 bottom-0 w-0.5',
-          isDark ? 'bg-purple-500' : 'bg-purple-600'
+          'absolute left-4.5 sm:left-8 top-0 bottom-0 w-0.5',
+          isDark ? 'bg-gray-500' : 'bg-purple-600'
         ]"></div>
 
         <!-- Experience Items -->
-        <div class="space-y-8">
+        <div class="space-y-6 sm:space-y-8">
           <div v-for="(exp, index) in experiences" :key="exp.id" class="relative flex items-start">
             <!-- Timeline Dot -->
             <div :class="[
-              'absolute left-4 w-8 h-8 rounded-full border-2 z-10 overflow-hidden bg-white shadow-md',
-              isDark ? 'border-purple-500' : 'border-purple-600'
+              'absolute left-1.5 sm:left-3 sm:w-10 sm:h-10 w-6 h-6 rounded-full border-2 z-10 overflow-hidden bg-white shadow-md',
+              isDark ? 'border-grey-500' : 'border-purple-600'
             ]">
               <img :src="exp.logo" :alt="$t(exp.company) + ' logo'" class="w-full h-full object-contain p-1"
                 @error="handleImageError" />
             </div>
             <!-- Experience Card -->
             <div :class="[
-              'ml-16 p-6 rounded-lg border w-full transition-all duration-300 hover:shadow-lg',
+              'ml-8 sm:ml-16 p-3 sm:p-6 rounded-lg border w-full transition-all duration-300 hover:shadow-lg',
               isDark ? colors.dark.background.primary : colors.light.background.primary,
               isDark ? colors.dark.border.primary : colors.light.border.primary
             ]">
               <!-- Company and Period -->
-              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2 sm:mb-4">
                 <div>
                   <h3 :class="[
-                    'text-xl font-bold mb-1',
+                    'text-lg sm:text-xl font-bold mb-1',
                     isDark ? colors.dark.text.primary : colors.light.text.primary
                   ]">
                     {{ $t(exp.title) }}
                   </h3>
                   <p :class="[
-                    'text-lg font-medium',
+                    'text-base sm:text-lg font-medium',
                     isDark ? 'text-purple-400' : 'text-purple-600'
                   ]">
                     {{ $t(exp.company) }}
                   </p>
                 </div>
                 <div :class="[
-                  'text-sm px-3 py-1 rounded-full border mt-2 sm:mt-0',
+                  'text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-full border mt-2 sm:mt-0',
                   isDark ? 'bg-gray-800 border-gray-700 text-gray-300' : 'bg-gray-100 border-gray-300 text-gray-600'
                 ]">
                   {{ exp.period }}
@@ -54,20 +54,20 @@
               </div>
 
               <!-- Achievements -->
-              <div class="mb-6">
+              <div class="mb-4 sm:mb-6">
                 <h4 :class="[
-                  'font-semibold mb-3',
+                  'font-semibold mb-2 sm:mb-3',
                   isDark ? colors.dark.text.primary : colors.light.text.primary
                 ]">
                   {{ $t('experience.keyAchievements') }}
                 </h4>
-                <ul class="space-y-2">
+                <ul class="space-y-1 sm:space-y-2">
                   <li v-for="(achievement, achIndex) in exp.achievements" :key="achIndex" :class="[
-                    'text-sm leading-relaxed flex items-start',
+                    'text-xs sm:text-sm leading-relaxed flex items-start',
                     isDark ? colors.dark.text.secondary : colors.light.text.secondary
                   ]">
                     <span :class="[
-                      'inline-block w-2 h-2 rounded-full mt-2 mr-3 flex-shrink-0',
+                      'inline-block w-2 h-2 rounded-full mt-2 mr-2 sm:mr-3 flex-shrink-0',
                       isDark ? 'bg-purple-400' : 'bg-purple-600'
                     ]"></span>
                     {{ $t(achievement) }}
@@ -78,14 +78,14 @@
               <!-- Technologies -->
               <div v-if="exp.technologies">
                 <h4 :class="[
-                  'font-semibold mb-3',
+                  'font-semibold mb-2 sm:mb-3',
                   isDark ? colors.dark.text.primary : colors.light.text.primary
                 ]">
                   {{ $t('experience.technologiesUsed') }}
                 </h4>
-                <div class="flex flex-wrap gap-2">
+                <div class="flex flex-wrap gap-1 sm:gap-2">
                   <span v-for="tech in exp.technologies" :key="tech" :class="[
-                    'px-3 py-1 text-xs rounded-full border font-medium',
+                    'px-2 sm:px-3 py-1 text-[10px] sm:text-xs rounded-full border font-medium',
                     getTechColor(index)
                   ]">
                     {{ tech }}
@@ -185,17 +185,20 @@ const handleImageError = (event) => {
 <style scoped>
 /* Timeline responsive adjustments */
 @media (max-width: 640px) {
-  .ml-16 {
-    margin-left: 3.5rem;
-    /* Tăng margin để chừa chỗ cho logo lớn hơn */
+  .ml-16, .ml-12 {
+    margin-left: 3rem !important;
   }
-
-  .left-8 {
-    left: 1.25rem;
+  .left-8, .left-6 {
+    left: 1.5rem !important;
   }
-
-  .left-4 {
-    left: 1rem;
+  .left-4, .left-2 {
+    left: 0.5rem !important;
+  }
+  .p-6 {
+    padding: 0.75rem !important;
+  }
+  .p-3 {
+    padding: 0.5rem !important;
   }
 }
 
