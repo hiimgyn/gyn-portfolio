@@ -1,3 +1,5 @@
+import { overlay } from "three/tsl";
+
 export const colors = {
   light: {
     background: {
@@ -5,7 +7,8 @@ export const colors = {
       secondary: 'bg-gray-50/95',
       tertiary: 'bg-gray-100/90',
       hover: 'hover:bg-gray-100/95',
-      active: 'active:bg-gray-200/95'
+      active: 'active:bg-gray-200/95',
+      overlay: 'bg-gray/80',
     },
     pattern: {
       color: 'text-slate-400',
@@ -33,7 +36,8 @@ export const colors = {
       focus: 'focus:border-blue-500',
       error: 'border-red-500',
       success: 'border-green-500',
-      warning: 'border-yellow-500'
+      warning: 'border-yellow-500',
+      accent: 'border-purple-500'
     },
     socialIcons: {
       linkedin: 'text-[#0A66C2]',
@@ -72,7 +76,7 @@ export const colors = {
     },
     logo: {
       text: 'text-gray-800',
-      hover: 'hover:text-blue-600'
+      hover: 'hover:text-red-600'
     }
   },
   dark: {
@@ -81,7 +85,8 @@ export const colors = {
       secondary: 'bg-[#121225]/95',
       tertiary: 'bg-[#1A1A30]/90',
       hover: 'hover:bg-[#1A1A30]',
-      active: 'active:bg-[#222240]'
+      active: 'active:bg-[#222240]',
+      overlay: 'bg-black/80',
     },
     pattern: {
       color: 'text-white',
@@ -109,7 +114,8 @@ export const colors = {
       focus: 'focus:border-blue-400',
       error: 'border-red-400',
       success: 'border-green-400',
-      warning: 'border-yellow-400'
+      warning: 'border-yellow-400',
+      accent: 'border-white-500'
     },
     socialIcons: {
       all: 'text-white/50',
@@ -142,24 +148,5 @@ export const colors = {
       text: 'text-gray-100',
       hover: 'hover:text-blue-400'
     }
-  }
-}
-
-export const commonColors = {
-  blue: {
-    light: '#2563EB',
-    dark: '#60A5FA'
-  },
-  error: {
-    light: '#DC2626',
-    dark: '#F87171'
-  },
-  success: {
-    light: '#16A34A',
-    dark: '#4ADE80'
-  },
-  warning: {
-    light: '#D97706',
-    dark: '#FBBF24'
   }
 }

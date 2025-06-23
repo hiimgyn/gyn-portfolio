@@ -1,5 +1,5 @@
 <template>
-  <div :class="['w-72 p-4 overflow-y-auto',
+  <div :class="['w-72.25 p-4 overflow-y-auto border-r min-h-full',
     isDark ? colors.dark.background.primary : colors.light.background.primary,
     isDark ? colors.dark.text.primary : colors.light.text.primary,
     isDark ? colors.dark.border.primary : colors.light.border.primary
@@ -66,6 +66,7 @@
 
 <script setup>
 import { ref, computed } from '@vue/reactivity'
+import { onMounted } from '@vue/runtime-core'
 import { useStore } from '@/stores/theme'
 import { colors } from '@/constants/theme'
 import { useI18n } from 'vue-i18n'
@@ -109,4 +110,11 @@ function itemClass(section) {
     ],
   ]
 }
+const currentSection = ref('overview')
+onMounted(() => {
+   const saved = localStorage.getItem('selectedSection')
+  if (saved) {
+    currentSection.value = saved
+  }
+})
 </script>

@@ -1,41 +1,42 @@
 <template>
   <footer 
-    :class=" [
+    :class="[
       'py-1 w-full backdrop-blur-sm border-t',
       isDark ? colors.dark.background.primary : colors.light.background.primary,
       isDark ? colors.dark.border.primary : colors.light.border.primary
     ]"
   >
-    <nav class="max-w mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap- md:gap-0">
-      <div class="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-0 w-full md:w-auto">
+    <nav class="max-w mx-auto px-4 grid grid-cols-1 md:grid-cols-3 items-center gap-4 md:gap-0">
+      <div class="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-0 w-full md:w-auto justify-self-start">
         <!-- Divider border -->
-        <div :class=" [
-          'pr-0 md:pr-8 border-b md:border-b-0 md:border-r w-full md:w-auto text-center md:text-left',
+        <div :class="[
+          'md:pr-15 border-b md:border-b-0 md:border-r w-full md:w-auto text-center md:text-left pb-4 md:pb-0',
           isDark ? colors.dark.border.primary : colors.light.border.primary
         ]">
-          <span :class=" [
+          <span :class="[
             'text-sm font-medium',
             isDark ? colors.dark.text.primary : colors.light.text.primary
           ]">
             find me in:
           </span>
         </div>
-        <ul class="flex flex-wrap justify-center md:justify-start items-center w-full md:w-auto">
+        <ul class="flex flex-wrap justify-center md:justify-start items-center w-full md:w-auto md:ml-6">
           <li v-for="(social, index) in socialLinks" 
               :key="index"
-              :class=" [
+              :class="[
                 'border-r',
                 isDark ? colors.dark.border.primary : colors.light.border.primary
               ]">
             <a :href="social.url" 
-               :class=" [
+               target="_blank"
+               :class="[
                  'px-3 py-2 text-sm font-medium transition-colors duration-200 flex items-center gap-2',
                  isDark ? colors.dark.text.secondary : colors.light.text.secondary,
                  isDark ? colors.dark.text.hover : colors.light.text.hover
                ]">
               <component 
                 :is="social.icon" 
-                :class=" [
+                :class="[
                   'w-4 h-4',
                   isDark 
                     ? colors.dark.socialIcons.all 
@@ -50,18 +51,18 @@
             </a>
           </li>
           <!-- GitHub Icon - Mobile Only -->
-          <li class="md:hidden" :class=" [
+          <li class="md:hidden" :class="[
                 'border-r',
                 isDark ? colors.dark.border.primary : colors.light.border.primary
               ]">
             <a href="https://github.com/hiimgyn" 
                target="_blank"
-               :class=" [
-                 'px-6 py-2 text-sm font-medium transition-colors duration-200 flex items-center gap-2',
+               :class="[
+                 'px-3 py-2 text-sm font-medium transition-colors duration-200 flex items-center gap-2',
                  isDark ? colors.dark.text.secondary : colors.light.text.secondary,
                  isDark ? colors.dark.text.hover : colors.light.text.hover
                ]">
-              <svg :class=" [
+              <svg :class="[
                     'w-4 h-4',
                     isDark ? colors.dark.socialIcons.all : `text-[${colors.light.socialIcons.github}]`,
                     isDark && colors.dark.socialIcons.hover
@@ -75,27 +76,27 @@
         </ul>
       </div>
 
-      <!-- Center copyright section -->
-      <div :class=" [
-        'text-sm font-medium text-center order-last md:order-none',
+      <!-- Center copyright section - Always centered -->
+      <div :class="[
+        'text-sm font-medium text-center justify-self-center md:order-none',
         isDark ? colors.dark.text.primary : colors.light.text.primary
       ]">
         &copy; {{ currentYear }} HiimGyn. All rights reserved.
       </div>
-
+      
       <!-- Right GitHub section - Desktop Only -->
-      <div class="hidden md:block" :class=" [
+      <div class="hidden md:block justify-self-end" :class="[
         'pl-6 border-l',
         isDark ? colors.dark.border.primary : colors.light.border.primary
       ]">
         <a href="https://github.com/hiimgyn" 
            target="_blank"
-           :class=" [
+           :class="[
              'px-6 py-2 text-sm font-medium transition-colors duration-200 flex items-center gap-2',
              isDark ? colors.dark.text.secondary : colors.light.text.secondary,
              isDark ? colors.dark.text.hover : colors.light.text.hover
            ]">
-          <svg :class=" [
+          <svg :class="[
                 'w-4 h-4',
                 isDark ? colors.dark.socialIcons.all : `text-[${colors.light.socialIcons.github}]`,
                 isDark && colors.dark.socialIcons.hover
@@ -110,6 +111,7 @@
     </nav>
   </footer>
 </template>
+
 
 <script setup>
 import { computed } from '@vue/reactivity'

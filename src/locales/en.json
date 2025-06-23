@@ -22,27 +22,53 @@
   "about": {
     "portfolio": "Portfolio",
     "overview": "Overview",
-    "overviewContent": "This is the overview content.",
-    "experiences": "Experiences",
-    "experiencesContent": "This is the experiences content.",
+    "professionalIntroContent": "Passionate about the ever-evolving world of technology, I am on a continuous journey to broaden my horizons. I am eagerly looking forward to delving into new tech, refining my existing skills",
+    "name": "Gyn Nguyen",
+    "role": "Back-end Developer/ Business Analyst",
+    "address": "Ho Chi Minh City, Vietnam",
+    "skills": "My Skills",
+    "skill1": "Code",
+    "skill2": "Other",
+    "skill3": "Tools",
+    "visionContent_1": "With accumulated experience, I serve as a Back-end Developer specializing in designing and maintaining servers, databases, and developing APIs for system integration, ensuring applications are secure, efficient, and scalable. I am proficient in SQL database management systems such as MySQL and SQL Server for flexible structured data processing.",
+    "visionContent_2": "Simultaneously, in my role as a Business Analyst, I gather requirements from stakeholders, analyze business processes and data to support decision-making. I act as a bridge between technical teams and business stakeholders, ensuring requirements are understood and resolved effectively. My strength lies in evaluating the efficiency of current processes, identifying bottlenecks, and proposing improvements.",
+    "visionContent_3": "Long-term goals: Develop professional capabilities to solve complex problems more effectively, learn new technologies, enhance skills, and tackle challenges requiring high precision and reliability.",
     "projects": "Projects",
-    "projectsContent": "This is the projects content.",
     "contact": "Contact",
     "email": "Email",
     "emailAddress": "hiimgyn{'@'}gmail.com",
-    "emailContent": "This is the email contact information.",
     "phone": "Phone",
     "phoneNumber": "+84 942 451 385",
-    "phoneContent": "This is the phone contact information.",
-    "overviewNote": "Overview Note",
-    "overviewNoteContent": "Additional information about the overview.",
-    "experiencesNote": "Experiences Note",
-    "experiencesNoteContent": "Additional information about experiences.",
-    "projectsNote": "Projects Note",
-    "projectsNoteContent": "Additional information about projects.",
-    "emailNote": "Email Note",
-    "emailNoteContent": "Additional email related information.",
-    "phoneNote": "Phone Note",
-    "phoneNoteContent": "Additional phone related information."
+     "experiences": "Experiences"
+  },
+   "experience": {
+    "keyAchievements": "Achievements",
+    "technologiesUsed": "Tech stack",
+    "experienceSummary": "Achievements",
+    "experienceSummaryContent": "Với hơn 4 năm kinh nghiệm trong phát triển phần mềm, tôi đã làm việc với nhiều công nghệ và dự án đa dạng, từ hệ thống quản lý đến ứng dụng web phức tạp.",
+    "hd": {
+      "title": "Business Analyst & Developer",
+      "company": "HD Creative Agency",
+      "achievement1": "Gathered, analyzed, and evaluated stakeholder requirements, then identified and proposed technical solution approaches",
+      "achievement2": "Built and maintained servers, email hosting solutions, and centralized system management platforms",
+      "achievement3": "Designed, developed, and coordinated IT systems, policies, and standard operating procedures across the organization",
+      "achievement4": "Developed and launched audit tools (.Net 8), promotional 'Lucky Draw' applications (PHP), visitor check-in systems (Javascript), and ongoing maintenance projects (.NET 8)",
+      "achievement5": "UX/UI design initiatives—producing key visuals, standees, product mockups, and animated graphics (Figma)"
+    },
+    "acacy": {
+      "title": "Back-end Developer",
+      "company": "Acacy",
+      "achievement1": "Developed and extended software features using .NET 8 and Dapper",
+      "achievement2": "Built and optimized complex SQL queries and stored procedures for high-performance data access",
+      "achievement3": "Performed data analysis with SQL PIVOT to generate actionable business insights",
+      "achievement4": "Designed and implemented RESTful APIs to meet stakeholder requirements"
+    },
+    "xteam": {
+      "title": "Server Administrator & Developer",
+      "company": "XTEAM",
+      "achievement1": "Developed, managed and optimized FiveM GTA V servers (Lua, JavaScript, C#) for high performance and security with over 2000 users online",
+      "achievement2": "Cultivated a vibrant player community through regular events and active moderation",
+      "achievement3": "Collaborated with An Phat Computer, Mixi City, NimoTV, BigCity and custom development integrations as well as co-hosting events"
+    }
   }
 }

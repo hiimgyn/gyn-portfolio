@@ -25,12 +25,10 @@
           <div class="flex items-center justify-center md:justify-start">
             <span class="text-purple-400">&gt;</span>
             <span ref="roleText" class="ml-2 mr-2"></span>
-
           </div>
-          <div class="flex items-center justify-center md:justify-start pl-0 md:pl-2">
+          <div class="flex items-center justify-center md:justify-start">
             <span class="text-purple-500">&gt;</span>
             <span ref="roleText2" class="ml-2 mr-2"></span>
-
           </div>
         </div>
 

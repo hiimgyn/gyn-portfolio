@@ -1,29 +1,24 @@
 <!-- src/components/utility/ThemeLangSwitcher.vue -->
 <template>
-  <div
-    :class="[
-      'fixed right-4 top-1/2 transform -translate-y-1/2 flex flex-col items-center space-y-4 p-2 rounded-lg z-50',
-      isDark ? colors.dark.background.secondary : colors.light.background.secondary,
-      'opacity-50 hover:opacity-100 transition-opacity duration-200 backdrop-blur-md'
-    ]"
-    aria-label="Theme and Language Switcher"
-  >
+  <div :class="[
+    // Desktop: góc phải giữa màn hình
+    'fixed right-4 top-1/2 transform -translate-y-1/2',
+    // Mobile: góc dưới phải
+    'md:right-4 md:top-1/2 md:transform md:-translate-y-1/6',
+
+    'right-4 transform-none',
+    'md:transform md:-translate-y-1/2',
+    'flex flex-col items-center space-y-4 p-2 rounded-lg z-50',
+    isDark ? colors.dark.background.secondary : colors.light.background.secondary,
+    'opacity-50 hover:opacity-100 transition-opacity duration-200 backdrop-blur-md'
+  ]" aria-label="Theme and Language Switcher">
     <!-- Language Switcher -->
     <div class="relative group">
-      <div
-        ref="flipContainer"
-        class="w-6 h-6 rounded-md overflow-hidden cursor-pointer"
-        :class="{ 'pointer-events-none': isAnimating }"
-        style="perspective: 1000px;"
-        @click="switchLanguageWithAnimation"
-      >
-        <img
-          ref="flagImg"
-          :src="currentFlag"
-          alt="current-flag"
-          class="w-full h-full object-cover rounded-md"
-          style="transform-style: preserve-3d; backface-visibility: hidden;"
-        />
+      <div ref="flipContainer" class="w-6 h-6 rounded-md overflow-hidden cursor-pointer"
+        :class="{ 'pointer-events-none': isAnimating }" style="perspective: 1000px;"
+        @click="switchLanguageWithAnimation">
+        <img ref="flagImg" :src="currentFlag" alt="current-flag" class="w-full h-full object-cover rounded-md"
+          style="transform-style: preserve-3d; backface-visibility: hidden;" />
       </div>
       <!-- Tooltip -->
       <div :class="[
@@ -43,45 +38,25 @@
 
     <!-- Theme Toggle -->
     <div class="relative group">
-      <button
-        @click="toggleTheme"
-        :aria-label="$t('nav.toggleTheme')"
-        :class="[
-          'w-6 h-6 flex items-center justify-center rounded-md transition-colors duration-200',
-          isDark ? colors.dark.background.tertiary : colors.light.background.tertiary,
-          isDark ? colors.dark.background.hover : colors.light.background.hover,
-          isThemeChanging ? 'opacity-50 cursor-not-allowed' : ''
-        ]"
-        :disabled="isThemeChanging"
-      >
-        <svg
-          v-if="!isDark"
-          xmlns="http://www.w3.org/2000/svg"
-          :class="[
-            'h-4 w-4',
-            colors.light.text.primary
-          ]"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
+      <button @click="toggleTheme" :aria-label="$t('nav.toggleTheme')" :class="[
+        'w-6 h-6 flex items-center justify-center rounded-md transition-colors duration-200',
+        isDark ? colors.dark.background.tertiary : colors.light.background.tertiary,
+        isDark ? colors.dark.background.hover : colors.light.background.hover,
+        isThemeChanging ? 'opacity-50 cursor-not-allowed' : ''
+      ]" :disabled="isThemeChanging">
+        <svg v-if="!isDark" xmlns="http://www.w3.org/2000/svg" :class="[
+          'h-4 w-4',
+          colors.light.text.primary
+        ]" viewBox="0 0 20 20" fill="currentColor">
           <!-- Icon mặt trời -->
-          <path
-            fill-rule="evenodd"
+          <path fill-rule="evenodd"
             d="M10 2a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm4.22 2.22a1 1 0 0 1 1.415 1.415l-.707.707a1 1 0 1 1-1.414-1.414l.706-.708zM18 9a1 1 0 1 1 0 2h-1a1 1 0 1 1 0-2h1zm-2.22 6.78a1 1 0 0 1 0 1.414l-.708.707a1 1 0 1 1-1.414-1.414l.707-.707a1 1 0 0 1 1.415 0zM10 16a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zm-4.22-1.22a1 1 0 0 1 .707.293l.707.707a1 1 0 1 1-1.414 1.414l-.707-.707a1 1 0 0 1 .707-1.707zm-2.78-4.56a1 1 0 0 1 1 1H3a1 1 0 1 1 0-2h1zm2.22-6.78a1 1 0 0 1 1.414 0l.707.707a1 1 0 1 1-1.414 1.414l-.707-.707a1 1 0 0 1 0-1.414zM10 6a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"
-            clip-rule="evenodd"
-          />
+            clip-rule="evenodd" />
         </svg>
-        <svg
-          v-else
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-4 w-4 text-yellow-300"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
+        <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-300" viewBox="0 0 20 20"
+          fill="currentColor">
           <!-- Icon mặt trăng -->
-          <path
-            d="M17.293 13.293A8 8 0 0 1 6.707 2.707 8.06 8.06 0 0 0 10 18a8.06 8.06 0 0 0 7.293-4.707z"
-          />
+          <path d="M17.293 13.293A8 8 0 0 1 6.707 2.707 8.06 8.06 0 0 0 10 18a8.06 8.06 0 0 0 7.293-4.707z" />
         </svg>
       </button>
       <!-- Theme Tooltip -->
@@ -103,12 +78,12 @@
 </template>
 
 <script setup>
-import { ref, computed, watch }                from '@vue/reactivity'
-import { onMounted, nextTick }                 from '@vue/runtime-core'
+import { ref, computed, watch } from '@vue/reactivity'
+import { onMounted, nextTick } from '@vue/runtime-core'
 import { useI18n } from 'vue-i18n'
-import { createTimeline } from 'animejs' 
+import { createTimeline } from 'animejs'
 import { useStore } from '@/stores/theme'
-import { colors } from '@/constants/theme' 
+import { colors } from '@/constants/theme'
 
 import flagEn from '@/assets/Flags/us.svg'
 import flagVi from '@/assets/Flags/vn.svg'
@@ -123,10 +98,10 @@ const isThemeChanging = ref(false)
 
 const toggleTheme = () => {
   if (isThemeChanging.value) return
-  
+
   isThemeChanging.value = true
   store.toggleTheme()
-  
+
   // Khóa nút trong 500ms để tránh spam
   setTimeout(() => {
     isThemeChanging.value = false
@@ -150,9 +125,9 @@ const switchLanguageWithAnimation = async () => {
   if (isAnimating.value || !flagImg.value) {
     return
   }
-  
+
   isAnimating.value = true
-  
+
   const newLocale = locale.value === 'en' ? 'vi' : 'en'
 
   try {
@@ -172,7 +147,7 @@ const switchLanguageWithAnimation = async () => {
 
     tl.call(() => {
       locale.value = newLocale
-      
+
       nextTick().then(() => {
         if (flagImg.value) {
           flagImg.value.style.transform = 'rotateY(-90deg)'

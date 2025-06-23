@@ -31,9 +31,10 @@
             <a
               :href="`/${item}`"
               :class="[
-                'px-6 py-2 text-sm font-medium transition-colors duration-200',
+                'px-6 py-2 text-sm font-medium transition-colors duration-200 relative',
                 isDark ? colors.dark.text.secondary : colors.light.text.secondary,
-                isDark ? colors.dark.text.hover : colors.light.text.hover
+                isDark ? colors.dark.text.hover : colors.light.text.hover,
+                isCurrentPage(item) ? `border-b-3 ${isDark ? colors.dark.border.accent : colors.light.border.accent}` : ''
               ]"
             >
               <GlitchText :text="$t(`nav.${item}`)" />
@@ -45,13 +46,14 @@
       <!-- Right Side: Desktop Contact + Mobile Menu -->
       <div class="flex items-center">
         <!-- Desktop Contact Section -->
-        <div class="hidden md:block" :class="['pl-6 border-l', isDark ? colors.dark.border.primary : colors.light.border.primary]">
+        <div class="hidden md:block" :class="['border-l', isDark ? colors.dark.border.primary : colors.light.border.primary]">
           <a
             href="/contact"
             :class="[
-              'px-6 py-2 text-sm font-medium transition-colors duration-200',
+              'px-6 py-2 text-sm font-medium transition-colors duration-200 relative',
               isDark ? colors.dark.text.secondary : colors.light.text.secondary,
-              isDark ? colors.dark.text.hover : colors.light.text.hover
+              isDark ? colors.dark.text.hover : colors.light.text.hover,
+              isCurrentPage('contact') ? `border-b-3 ${isDark ? colors.dark.border.accent : colors.light.border.accent}` : ''
             ]"
           >
             <GlitchText :text="$t('nav.contact')" />
@@ -86,9 +88,10 @@
           :key="item"
           :href="`/${item}`"
           :class="[
-            'block px-4 py-2 text-base font-medium transition-colors duration-200',
+            'block px-4 py-2 text-base font-medium transition-colors duration-200 relative',
             isDark ? colors.dark.text.secondary : colors.light.text.secondary,
-            isDark ? colors.dark.text.hover : colors.light.text.hover
+            isDark ? colors.dark.text.hover : colors.light.text.hover,
+            isCurrentPage(item) ? 'border-l-4 border-blue-500' : ''
           ]"
         >
           <GlitchText :text="$t(`nav.${item}`)" />
@@ -96,9 +99,10 @@
         <a
           href="/contact"
           :class="[
-            'block px-4 py-2 text-base font-medium transition-colors duration-200',
+            'block px-4 py-2 text-base font-medium transition-colors duration-200 relative',
             isDark ? colors.dark.text.secondary : colors.light.text.secondary,
-            isDark ? colors.dark.text.hover : colors.light.text.hover
+            isDark ? colors.dark.text.hover : colors.light.text.hover,
+            isCurrentPage('contact') ? 'border-l-4 border-blue-500' : ''
           ]"
         >
           <GlitchText :text="$t('nav.contact')" />
@@ -111,11 +115,13 @@
 <script setup>
 import { ref, computed } from '@vue/reactivity'
 import { useStore } from '@/stores/theme'
+import { useRoute } from 'vue-router'
 import GlitchText from '../utility/GlitchText.vue'
 import { colors } from '@/constants/theme'
 import { Bars3Icon as MenuIcon, XMarkIcon as XIcon } from '@heroicons/vue/24/outline'
 
 const store = useStore()
+const route = useRoute()
 const isDark = computed(() => store.isDark)
 const navItems = ref(['about', 'hub'])
 const isMobileMenuOpen = ref(false)
@@ -123,5 +129,10 @@ const isMobileMenuOpen = ref(false)
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value
 }
-</script>
 
+const isCurrentPage = (page) => {
+  const currentPath = route.path
+  if (page === 'home' && currentPath === '/') return true
+  return currentPath === `/${page}` || currentPath.startsWith(`/${page}/`)
+}
+</script>

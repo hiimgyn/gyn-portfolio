@@ -23,26 +23,54 @@
     "portfolio": "Thông tin",
     "overview": "Tổng quan",
     "overviewContent": "Đây là nội dung tổng quan.",
-    "experiences": "Kinh nghiệm",
-    "experiencesContent": "Đây là nội dung kinh nghiệm.",
+    "professionalIntroContent": "Đam mê với thế giới công nghệ không ngừng phát triển, tôi đang trên hành trình liên tục mở rộng tầm nhìn của mình. Tôi háo hức mong chờ được khám phá những công nghệ mới, hoàn thiện các kỹ năng hiện có",
+    "name": "Nguyễn Minh Hùng",
+    "role": "Back-end Developer/ Business Analyst",
+    "address": "Thành Phố Hồ Chí Minh, Việt Nam",
+    "skills": "Kỹ năng",
+    "skill1": "Ngôn ngữ lập trình",
+    "skill2": "Công nghệ khác",
+    "skill3": "Công cụ",
+    "visionContent_1": "Với kinh nghiệm tích lũy, tôi đảm nhận vai trò Back-end Developer chuyên thiết kế và duy trì server, cơ sở dữ liệu, phát triển API tích hợp hệ thống, đảm bảo ứng dụng an toàn, hiệu quả và có khả năng mở rộng. Tôi thành thạo các hệ quản trị cơ sở dữ liệu SQL như MySQL, SQL Server để xử lý dữ liệu có cấu trúc linh hoạt.",
+    "visionContent_2": "Đồng thời, với vai trò Business Analyst, tôi thu thập yêu cầu từ stakeholders, phân tích quy trình kinh doanh và dữ liệu để hỗ trợ ra quyết định. Đảm bảo yêu cầu được hiểu và giải quyết hiệu quả. Thế mạnh của tôi là đánh giá hiệu quả quy trình hiện tại, xác định điểm nghẽn và đề xuất cải tiến.",
+    "visionContent_3": "Mục tiêu dài hạn: Phát triển năng lực chuyên môn để giải quyết vấn đề phức tạp hiệu quả hơn, học tập công nghệ mới, nâng cao kỹ năng và đương đầu với thách thức đòi hỏi độ chính xác, tin cậy cao.",
     "projects": "Dự án",
-    "projectsContent": "Đây là nội dung dự án.",
     "contact": "Liên hệ",
     "email": "Email",
     "emailAddress": "hiimgyn{'@'}gmail.com",
-    "emailContent": "Đây là thông tin liên hệ email.",
     "phone": "Điện thoại",
     "phoneNumber": "+84 942 451 385",
-    "phoneContent": "Đây là thông tin liên hệ điện thoại.",
-    "overviewNote": "Ghi chú tổng quan",
-    "overviewNoteContent": "Thông tin bổ sung về tổng quan.",
-    "experiencesNote": "Ghi chú kinh nghiệm",
-    "experiencesNoteContent": "Thông tin bổ sung về kinh nghiệm.",
-    "projectsNote": "Ghi chú dự án",
-    "projectsNoteContent": "Thông tin bổ sung về dự án.",
-    "emailNote": "Ghi chú Email",
-    "emailNoteContent": "Thông tin bổ sung liên quan đến email.",
-    "phoneNote": "Ghi chú Điện thoại",
-    "phoneNoteContent": "Thông tin bổ sung liên quan đến điện thoại."
+    "experiences": "Kinh nghiệm"
+  },
+
+  "experience": {
+    "keyAchievements": "Thành tựu chính",
+    "technologiesUsed": "Công nghệ sử dụng",
+    "experienceSummary": "Tổng kết kinh nghiệm",
+    "experienceSummaryContent": "Với hơn 4 năm kinh nghiệm trong phát triển phần mềm, tôi đã làm việc với nhiều công nghệ và dự án đa dạng, từ hệ thống quản lý đến ứng dụng web phức tạp.",
+    "hd": {
+      "title": "Business Analyst & Developer",
+      "company": "HD Creative Agency",
+      "achievement1": "Thu thập, phân tích và đánh giá yêu cầu của các bên liên quan, sau đó xác định và đề xuất các phương pháp giải pháp kỹ thuật",
+      "achievement2": "Xây dựng và duy trì máy chủ, giải pháp lưu trữ email và nền tảng quản lý hệ thống tập trung",
+      "achievement3": "Thiết kế, phát triển và điều phối các hệ thống CNTT, chính sách và quy trình vận hành tiêu chuẩn trong toàn tổ chức",
+      "achievement4": "Phát triển và ra mắt các công cụ kiểm toán (.Net 8), ứng dụng khuyến mại 'Lucky Draw' (PHP), hệ thống check-in khách (Javascript) và các dự án bảo trì liên tục (.NET 8)",
+      "achievement5": "Các sáng kiến thiết kế UX/UI - tạo ra các hình ảnh chính, standees, mockup sản phẩm và đồ họa hoạt hình (Figma)"
+    },
+    "acacy": {
+      "title": "Back-end Developer",
+      "company": "Acacy",
+      "achievement1": "Phát triển và mở rộng các tính năng phần mềm sử dụng .NET 8 và Dapper",
+      "achievement2": "Xây dựng và tối ưu hóa các truy vấn SQL phức tạp và stored procedures để truy cập dữ liệu hiệu suất cao",
+      "achievement3": "Thực hiện phân tích dữ liệu với SQL PIVOT để tạo ra những hiểu biết kinh doanh có thể hành động",
+      "achievement4": "Thiết kế và triển khai RESTful APIs để đáp ứng yêu cầu của các bên liên quan"
+    },
+    "xteam": {
+      "title": "Server Administrator & Developer",
+      "company": "XTEAM",
+      "achievement1": "Phát triển, quản lý và tối ưu hóa máy chủ FiveM GTA V (Lua, JavaScript, C#) cho hiệu suất cao và bảo mật với hơn 2000 người dùng trực tuyến",
+      "achievement2": "Nuôi dưỡng cộng đồng người chơi sôi động thông qua các sự kiện thường xuyên và kiểm duyệt tích cực",
+      "achievement3": "Hợp tác với An Phat Computer, Mixi City, NimoTV, BigCity và các tích hợp phát triển tùy chỉnh cũng như đồng tổ chức sự kiện"
+    }
   }
 }
