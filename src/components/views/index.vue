@@ -352,12 +352,6 @@ onUnmounted(() => {
 
 // Optimized watchers[1]
 watch([isDark, greetingText, nameText_content, rolesArray, ctaText], async () => {
-  if (isInitialMount.value) {
-    isInitialMount.value = false
-    return
-  }
-
-  // Batch DOM updates for theme changes[3]
   requestAnimationFrame(async () => {
     document.body.classList.add('disable-transitions')
     await resetElements()
