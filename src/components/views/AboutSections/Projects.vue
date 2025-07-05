@@ -1,5 +1,6 @@
 <script setup>
-import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
+import { ref, computed } from '@vue/reactivity'
+import { nextTick, onMounted, onUnmounted } from '@vue/runtime-core'
 import { useI18n } from 'vue-i18n'
 import { gsap } from 'gsap'
 import * as THREE from 'three'
@@ -16,131 +17,263 @@ const projects = ref([
     name: 'projects.project1.name',
     description: 'projects.project1.description',
     image: new URL('@/assets/Images/projects/portfolio.png', import.meta.url).href,
-    technologies: ["Vue.js", "Tailwind CSS", "Three.js"],
-    github: 'https://github.com/your-project1',
+    technologies: ["Vue.js", "Node.js"],
+    github: 'https://github.com/hiimgyn/gyn-portfolio',
   },
   {
     id: 2,
     name: 'projects.project2.name',
     description: 'projects.project2.description',
-    image: new URL('@/assets/Images/projects/project1.png', import.meta.url).href,
-    technologies: ["Vue.js", "Tailwind CSS", "Three.js"],
-    github: 'https://github.com/your-mobile-store',
+    image: new URL('@/assets/Images/projects/shop.png', import.meta.url).href,
+    technologies: ["Java", "MVC", "SQL Server"],
+    github: 'https://github.com/hiimgyn/mobile-store-management',
   },
   {
     id: 3,
     name: 'projects.project3.name',
     description: 'projects.project3.description',
-    image: new URL('@/assets/Images/projects/project2.png', import.meta.url).href,
-    technologies: ["Vue.js", "Tailwind CSS", "Three.js", "Vue.js", "Tailwind CSS"],
-    github: 'https://github.com/your-chat-app',
+    image: new URL('@/assets/Images/projects/tuna.png', import.meta.url).href,
+    technologies: [".NET 8", "SQLite", "C#", "Winforms", "TCP Sockets"],
+    github: 'https://github.com/hiimgyn/TunaApp',
   },
   {
     id: 4,
     name: 'projects.project4.name',
     description: 'projects.project4.description',
-    image: new URL('@/assets/Images/avatar.png', import.meta.url).href,
-    technologies: ["Vue.js", "Tailwind CSS", "Three.js", "Vue.js", "Tailwind CSS", "Three.js"],
-    github: 'https://github.com/your-project4',
+    image: new URL('@/assets/Images/projects/project1.png', import.meta.url).href,
+    technologies: ["Laravel", "SQL Server", "ReactUI/API"],
+    github: '#',
   },
   {
     id: 5,
     name: 'projects.project5.name',
     description: 'projects.project5.description',
-    image: new URL('@/assets/Images/avatar.png', import.meta.url).href,
-    technologies: ["Vue.js", "Tailwind CSS", "Three.js"],
-    github: 'https://github.com/your-project5',
+    image: new URL('@/assets/Images/projects/landing.png', import.meta.url).href,
+    technologies: ["Node.js", "HTML", "Figma"],
+    github: 'https://github.com/hiimgyn/M-Pro-LandingPage',
   },
 ])
 
 const currentMainIndex = ref(0)
-const cardRefs = ref([null, null, null, null, null])
+const cardRefs = ref([])
 const threeContainer = ref(null)
-const showDebug = ref(false) // Toggle debug panel
 const isAnimating = ref(false)
 const isLoading = ref(true)
-const showCenterContent = ref(true) // Control center content visibility
-const forceUpdate = ref(0) // Force reactivity trigger
+const cardsInitialized = ref(false)
+const contentVisible = ref(false)
+
+// Tech badge colors based on index
+const getTechColor = (projectIndex, techIndex) => {
+  const schemes = [
+    isDark.value ? colors.dark.badge.tech.blue : colors.light.badge.tech.blue,
+    isDark.value ? colors.dark.badge.tech.green : colors.light.badge.tech.green,
+    isDark.value ? colors.dark.badge.tech.purple : colors.light.badge.tech.purple
+  ]
+  return schemes[(projectIndex + techIndex) % schemes.length]
+}
+
+// Computed classes for better performance
+const cardShadowClasses = computed(() => (position) => {
+  const baseClasses = 'relative rounded-3xl overflow-hidden card-3d backdrop-blur-lg h-full border transition-all duration-500'
+  const shadowMap = {
+    center: isDark.value ? 'shadow-4xl border-white/25' : 'shadow-4xl border-gray-200/50',
+    left: isDark.value ? 'shadow-2xl border-white/15 group' : 'shadow-2xl border-gray-200/30 group',
+    right: isDark.value ? 'shadow-2xl border-white/15 group' : 'shadow-2xl border-gray-200/30 group',
+    farLeft: isDark.value ? 'shadow-xl border-white/10 group' : 'shadow-xl border-gray-200/20 group',
+    farRight: isDark.value ? 'shadow-xl border-white/10 group' : 'shadow-xl border-gray-200/20 group'
+  }
+  const cardBg = isDark.value ? colors.dark.card.background : colors.light.card.background
+  return `${baseClasses} ${shadowMap[position] || shadowMap.farLeft} ${cardBg}`
+})
+
+const gradientClasses = computed(() => (position) => {
+  const gradientMap = {
+    center: 'from-black/90 via-black/35 to-transparent p-10',
+    left: 'from-black/85 via-black/25 to-transparent p-6',
+    right: 'from-black/85 via-black/25 to-transparent p-6',
+    farLeft: 'from-black/80 via-black/20 to-transparent p-4',
+    farRight: 'from-black/80 via-black/20 to-transparent p-4'
+  }
+  const baseClasses = 'absolute inset-0 bg-gradient-to-t flex flex-col justify-end transition-opacity duration-250'
+  const opacityClass = contentVisible.value ? 'opacity-100' : 'opacity-0'
+  return `${baseClasses} ${gradientMap[position] || gradientMap.farLeft} ${opacityClass}`
+})
+
+const isLeftOrRight = (position) => position === 'left' || position === 'right'
+
+// Mobile card classes
+const mobileCardClasses = computed(() => [
+  'rounded-lg overflow-hidden border transition-all duration-300',
+  isDark.value ? colors.dark.background.primary : colors.light.background.primary,
+  isDark.value ? colors.dark.border.primary : colors.light.border.primary
+])
+
+const mobileTextClasses = computed(() => ({
+  title: [
+    'text-xl font-bold mb-4',
+    isDark.value ? colors.dark.text.primary : colors.light.text.primary
+  ],
+  description: [
+    'mb-4 text-sm leading-relaxed',
+    isDark.value ? colors.dark.text.secondary : colors.light.text.secondary
+  ],
+  link: [
+    'inline-flex items-center gap-2 font-medium text-sm transition-colors',
+    isDark.value ? colors.dark.text.link : colors.light.text.link  ]
+}))
+
+// Keyboard hint classes
+const keyboardHintClasses = computed(() => [
+  'flex items-center gap-2 transition-colors duration-200',
+  isDark.value ? 'text-gray-300' : 'text-gray-600'
+])
 
 // Three.js variables
-let scene, camera, renderer, particleSystem
+let scene, camera, renderer
 let animationId = null
 
-// Logic hiển thị cards theo thứ tự: farLeft, Left, Center, Right, farRight
-const visibleProjects = computed(() => {
-  // Trigger reactivity bằng cách read forceUpdate
-  forceUpdate.value
+const cardPositions = computed(() => {
+  const result = {}
   
-  const total = projects.value.length
-  const getIndex = (offset) => (currentMainIndex.value + offset + total) % total
-  
-  const result = {
-    farLeft: projects.value[getIndex(-2)],
-    left: projects.value[getIndex(-1)],
-    center: projects.value[getIndex(0)],
-    right: projects.value[getIndex(1)],
-    farRight: projects.value[getIndex(2)],
-  }
-  
-  console.log('Visible Projects Update:', {
-    currentMainIndex: currentMainIndex.value,
-    center: result.center.id,
-    forceUpdate: forceUpdate.value
+  projects.value.forEach((project, index) => {
+    const relativePosition = (index - currentMainIndex.value + projects.value.length) % projects.value.length
+    
+    const positionMap = {
+      0: 'center',
+      1: 'right', 
+      2: 'farRight',
+      [projects.value.length - 1]: 'left',
+      [projects.value.length - 2]: 'farLeft'
+    }
+    
+    result[index] = positionMap[relativePosition] || 'hidden'
   })
   
   return result
 })
 
-// Cấu hình vị trí cố định cho từng card (5 vị trí)
-const cardPositions = {
-  farLeft: {
-    left: '2%',
-    top: '140px',
-    width: '340px',
-    height: '300px',
-    zIndex: 5,
-    transform: 'translateX(-50%) scale(0.7) rotateY(18deg) rotateX(2deg)',
-    opacity: 0.5
-  },
-  left: {
-    left: '18%',
-    top: '90px',
-    width: '420px',
-    height: '360px',
-    zIndex: 10,
-    transform: 'translateX(-50%) scale(0.88) rotateY(10deg) rotateX(3deg)',
-    opacity: 0.8
-  },
-  center: {
-    left: '50%',
-    top: '40px',
-    width: '600px',
-    height: '500px',
-    zIndex: 30,
-    transform: 'translateX(-50%) scale(1.15) rotateY(0deg) rotateX(0deg)',
-    opacity: 1
-  },
-  right: {
-    left: '82%',
-    top: '90px',
-    width: '420px',
-    height: '360px',
-    zIndex: 10,
-    transform: 'translateX(-50%) scale(0.88) rotateY(-10deg) rotateX(3deg)',
-    opacity: 0.8
-  },
-  farRight: {
-    left: '98%',
-    top: '140px',
-    width: '340px',
-    height: '300px',
-    zIndex: 5,
-    transform: 'translateX(-50%) scale(0.7) rotateY(-18deg) rotateX(2deg)',
-    opacity: 0.5
-  }
+// Cấu hình CSS cho từng vị trí
+const positionStyles = {
+  farLeft: { left: '2%', top: '140px', width: '340px', height: '300px', zIndex: 5, transform: 'translateX(-50%) scale(0.7) rotateY(18deg) rotateX(2deg)', opacity: 0.5 },
+  left: { left: '18%', top: '90px', width: '420px', height: '360px', zIndex: 10, transform: 'translateX(-50%) scale(0.88) rotateY(10deg) rotateX(3deg)', opacity: 0.8 },
+  center: { left: '50%', top: '40px', width: '600px', height: '500px', zIndex: 30, transform: 'translateX(-50%) scale(1.15) rotateY(0deg) rotateX(0deg)', opacity: 1 },
+  right: { left: '82%', top: '90px', width: '420px', height: '360px', zIndex: 10, transform: 'translateX(-50%) scale(0.88) rotateY(-10deg) rotateX(3deg)', opacity: 0.8 },
+  farRight: { left: '92%', top: '140px', width: '340px', height: '300px', zIndex: 5, transform: 'translateX(-50%) scale(0.7) rotateY(-18deg) rotateX(2deg)', opacity: 0.5 },
+  hidden: { left: '50%', top: '40px', width: '600px', height: '500px', zIndex: 1, transform: 'translateX(-50%) scale(0) rotateY(0deg) rotateX(0deg)', opacity: 0, pointerEvents: 'none' }
 }
 
-// Khởi tạo Three.js scene
+// Animation chuyển đổi cards
+const animateCardTransition = (direction, step = 1) => {
+  if (isAnimating.value) return
+  isAnimating.value = true
+  contentVisible.value = false
+  
+  setTimeout(() => {
+    const total = projects.value.length
+    currentMainIndex.value = direction === 'prev' 
+      ? (currentMainIndex.value - step + total) % total
+      : (currentMainIndex.value + step) % total
+    
+    const timeline = gsap.timeline({
+      onComplete: () => fadeInNewContent()
+    })
+    
+    cardRefs.value.forEach((card, index) => {
+      if (!card) return
+      const newPosition = cardPositions.value[index]
+      const targetStyle = positionStyles[newPosition]
+      timeline.to(card, { ...targetStyle, duration: 0.8, ease: 'power3.inOut' }, 0)
+    })
+  }, 250)
+}
+
+const fadeInNewContent = () => {
+  setTimeout(() => {
+    contentVisible.value = true
+    isAnimating.value = false
+  }, 100)
+}
+
+// Xử lý click card
+const handleCardClick = (cardIndex) => {
+  if (isAnimating.value) return
+
+  const currentPosition = cardPositions.value[cardIndex]
+  const clickActions = {
+    'farLeft': () => animateCardTransition('prev', 2),
+    'left': () => animateCardTransition('prev', 1),
+    'right': () => animateCardTransition('next', 1),
+    'farRight': () => animateCardTransition('next', 2)
+  }
+  
+  clickActions[currentPosition]?.()
+}
+
+// Navigation functions
+const goToPreviousProject = (step = 1) => animateCardTransition('prev', step)
+const goToNextProject = (step = 1) => animateCardTransition('next', step)
+
+// Khởi tạo cards với animation
+const initializeCards = () => {
+  nextTick(() => {
+    // Set initial state for all cards
+    cardRefs.value.forEach((card) => {
+      if (!card) return
+      gsap.set(card, {
+        position: 'absolute',
+        opacity: 0,
+        scale: 0,
+        visibility: 'hidden',
+        transformOrigin: 'center center'
+      })
+    })
+    
+    cardsInitialized.value = true
+    
+    setTimeout(() => {
+      // Make cards visible
+      cardRefs.value.forEach((card) => {
+        if (card) gsap.set(card, { visibility: 'visible' })
+      })
+      
+      const timeline = gsap.timeline({
+        onComplete: () => {
+          // Add floating animation to visible cards
+          cardRefs.value.forEach((card, index) => {
+            if (!card || cardPositions.value[index] === 'hidden') return
+            gsap.to(card, {
+              y: `+=${6 + index * 2}`,
+              duration: 3.5 + index * 0.4,
+              ease: 'sine.inOut',
+              yoyo: true,
+              repeat: -1
+            })
+          })
+          setTimeout(() => { contentVisible.value = true }, 300)
+          isLoading.value = false
+        }
+      })
+
+      // Animate cards to their positions
+      cardRefs.value.forEach((card, index) => {
+        if (!card) return
+        const position = cardPositions.value[index]
+        const targetStyle = positionStyles[position]
+        
+        timeline.to(card, {
+          position: 'absolute',
+          ...targetStyle,
+          scale: 1,
+          duration: 1.4,
+          ease: 'back.out(1.4)',
+          transformOrigin: 'center center'
+        }, index * 0.2)
+      })
+    }, 200)
+  })
+}
+
+// Three.js functions
 const initThreeJS = () => {
   if (!threeContainer.value) return
 
@@ -154,26 +287,17 @@ const initThreeJS = () => {
     threeContainer.value.appendChild(renderer.domElement)
 
     camera.position.z = 5
-
     animateThree()
   } catch (error) {
     console.error('Failed to initialize Three.js:', error)
   }
 }
 
-// Three.js animation loop
 const animateThree = () => {
   animationId = requestAnimationFrame(animateThree)
-
-  if (particleSystem) {
-    particleSystem.rotation.y += 0.002
-    particleSystem.rotation.x += 0.001
-  }
-
   renderer.render(scene, camera)
 }
 
-// Cleanup Three.js
 const cleanupThreeJS = () => {
   if (animationId) {
     cancelAnimationFrame(animationId)
@@ -190,243 +314,7 @@ const cleanupThreeJS = () => {
   }
 }
 
-// Animation chuyển đổi cards (5 card) với fade content
-const animateCardTransition = (direction, step = 1) => {
-  if (isAnimating.value) return
-  isAnimating.value = true
-
-  console.log(`Starting animation: ${direction}, step: ${step}, currentIndex: ${currentMainIndex.value}`)
-
-  // Create main timeline for the entire animation sequence
-  const masterTimeline = gsap.timeline({
-    onComplete: () => {
-      console.log('Master animation complete')
-      isAnimating.value = false
-    }
-  })
-
-  // Phase 1: Fade out center content (0.2s)
-  masterTimeline.to('.center-project-content', {
-    opacity: 0,
-    y: -20,
-    duration: 0.2,
-    ease: 'power2.out',
-    onComplete: () => {
-      showCenterContent.value = false
-    }
-  })
-
-  // Phase 2: Calculate next positions for all cards
-  const positions = ['farLeft', 'left', 'center', 'right', 'farRight']
-  const cardMoves = []
-  
-  cardRefs.value.forEach((card, idx) => {
-    if (!card) return
-    
-    let targetPositionIndex
-    if (direction === 'prev') {
-      // Previous: cards move right (increase index)
-      targetPositionIndex = (idx + step) % 5
-    } else if (direction === 'next') {
-      // Next: cards move left (decrease index)
-      targetPositionIndex = (idx - step + 5) % 5
-    }
-    
-    const targetPosition = positions[targetPositionIndex]
-    const targetConfig = cardPositions[targetPosition]
-    
-    cardMoves.push({
-      card,
-      targetConfig,
-      originalIndex: idx,
-      targetIndex: targetPositionIndex
-    })
-  })
-
-  // Phase 2: Animate all cards to new positions (0.8s)
-  cardMoves.forEach(({ card, targetConfig }) => {
-    masterTimeline.to(card, {
-      ...targetConfig,
-      duration: 0.8,
-      ease: 'power3.inOut',
-    }, "-=0.6") // Start 0.6s before previous animation ends (overlap)
-  })
-
-  // Phase 3: Update data and reset positions after card animation
-  masterTimeline.call(() => {
-    console.log('Cards moved, updating data...')
-    
-    // Update index
-    const total = projects.value.length
-    const oldIndex = currentMainIndex.value
-    
-    if (direction === 'prev') {
-      currentMainIndex.value = (currentMainIndex.value - step + total) % total
-    } else if (direction === 'next') {
-      currentMainIndex.value = (currentMainIndex.value + step) % total
-    }
-    
-    console.log(`Index changed from ${oldIndex} to ${currentMainIndex.value}`)
-    
-    // Force trigger reactivity
-    forceUpdate.value++
-  })
-
-  // Phase 4: Reset positions with new data (immediate)
-  masterTimeline.call(() => {
-    setTimeout(() => {
-      console.log('Resetting card positions with new data...')
-      setCardPositions()
-      showCenterContent.value = true
-    }, 50) // Give Vue time to update
-  })
-
-  // Phase 5: Fade in new center content (0.3s)
-  masterTimeline.fromTo('.center-project-content', 
-    { 
-      opacity: 0, 
-      y: 20 
-    },
-    {
-      opacity: 1,
-      y: 0,
-      duration: 0.3,
-      ease: 'power2.inOut',
-    }, "+=0.1") // Small delay after position reset
-}
-
-// Xử lý click card
-const handleCardClick = (position) => {
-  if (isAnimating.value) return
-
-  if (position === 'farLeft') {
-    animateCardTransition('prev', 2)
-  } else if (position === 'left') {
-    animateCardTransition('prev', 1)
-  } else if (position === 'right') {
-    animateCardTransition('next', 1)
-  } else if (position === 'farRight') {
-    animateCardTransition('next', 2)
-  }
-}
-
-// Chuyển về project trước
-const goToPreviousProject = (step = 1) => {
-  animateCardTransition('prev', step)
-}
-
-// Chuyển tới project tiếp theo
-const goToNextProject = (step = 1) => {
-  animateCardTransition('next', step)
-}
-
-// Thiết lập vị trí ban đầu cho cards (5 card) - Enhanced for stability
-const setCardPositions = () => {
-  nextTick(() => {
-    cardRefs.value.forEach((card, index) => {
-      if (!card) return
-      
-      // Kill all existing animations first
-      gsap.killTweensOf(card)
-      
-      const positions = ['farLeft', 'left', 'center', 'right', 'farRight']
-      const position = positions[index]
-      const config = cardPositions[position]
-      
-      // Clear all previous styles
-      gsap.set(card, {
-        clearProps: "all"
-      })
-      
-      // Set stable positioning with immediate values
-      gsap.set(card, {
-        position: 'absolute',
-        left: config.left,
-        top: config.top,
-        width: config.width,
-        height: config.height,
-        zIndex: config.zIndex,
-        transform: config.transform,
-        opacity: config.opacity,
-        transformOrigin: 'center center'
-      })
-      
-      console.log(`Card ${index} positioned at ${position} for project ${visibleProjects.value[position]?.id}`)
-    })
-    
-    // Ensure center content is visible after positioning
-    if (showCenterContent.value) {
-      gsap.set('.center-project-content', {
-        opacity: 1,
-        y: 0
-      })
-    }
-  })
-}
-
-// Khởi tạo cards với animation (5 card) - Enhanced for better sequencing
-const initializeCards = () => {
-  nextTick(() => {
-    // Set initial hidden state for all cards
-    cardRefs.value.forEach((card, index) => {
-      if (!card) return
-      gsap.set(card, {
-        position: 'absolute',
-        opacity: 0,
-        scale: 0.2,
-        rotationY: index === 0 ? -160 : index === 4 ? 160 : 0,
-        transformOrigin: 'center center'
-      })
-    })
-    
-    // Create main initialization timeline
-    const initTimeline = gsap.timeline({
-      onComplete: () => {
-        // Start floating animations after initialization
-        cardRefs.value.forEach((card, index) => {
-          if (!card) return
-          gsap.to(card, {
-            y: `+=${6 + index * 2}`,
-            duration: 3.5 + index * 0.4,
-            ease: 'sine.inOut',
-            yoyo: true,
-            repeat: -1
-          })
-        })
-        
-        // Mark loading as complete
-        isLoading.value = false
-        console.log('Card initialization complete')
-      }
-    })
-    
-    // Animate each card to its final position
-    cardRefs.value.forEach((card, index) => {
-      if (!card) return
-      const positions = ['farLeft', 'left', 'center', 'right', 'farRight']
-      const position = positions[index]
-      const config = cardPositions[position]
-      
-      initTimeline.to(card, {
-        position: 'absolute',
-        left: config.left,
-        top: config.top,
-        width: config.width,
-        height: config.height,
-        zIndex: config.zIndex,
-        transform: config.transform,
-        opacity: config.opacity,
-        scale: 1, // Override the initial scale
-        rotationY: 0, // Reset rotation
-        duration: 1.2,
-        ease: 'back.out(1.8)',
-        transformOrigin: 'center center'
-      }, index * 0.15) // Stagger the animations
-    })
-  })
-}
-
-// Handle window resize
+// Event handlers
 const handleResize = () => {
   if (camera && renderer && threeContainer.value) {
     camera.aspect = threeContainer.value.clientWidth / threeContainer.value.clientHeight
@@ -435,15 +323,13 @@ const handleResize = () => {
   }
 }
 
-// Keyboard navigation
 const handleKeydown = (e) => {
   if (isAnimating.value) return
-
-  if (e.key === 'ArrowLeft') {
-    goToPreviousProject()
-  } else if (e.key === 'ArrowRight') {
-    goToNextProject()
+  const keyActions = {
+    'ArrowLeft': goToPreviousProject,
+    'ArrowRight': goToNextProject
   }
+  keyActions[e.key]?.()
 }
 
 onMounted(() => {
@@ -470,227 +356,131 @@ onUnmounted(() => {
   ]">
     <!-- Three.js Background Container -->
     <div ref="threeContainer" class="absolute inset-0 pointer-events-none z-0" style="width: 100vw; height: 100vh;">
-    </div>    <!-- Debug Panel - Toggleable -->
-    <div class="fixed top-4 left-4 z-50">
-      <button @click="showDebug = !showDebug" 
-              class="bg-black/90 text-white px-3 py-2 rounded-lg text-xs font-mono mb-2 hover:bg-black transition-colors">
-        {{ showDebug ? 'Hide Debug' : 'Show Debug' }}
-      </button>
-      <div v-if="showDebug" class="bg-black/90 text-white p-4 rounded-lg text-sm font-mono">
-        <div>Current Main Index: {{ currentMainIndex }}</div>
-        <div>Force Update: {{ forceUpdate }}</div>
-        <div>Center Project: {{ visibleProjects.center?.id }}</div>
-        <div>Show Center Content: {{ showCenterContent }}</div>
-        <div>Animation: {{ isAnimating ? 'Running' : 'Idle' }}</div>
-        <div class="mt-2">Projects Order:</div>
-        <div class="ml-2">Far Left: Project {{ visibleProjects.farLeft?.id }}</div>
-        <div class="ml-2">Left: Project {{ visibleProjects.left?.id }}</div>
-        <div class="ml-2 font-bold">Center: Project {{ visibleProjects.center?.id }}</div>
-        <div class="ml-2">Right: Project {{ visibleProjects.right?.id }}</div>
-        <div class="ml-2">Far Right: Project {{ visibleProjects.farRight?.id }}</div>
-        <div class="mt-2 space-x-2">
-          <button @click="goToPreviousProject()" class="bg-blue-500 px-2 py-1 rounded text-xs" :disabled="isAnimating">← Prev</button>
-          <button @click="goToNextProject()" class="bg-blue-500 px-2 py-1 rounded text-xs" :disabled="isAnimating">Next →</button>
-        </div>
-      </div>
     </div>
 
-    <!-- Stack Cards Desktop Layout - 5 cards -->
-    <div
-      class="relative w-full max-w-[1900px] h-[850px] hidden md:flex items-center justify-center perspective-2500 z-10">      <!-- Card farLeft (Previous-2 Project) -->
-      <div :ref="el => cardRefs[0] = el" class="card-container cursor-pointer preserve-3d"
-        @click="handleCardClick('farLeft')" :title="`Previous: ${t(visibleProjects.farLeft.name)}`"
-        :key="`farLeft-${visibleProjects.farLeft.id}-${currentMainIndex}-${forceUpdate}`">
-        <div :class="[
-          'relative group rounded-3xl overflow-hidden shadow-xl card-3d backdrop-blur-lg bg-opacity-96 h-full border border-white/10 transition-all duration-500',
-          isDark ? colors.dark.background.secondary : 'bg-white'
-        ]">
-          <img :src="visibleProjects.farLeft.image" :alt="t(visibleProjects.farLeft.name)" class="w-full h-40 object-cover" />
-          <div
-            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4">
-            <h3 class="text-lg font-bold mb-2 drop-shadow-lg text-white">
-              {{ t(visibleProjects.farLeft.name) }}
-            </h3>
-            <p class="text-sm drop-shadow-sm line-clamp-2 text-white/90">
-              {{ t(visibleProjects.farLeft.description) }}
-            </p>
-          </div>
-        </div>
-      </div>      <!-- Card left (Previous Project) -->
-      <div :ref="el => cardRefs[1] = el" class="card-container cursor-pointer preserve-3d"
-        @click="handleCardClick('left')" :title="`Previous: ${t(visibleProjects.left.name)}`"
-        :key="`left-${visibleProjects.left.id}-${currentMainIndex}-${forceUpdate}`">
-        <div :class="[
-          'relative group rounded-3xl overflow-hidden shadow-2xl card-3d backdrop-blur-lg bg-opacity-96 h-full border border-white/15 transition-all duration-500',
-          isDark ? colors.dark.background.secondary : 'bg-white'
-        ]">
-          <img :src="visibleProjects.left.image" :alt="t(visibleProjects.left.name)" class="w-full h-56 object-cover" />
-          <div
-            class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent flex flex-col justify-end p-6">
-            <h3 class="text-xl font-bold mb-3 drop-shadow-lg text-white">
-              {{ t(visibleProjects.left.name) }}
-            </h3>
-            <p class="text-base drop-shadow-sm line-clamp-2 text-white/95">
-              {{ t(visibleProjects.left.description) }}
-            </p>
-          </div>
-          <!-- Hover indicator -->
-          <div
-            class="absolute top-4 right-4 bg-gradient-to-r from-blue-500/90 to-purple-500/90 backdrop-blur-sm rounded-full p-3 opacity-0 group-hover:opacity-100 transition-all duration-400 border border-white/40">
-            <svg class="w-5 h-5 text-white animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-            </svg>
-          </div>
-        </div>
-      </div>      <!-- Card center (Current Project) -->
-      <div :ref="el => cardRefs[2] = el" class="card-container preserve-3d"
-        :title="`Current: ${t(visibleProjects.center.name)}`"
-        :key="`center-${visibleProjects.center.id}-${currentMainIndex}-${forceUpdate}`">
-        <div :class="[
-          'relative rounded-3xl overflow-hidden shadow-4xl card-3d backdrop-blur-lg bg-opacity-96 h-full border border-white/25',
-          isDark ? colors.dark.background.secondary : 'bg-white'
-        ]">
-          <img :src="visibleProjects.center.image" :alt="t(visibleProjects.center.name)"
-            class="w-full h-72 object-cover" />
-          <div
-            class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent flex flex-col justify-end p-10">
-            <div v-if="showCenterContent" class="center-project-content">
+    <!-- Desktop Layout -->
+    <div class="relative w-full max-w-[1900px] h-[850px] hidden md:flex items-center justify-center perspective-2500 z-10">
+      <div 
+        v-for="(project, index) in projects" 
+        :key="project.id"
+        :ref="el => cardRefs[index] = el" 
+        class="card-container preserve-3d"
+        :class="{
+          'cursor-pointer': cardPositions[index] !== 'center' && cardPositions[index] !== 'hidden' && cardsInitialized,
+          'invisible': !cardsInitialized
+        }"
+        @click="cardsInitialized ? handleCardClick(index) : null"
+        :title="cardPositions[index] !== 'center' && cardsInitialized ? `Go to: ${t(project.name)}` : `Current: ${t(project.name)}`"
+        :style="{ pointerEvents: cardPositions[index] === 'hidden' || !cardsInitialized ? 'none' : 'auto' }"
+      >        <div :class="cardShadowClasses(cardPositions[index])">
+          <img 
+            :src="project.image" 
+            :alt="t(project.name)" 
+            class="absolute inset-0 w-full h-full object-cover" 
+          />
+          <div :class="gradientClasses(cardPositions[index])">
+            <div v-if="cardPositions[index] === 'center'" 
+                 :class="['transition-all duration-400 delay-75', contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3']">
               <h3 class="text-4xl font-bold mb-5 drop-shadow-lg text-white">
-                {{ t(visibleProjects.center.name) }}
+                {{ t(project.name) }}
               </h3>
               <p class="mb-7 drop-shadow-sm text-lg leading-relaxed text-white/96">
-                {{ t(visibleProjects.center.description) }}
-              </p>
-              <!-- Technologies -->
-              <div class="flex flex-wrap gap-3 mb-7">
-                <span v-for="tech in visibleProjects.center.technologies.slice(0, 3)" :key="tech"
-                  class="px-4 py-2 bg-white/95 text-blue-900 rounded-full text-sm font-semibold shadow-lg backdrop-blur-sm">
-                  {{ t(tech) }}
+                {{ t(project.description) }}
+              </p>              <div class="flex flex-wrap gap-3 mb-7">
+                <span v-for="(tech, techIndex) in project.technologies.slice(0, 3)" :key="tech"
+                  :class="['px-4 py-2 rounded-full text-sm font-semibold shadow-lg backdrop-blur-sm transition-all duration-300 border', 
+                    getTechColor(index, techIndex), 
+                    contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2']"
+                  :style="{ transitionDelay: contentVisible ? `${150 + techIndex * 60}ms` : '0ms' }">
+                  {{ tech }}
                 </span>
-                <span v-if="visibleProjects.center.technologies.length > 3"
-                  class="px-4 py-2 bg-white/75 text-blue-900 rounded-full text-sm font-medium">
-                  +{{ visibleProjects.center.technologies.length - 3 }}
+                <span v-if="project.technologies.length > 3"
+                  :class="['px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 border', 
+                    isDark ? colors.dark.badge.background + ' ' + colors.dark.badge.text + ' ' + colors.dark.badge.border : colors.light.badge.background + ' ' + colors.light.badge.text + ' ' + colors.light.badge.border, 
+                    contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2']"
+                  :style="{ transitionDelay: contentVisible ? '330ms' : '0ms' }">
+                  +{{ project.technologies.length - 3 }}
                 </span>
               </div>
-              <!-- GitHub link -->
-              <a v-if="visibleProjects.center.github" :href="visibleProjects.center.github" target="_blank" rel="noopener"
-                class="inline-flex items-center gap-3 text-white hover:text-blue-200 transition-colors font-semibold text-xl group">
+              <a v-if="project.github" :href="project.github" target="_blank" rel="noopener"
+                :class="['inline-flex items-center gap-3 font-semibold text-xl group duration-300 transition-all', 
+                  isDark ? 'text-white hover:text-blue-400' : 'text-white hover:text-blue-200',
+                  contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3']"
+                :style="{ transitionDelay: contentVisible ? '400ms' : '0ms' }">
                 <span>View on GitHub</span>
-                <svg class="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor"
-                  viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3">
-                  </path>
+                <svg class="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                 </svg>
               </a>
+            </div>            <div v-else-if="cardPositions[index] !== 'hidden'"
+                 :class="['transition-all duration-300 delay-100', contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2']">
+              <h3 :class="[
+                'font-bold mb-2 drop-shadow-lg text-white',
+                isLeftOrRight(cardPositions[index]) ? 'text-xl mb-3' : 'text-lg'
+              ]">
+                {{ t(project.name) }}
+              </h3>
+              <p :class="[
+                'drop-shadow-sm line-clamp-2',
+                isLeftOrRight(cardPositions[index]) ? 'text-base text-white/95' : 'text-sm text-white/90'
+              ]">
+                {{ t(project.description) }}
+              </p>
             </div>
           </div>
-        </div>
-      </div>      <!-- Card right (Next Project) -->
-      <div :ref="el => cardRefs[3] = el" class="card-container cursor-pointer preserve-3d"
-        @click="handleCardClick('right')" :title="`Next: ${t(visibleProjects.right.name)}`"
-        :key="`right-${visibleProjects.right.id}-${currentMainIndex}-${forceUpdate}`">
-        <div :class="[
-          'relative group rounded-3xl overflow-hidden shadow-2xl card-3d backdrop-blur-lg bg-opacity-96 h-full border border-white/15 transition-all duration-500',
-          isDark ? colors.dark.background.secondary : 'bg-white'
-        ]">
-          <img :src="visibleProjects.right.image" :alt="t(visibleProjects.right.name)"
-            class="w-full h-56 object-cover" />
-          <div
-            class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent flex flex-col justify-end p-6">
-            <h3 class="text-xl font-bold mb-3 drop-shadow-lg text-white">
-              {{ t(visibleProjects.right.name) }}
-            </h3>
-            <p class="text-base drop-shadow-sm line-clamp-2 text-white/95">
-              {{ t(visibleProjects.right.description) }}
-            </p>
-          </div>
-          <!-- Hover indicator -->
-          <div
-            class="absolute top-4 right-4 bg-gradient-to-r from-blue-500/90 to-purple-500/90 backdrop-blur-sm rounded-full p-3 opacity-0 group-hover:opacity-100 transition-all duration-400 border border-white/40">
-            <svg class="w-5 h-5 text-white animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          <div v-if="isLeftOrRight(cardPositions[index])"
+            :class="['absolute top-4 right-4 rounded-full p-3 opacity-0 group-hover:opacity-100 transition-all duration-400 border backdrop-blur-sm',
+              isDark ? 'bg-gradient-to-r from-blue-500/90 to-purple-500/90 border-white/40' : 'bg-gradient-to-r from-blue-400/90 to-purple-400/90 border-gray-300/60',
+              contentVisible ? '' : 'pointer-events-none']">
+            <svg :class="['w-5 h-5 animate-pulse', isDark ? 'text-white' : 'text-white']" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                :d="cardPositions[index] === 'left' ? 'M15 19l-7-7 7-7' : 'M9 5l7 7-7 7'"></path>
             </svg>
           </div>
         </div>
-      </div>      <!-- Card farRight (Next+2 Project) -->
-      <div :ref="el => cardRefs[4] = el" class="card-container cursor-pointer preserve-3d"
-        @click="handleCardClick('farRight')" :title="`Next: ${t(visibleProjects.farRight.name)}`"
-        :key="`farRight-${visibleProjects.farRight.id}-${currentMainIndex}-${forceUpdate}`">
-        <div :class="[
-          'relative group rounded-3xl overflow-hidden shadow-xl card-3d backdrop-blur-lg bg-opacity-96 h-full border border-white/10 transition-all duration-500',
-          isDark ? colors.dark.background.secondary : 'bg-white'
-        ]">
-          <img :src="visibleProjects.farRight.image" :alt="t(visibleProjects.farRight.name)" class="w-full h-40 object-cover" />
-          <div
-            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4">
-            <h3 class="text-lg font-bold mb-2 drop-shadow-lg text-white">
-              {{ t(visibleProjects.farRight.name) }}
-            </h3>
-            <p class="text-sm drop-shadow-sm line-clamp-2 text-white/90">
-              {{ t(visibleProjects.farRight.description) }}
-            </p>
-          </div>
-        </div>
       </div>
-    </div>
-
-    <!-- Keyboard Hints -->
+    </div>    <!-- Keyboard Hints -->
     <div class="hidden md:flex items-center gap-6 mt-6 text-base opacity-70 z-10">
-      <div :class="['flex items-center gap-2', isDark ? 'text-gray-400' : 'text-gray-600']">
-        <span>Previous</span>
-        <kbd class="px-3 py-2 bg-gray-200 dark:bg-gray-700 rounded text-sm font-medium">←</kbd>
+      <div :class="keyboardHintClasses">
+        <span>{{$t('projects.previous')}}</span>
+        <kbd :class="[
+          'px-3 py-2 rounded text-sm font-medium transition-colors duration-200',
+          isDark ? 'bg-gray-700 text-gray-200 border border-gray-600' : 'bg-gray-100 text-gray-700 border border-gray-300 shadow-sm'
+        ]">←</kbd>
       </div>
-      <div :class="['flex items-center gap-2', isDark ? 'text-gray-400' : 'text-gray-600']">
-        <kbd class="px-3 py-2 bg-gray-200 dark:bg-gray-700 rounded text-sm font-medium">→</kbd>
-        <span>Next</span>
+      <div :class="keyboardHintClasses">
+        <kbd :class="[
+          'px-3 py-2 rounded text-sm font-medium transition-colors duration-200',
+          isDark ? 'bg-gray-700 text-gray-200 border border-gray-600' : 'bg-gray-100 text-gray-700 border border-gray-300 shadow-sm'
+        ]">→</kbd>
+        <span>{{$t('projects.next')}}</span>
       </div>
-    </div>
-
-    <!-- Mobile Layout -->
-    <div class="flex flex-col gap-8 w-full md:hidden z-10 px-4">
-      <div v-for="(project, index) in projects" :key="project.id" :class="[
-        'rounded-3xl overflow-hidden shadow-lg backdrop-blur-md bg-opacity-96 border transition-all duration-400',
-        currentMainIndex === index
-          ? 'border-blue-500/60 shadow-blue-500/25 shadow-2xl scale-105'
-          : 'border-white/15 hover:shadow-xl hover:scale-[1.02]',
-        isDark ? colors.dark.background.secondary : 'bg-white'
-      ]">
-        <img :src="project.image" :alt="t(project.name)" class="w-full h-52 object-cover" />
-        <div class="p-7">
-          <h3 :class="[
-            'text-2xl font-bold mb-4',
-            currentMainIndex === index
-              ? (isDark ? 'text-blue-400' : 'text-blue-600')
-              : (isDark ? colors.dark.text.primary : 'text-gray-800')
-          ]">
+    </div><!-- Mobile Layout -->
+    <div class="flex flex-col gap-6 w-full md:hidden z-10 px-4">
+      <div v-for="(project, index) in projects" :key="project.id" :class="mobileCardClasses">
+        <img :src="project.image" :alt="t(project.name)" class="w-full h-48 object-cover" />
+        <div class="p-6">
+          <h3 :class="mobileTextClasses.title">
             {{ t(project.name) }}
           </h3>
-          <p :class="[
-            'mb-5 text-lg leading-relaxed',
-            isDark ? colors.dark.text.secondary : 'text-gray-600'
-          ]">
+          <p :class="mobileTextClasses.description">
             {{ t(project.description) }}
           </p>
-
-          <!-- Technologies -->
-          <div class="flex flex-wrap gap-3 mb-5">
-            <span v-for="tech in project.technologies.slice(0, 3)" :key="tech"
-              class="px-4 py-2 bg-blue-100 text-blue-900 rounded-full text-sm font-semibold">
-              {{ t(tech) }}
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span v-for="(tech, techIndex) in project.technologies.slice(0, 3)" :key="tech"
+              :class="['px-3 py-1 text-xs rounded-full border font-medium', 
+                getTechColor(index, techIndex)]">
+              {{ tech }}
             </span>
             <span v-if="project.technologies.length > 3"
-              class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">
+              :class="['px-3 py-1 text-xs rounded-full border font-medium', 
+                isDark ? colors.dark.badge.background + ' ' + colors.dark.badge.text + ' ' + colors.dark.badge.border : colors.light.badge.background + ' ' + colors.light.badge.text + ' ' + colors.light.badge.border]">
               +{{ project.technologies.length - 3 }}
             </span>
           </div>
-
-          <!-- GitHub link -->
-          <a v-if="project.github" :href="project.github" target="_blank" rel="noopener" :class="[
-            'inline-flex items-center gap-3 font-semibold text-lg transition-colors',
-            isDark ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-800'
-          ]">
+          <a v-if="project.github" :href="project.github" target="_blank" rel="noopener" :class="mobileTextClasses.link">
             <span>View on GitHub</span>
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
             </svg>
@@ -731,13 +521,7 @@ onUnmounted(() => {
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Center content styling for smooth animations */
-.center-project-content {
-  opacity: 1;
-  transform: translateY(0);
-  transition: none; /* Let GSAP handle all animations */
-}
-
+/* CSS utilities */
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -746,64 +530,30 @@ onUnmounted(() => {
   overflow: hidden;
 }
 
-.shadow-4xl {
-  box-shadow: 0 40px 80px -12px rgba(0, 0, 0, 0.5);
-}
-
-.backdrop-blur-lg {
-  backdrop-filter: blur(16px);
-}
-
-.bg-opacity-96 {
-  background-color: rgba(255, 255, 255, 0.96);
-}
-
-.dark .bg-opacity-96 {
-  background-color: rgba(17, 24, 39, 0.96);
-}
+.shadow-4xl { box-shadow: 0 40px 80px -12px rgba(0, 0, 0, 0.5); }
+.backdrop-blur-lg { backdrop-filter: blur(16px); }
+.bg-opacity-96 { background-color: rgba(255, 255, 255, 0.96); }
+.dark .bg-opacity-96 { background-color: rgba(17, 24, 39, 0.96); }
 
 /* Enhanced responsive design */
 @media (max-width: 1600px) {
-  .card-container {
-    transform: scale(0.95);
-  }
-
-  .perspective-2500 {
-    height: 800px;
-  }
+  .card-container { transform: scale(0.95); }
+  .perspective-2500 { height: 800px; }
 }
 
 @media (max-width: 1400px) {
-  .card-container {
-    transform: scale(0.9);
-  }
-
-  .perspective-2500 {
-    perspective: 2000px;
-    height: 750px;
-  }
+  .card-container { transform: scale(0.9); }
+  .perspective-2500 { perspective: 2000px; height: 750px; }
 }
 
 @media (max-width: 1200px) {
-  .perspective-2500 {
-    perspective: 1600px;
-    height: 700px;
-  }
-
-  .card-container {
-    transform: scale(0.85);
-  }
+  .perspective-2500 { perspective: 1600px; height: 700px; }
+  .card-container { transform: scale(0.85); }
 }
 
 @media (max-width: 1024px) {
-  .perspective-2500 {
-    perspective: 1300px;
-    height: 650px;
-  }
-
-  .card-container {
-    transform: scale(0.8);
-  }
+  .perspective-2500 { perspective: 1300px; height: 650px; }
+  .card-container { transform: scale(0.8); }
 }
 
 .card-3d::before {
@@ -820,46 +570,29 @@ onUnmounted(() => {
   border-radius: 1.5rem;
 }
 
-.card-3d:hover::before {
-  opacity: 1;
-}
+.card-3d:hover::before { opacity: 1; }
 
 .cursor-pointer {
   cursor: pointer;
   transition: transform 0.3s ease;
 }
 
-.cursor-pointer:hover {
-  transform: scale(1.02);
-}
+.cursor-pointer:hover { transform: scale(1.02); }
 
 kbd {
-  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-weight: 600;
-  border: 1px solid;
   border-radius: 0.5rem;
-  border-color: rgb(209 213 219);
-  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease;
 }
 
-.dark kbd {
-  border-color: rgb(55 65 81);
-  background-color: rgb(55 65 81);
-  color: rgb(209 213 219);
+kbd:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-.card-container[data-loading="true"] {
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-.group:hover .group-hover\\:translate-x-1 {
-  transform: translateX(0.25rem);
-}
-
-.group:hover .group-hover\\:opacity-100 {
-  opacity: 1;
-}
+.group:hover .group-hover\\:translate-x-1 { transform: translateX(0.25rem); }
+.group:hover .group-hover\\:opacity-100 { opacity: 1; }
 
 .card-3d {
   backface-visibility: hidden;
@@ -876,21 +609,9 @@ kbd {
 }
 
 @media (max-width: 768px) {
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: rgba(156, 163, 175, 0.5);
-    border-radius: 3px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgba(156, 163, 175, 0.8);
-  }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(156, 163, 175, 0.5); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(156, 163, 175, 0.8); }
 }
 </style>

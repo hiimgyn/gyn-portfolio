@@ -84,15 +84,17 @@ export const colors = {
       hover: 'hover:shadow-lg',
       card: 'shadow-sm',
       timeline: 'shadow-md'
-    },
-    badge: {
+    },    badge: {
       background: 'bg-gray-100',
       text: 'text-gray-700',
       border: 'border-gray-200',
       tech: {
         primary: 'bg-blue-50 text-blue-700 border-blue-200',
         secondary: 'bg-purple-50 text-purple-700 border-purple-200',
-        tertiary: 'bg-green-50 text-green-700 border-green-200'
+        tertiary: 'bg-green-50 text-green-700 border-green-200',
+        blue: 'bg-blue-100 border-blue-300 text-blue-700',
+        green: 'bg-green-100 border-green-300 text-green-700',
+        purple: 'bg-purple-100 border-purple-300 text-purple-700'
       }
     },
     timeline: {
@@ -183,15 +185,17 @@ export const colors = {
       hover: 'hover:shadow-lg hover:shadow-black/30',
       card: 'shadow-sm shadow-black/10',
       timeline: 'shadow-md shadow-black/25'
-    },
-    badge: {
+    },    badge: {
       background: 'bg-gray-800',
       text: 'text-gray-200',
       border: 'border-gray-700',
       tech: {
         primary: 'bg-blue-900/30 text-blue-300 border-blue-700',
         secondary: 'bg-purple-900/30 text-purple-300 border-purple-700',
-        tertiary: 'bg-green-900/30 text-green-300 border-green-700'
+        tertiary: 'bg-green-900/30 text-green-300 border-green-700',
+        blue: 'bg-blue-900/30 border-blue-700 text-blue-300',
+        green: 'bg-green-900/30 border-green-700 text-green-300',
+        purple: 'bg-purple-900/30 border-purple-700 text-purple-300'
       }
     },
     timeline: {

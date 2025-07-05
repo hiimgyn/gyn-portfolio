@@ -33,11 +33,9 @@
                 class="w-full h-full object-contain p-1"
                 @error="handleImageError"
               />
-            </div>
-
-            <!-- Experience Card -->
+            </div>            <!-- Experience Card -->
             <div :class="[
-              'w-full sm:w-[47.5%] p-6 rounded-lg transition-all duration-300 hover:shadow-lg z-10',
+              'w-full sm:w-[47.5%] p-6 rounded-lg transition-all duration-300 border',
               index % 2 === 0 ? 'sm:mr-3' : 'sm:ml-12',
               isDark ? colors.dark.background.primary : colors.light.background.primary,
               isDark ? colors.dark.border.primary : colors.light.border.primary
@@ -128,9 +126,9 @@ const handleImageError = (event) => {
 // Tech badge colors based on index
 const getTechColor = (index) => {
   const schemes = [
-    isDark.value ? colors.dark.pattern.color : colors.light.pattern.color,
-    isDark.value ? colors.dark.span.line : colors.light.span.line,
-    isDark.value ? colors.dark.span.error : colors.light.span.error
+    isDark.value ? colors.dark.badge.tech.blue : colors.light.badge.tech.blue,
+    isDark.value ? colors.dark.badge.tech.green : colors.light.badge.tech.green,
+    isDark.value ? colors.dark.badge.tech.purple : colors.light.badge.tech.purple
   ]
   return schemes[index % schemes.length]
 }

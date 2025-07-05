@@ -64,11 +64,10 @@
                 isDark ? colors.dark.text.primary : colors.light.text.primary
               ]">
                 {{ $t('about.skill1') }}
-              </h4>
-              <div class="flex flex-wrap gap-2 mb-4">
+              </h4>              <div class="flex flex-wrap gap-2 mb-4">
                 <span v-for="skill in Skills_1" :key="skill" :class="[
                   'px-3 py-1 text-xs rounded-full border',
-                  isDark ? 'bg-blue-900/30 border-blue-700 text-blue-300' : 'bg-blue-100 border-blue-300 text-blue-700'
+                  isDark ? colors.dark.badge.tech.blue : colors.light.badge.tech.blue
                 ]">
                   {{ skill }}
                 </span>
@@ -81,11 +80,10 @@
                 isDark ? colors.dark.text.primary : colors.light.text.primary
               ]">
                 {{ $t('about.skill2') }}
-              </h4>
-              <div class="flex flex-wrap gap-2 mb-4">
+              </h4>              <div class="flex flex-wrap gap-2 mb-4">
                 <span v-for="skill in Skills_2" :key="skill" :class="[
                   'px-3 py-1 text-xs rounded-full border',
-                  isDark ? 'bg-green-900/30 border-green-700 text-green-300' : 'bg-green-100 border-green-300 text-green-700'
+                  isDark ? colors.dark.badge.tech.green : colors.light.badge.tech.green
                 ]">
                   {{ skill }}
                 </span>
@@ -99,11 +97,10 @@
                 isDark ? colors.dark.text.primary : colors.light.text.primary
               ]">
                 {{ $t('about.skill3') }}
-              </h4>
-              <div class="flex flex-wrap gap-2">
+              </h4>              <div class="flex flex-wrap gap-2">
                 <span v-for="skill in Skills_3" :key="skill" :class="[
                   'px-3 py-1 text-xs rounded-full border',
-                  isDark ? 'bg-purple-900/30 border-purple-700 text-purple-300' : 'bg-purple-100 border-purple-300 text-purple-700'
+                  isDark ? colors.dark.badge.tech.purple : colors.light.badge.tech.purple
                 ]">
                   {{ skill }}
                 </span>

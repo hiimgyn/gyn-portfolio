@@ -64,7 +64,7 @@
           {{ t('about.contact') }}
         </button>
         <div ref="contactList" class="overflow-hidden">
-          <ul v-show="expanded.contact" :class="['ml-6 space-y-1.5 text-sm',
+          <ul v-show="expanded.contact" :class="['ml-6 space-y-1.5 text-xs',
             isDark ? colors.dark.text.primary : colors.light.text.primary
           ]">
             <li class="flex items-center" ref="contactItem1">

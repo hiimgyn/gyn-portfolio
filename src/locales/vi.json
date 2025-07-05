@@ -37,7 +37,7 @@
     "projects": "Dự án",
     "contact": "Liên hệ",
     "email": "Email",
-    "emailAddress": "hiimgyn{'@'}gmail.com",
+    "emailAddress": "nguyenminhhung.work{'@'}gmail.com",
     "phone": "Điện thoại",
     "phoneNumber": "+84 942 451 385",
     "experiences": "Kinh nghiệm"
@@ -72,32 +72,42 @@
       "achievement2": "Nuôi dưỡng cộng đồng người chơi sôi động thông qua các sự kiện thường xuyên và kiểm duyệt tích cực",
       "achievement3": "Hợp tác với An Phat Computer, Mixi City, NimoTV, BigCity và các tích hợp phát triển tùy chỉnh cũng như đồng tổ chức sự kiện"
     }
-  },
-   "projects": {
+  },   "projects": {
+    "next": "Tiếp theo",
+    "previous": "Trước đó",
     "project1": {
-      "name": "Gyn's Portfolio",
-      "description": "A personal portfolio website built with Vue.js, showcasing my skills, projects, and experiences.",
-      "technologies": ["Vue.js", "Tailwind CSS", "Three.js"]
+      "name": "Portfolio",
+      "description": "Thiết kế giao diện hiện đại, responsive được tối ưu hóa cho cả nền tảng desktop và mobile, cho phép khách truy cập khám phá thông tin cá nhân, kỹ năng và các dự án nổi bật."
     },
     "project2": {
-      "name": "Lucky Draw Application",
-      "description": "A promotional application developed in PHP for managing lucky draw events.",
-      "technologies": ["PHP", "MySQL"]
+      "name": "Quản lý cửa hàng di động",
+      "description": "Thiết kế và triển khai lược đồ cơ sở dữ liệu có thể mở rộng để lưu trữ và truy xuất dữ liệu hiệu quả. Tạo giao diện người dùng trực quan giúp tăng cường khả năng sử dụng và chức năng."
     },
     "project3": {
-      "name": "Visitor Check-in System",
-      "description": "A web-based system for managing visitor check-ins, developed using JavaScript.",
-      "technologies": ["JavaScript", "Node.js"]
+      "name": "Ứng dụng Chat",
+      "description": "TCP Engine đa luồng với mô hình 3 luồng cho xác thực độ trễ thấp, hiện diện và nhắn tin thời gian thực. Chat riêng tư & nhóm với giao thức tùy chỉnh cho cuộc trò chuyện 1:1 và nhóm."
     },
     "project4": {
-      "name": "HD Creative Agency",
-      "description": "A project management and creative agency platform developed for HD Creative Agency.",
-      "technologies": [".NET 8", "SQL Server", "Figma"]
+      "name": "Hệ thống HDC",
+      "description": "Tạo giao diện mẫu trực quan và thân thiện với người dùng để nâng cao trải nghiệm người dùng. Xây dựng và triển khai Web API an toàn và hiệu quả để tạo điều kiện tích hợp và truy cập dữ liệu liền mạch."
     },
     "project5": {
-      "name": "Mobile Store",
-      "description": "A mobile store application developed to manage products and sales.",
-      "technologies": ["React Native", "Firebase", "Redux"]
+      "name": "Landing Page",
+      "description": "Thiết kế giao diện mẫu theo yêu cầu khách hàng và tối ưu hóa cho SEO. Phát triển ứng dụng sử dụng Node.js dựa trên các mẫu được thiết kế."
     }
+  },"maintain": {
+    "title": "Trang đang bảo trì",
+    "description": "Chúng tôi đang nâng cấp hoặc bảo trì trang này.",
+    "returnLater": "Vui lòng quay lại sau!",
+    "backToHome": "Quay về trang chủ",
+    "gameTitle": "🎮 Mini Game",
+    "startGame": "Bắt đầu chơi",
+    "score": "Điểm",
+    "gameOver": "Trò chơi kết thúc!",
+    "finalScore": "Điểm số cuối cùng",
+    "playAgain": "Chơi lại",
+    "gameInstructions": "Nhấp chuột hoặc nhấn phím Space để nhảy. Tránh các ống nước!",
+    "clickToStart": "Nhấp để bắt đầu",
+    "tapOrSpace": "Chạm màn hình hoặc nhấn Space"
   }
 }

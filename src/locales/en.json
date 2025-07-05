@@ -36,7 +36,7 @@
     "projects": "Projects",
     "contact": "Contact",
     "email": "Email",
-    "emailAddress": "hiimgyn{'@'}gmail.com",
+    "emailAddress": "nguyenminhhung.work{'@'}gmail.com",
     "phone": "Phone",
     "phoneNumber": "+84 942 451 385",
      "experiences": "Experiences"
@@ -70,32 +70,42 @@
       "achievement2": "Cultivated a vibrant player community through regular events and active moderation",
       "achievement3": "Collaborated with An Phat Computer, Mixi City, NimoTV, BigCity and custom development integrations as well as co-hosting events"
     }
-  },
-  "projects": {
+  },  "projects": {
+    "next": "Next",
+    "previous": "Previous",
     "project1": {
-      "name": "Gyn's Portfolio",
-      "description": "A personal portfolio website built with Vue.js, showcasing my skills, projects, and experiences.",
-      "technologies": ["Vue.js", "Tailwind CSS", "Three.js"]
+      "name": "Portfolio",
+      "description": "Designed a modern responsive interface optimized for both desktop and mobile platforms, enabling visitors to explore personal information, skills, and featured projects."
     },
     "project2": {
-      "name": "Lucky Draw Application",
-      "description": "A promotional application developed in PHP for managing lucky draw events.",
-      "technologies": ["PHP", "MySQL"]
+      "name": "Mobile Store Management",
+      "description": "Designed and implemented a scalable database schema to efficiently store and retrieve data. Created intuitive user interfaces that enhance usability and functionality."
     },
     "project3": {
-      "name": "Visitor Check-in System",
-      "description": "A web-based system for managing visitor check-ins, developed using JavaScript.",
-      "technologies": ["JavaScript", "Node.js"]
+      "name": "Chat App",
+      "description": "Multithreaded TCP Engine with 3-stream model for low-latency auth, presence and real-time messaging. Private & Group Chat with custom protocol for 1:1 and group conversations."
     },
     "project4": {
-      "name": "HD Creative Agency",
-      "description": "A project management and creative agency platform developed for HD Creative Agency.",
-      "technologies": [".NET 8", "SQL Server", "Figma"]
+      "name": "HDC Systems",
+      "description": "Created intuitive and user-friendly sample interfaces to enhance user experience. Built and deployed a secure and efficient Web API to facilitate seamless data integration and access."
     },
     "project5": {
-      "name": "Mobile Store",
-      "description": "A mobile store application developed to manage products and sales.",
-      "technologies": ["React Native", "Firebase", "Redux"]
+      "name": "Landing Page",
+      "description": "Designed sample interfaces according to customer requirements and optimized for SEO. Developed the application using Node.js based on the designed templates."
     }
+  },"maintain": {
+    "title": "Page Under Maintenance",
+    "description": "We are currently upgrading or maintaining this page.",
+    "returnLater": "Please come back later!",
+    "backToHome": "Back to Home",
+    "gameTitle": "🎮 Mini Game",
+    "startGame": "Start Game",
+    "score": "Score",
+    "gameOver": "Game Over!",
+    "finalScore": "Final Score",
+    "playAgain": "Play Again",
+    "gameInstructions": "Click or press Space to jump. Avoid the pipes!",
+    "clickToStart": "Click to Start",
+    "tapOrSpace": "Tap screen or press Space"
   }
 }
