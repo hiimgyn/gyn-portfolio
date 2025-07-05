@@ -12,8 +12,8 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { defineAsyncComponent } from 'vue'
+import { computed } from '@vue/reactivity'
+import { defineAsyncComponent } from '@vue/runtime-core'
 
 const props = defineProps({
   section: {

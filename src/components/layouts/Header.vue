@@ -91,7 +91,7 @@
             'block px-4 py-2 text-base font-medium transition-colors duration-200 relative',
             isDark ? colors.dark.text.secondary : colors.light.text.secondary,
             isDark ? colors.dark.text.hover : colors.light.text.hover,
-            isCurrentPage(item) ? 'border-l-4 border-blue-500' : ''
+            isCurrentPage(item) ? 'border-l-4 border-purple-500' : ''
           ]"
         >
           <GlitchText :text="$t(`nav.${item}`)" />
@@ -102,7 +102,7 @@
             'block px-4 py-2 text-base font-medium transition-colors duration-200 relative',
             isDark ? colors.dark.text.secondary : colors.light.text.secondary,
             isDark ? colors.dark.text.hover : colors.light.text.hover,
-            isCurrentPage('contact') ? 'border-l-4 border-blue-500' : ''
+            isCurrentPage('contact') ? 'border-l-4 border-purple-500' : ''
           ]"
         >
           <GlitchText :text="$t('nav.contact')" />
