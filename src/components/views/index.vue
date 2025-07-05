@@ -292,7 +292,7 @@ const animateContent = async () => {
 }
 
 // Utility functions
-const navigateToPortfolio = () => router.push('/hub')
+const navigateToPortfolio = () => router.push('/about')
 
 const onImageLoad = () => {
   if (cloveOverlay.value) {
