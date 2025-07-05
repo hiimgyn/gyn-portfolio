@@ -7,6 +7,13 @@ import * as THREE from 'three'
 import { useStore } from '@/stores/theme'
 import { colors } from '@/constants/theme'
 
+// Import images statically
+import portfolioImg from '@/assets/images/projects/portfolio.png'
+import shopImg from '@/assets/images/projects/shop.png'
+import tunaImg from '@/assets/images/projects/tuna.png'
+import project1Img from '@/assets/images/projects/project1.png'
+import landingImg from '@/assets/images/projects/landing.png'
+
 const { t } = useI18n()
 const store = useStore()
 const isDark = computed(() => store.isDark)
@@ -16,7 +23,7 @@ const projects = ref([
     id: 1,
     name: 'projects.project1.name',
     description: 'projects.project1.description',
-    image: new URL('@/assets/Images/projects/portfolio.png', import.meta.url).href,
+    image: portfolioImg,
     technologies: ["Vue.js", "Node.js"],
     github: 'https://github.com/hiimgyn/gyn-portfolio',
   },
@@ -24,7 +31,7 @@ const projects = ref([
     id: 2,
     name: 'projects.project2.name',
     description: 'projects.project2.description',
-    image: new URL('@/assets/Images/projects/shop.png', import.meta.url).href,
+    image: shopImg,
     technologies: ["Java", "MVC", "SQL Server"],
     github: 'https://github.com/hiimgyn/mobile-store-management',
   },
@@ -32,7 +39,7 @@ const projects = ref([
     id: 3,
     name: 'projects.project3.name',
     description: 'projects.project3.description',
-    image: new URL('@/assets/Images/projects/tuna.png', import.meta.url).href,
+    image: tunaImg,
     technologies: [".NET 8", "SQLite", "C#", "Winforms", "TCP Sockets"],
     github: 'https://github.com/hiimgyn/TunaApp',
   },
@@ -40,7 +47,7 @@ const projects = ref([
     id: 4,
     name: 'projects.project4.name',
     description: 'projects.project4.description',
-    image: new URL('@/assets/Images/projects/project1.png', import.meta.url).href,
+    image: project1Img,
     technologies: ["Laravel", "SQL Server", "ReactUI/API"],
     github: '#',
   },
@@ -48,7 +55,7 @@ const projects = ref([
     id: 5,
     name: 'projects.project5.name',
     description: 'projects.project5.description',
-    image: new URL('@/assets/Images/projects/landing.png', import.meta.url).href,
+    image: landingImg,
     technologies: ["Node.js", "HTML", "Figma"],
     github: 'https://github.com/hiimgyn/M-Pro-LandingPage',
   },
