@@ -8,11 +8,11 @@ import { useStore } from '@/stores/theme'
 import { colors } from '@/constants/theme'
 
 // Import images statically
-import portfolioImg from '@/assets/images/projects/portfolio.png'
-import shopImg from '@/assets/images/projects/shop.png'
-import tunaImg from '@/assets/images/projects/tuna.png'
-import project1Img from '@/assets/images/projects/project1.png'
-import landingImg from '@/assets/images/projects/landing.png'
+import portfolioImg from '@/assets/Images/projects/portfolio.png'
+import shopImg from '@/assets/Images/projects/shop.png'
+import tunaImg from '@/assets/Images/projects/tuna.png'
+import project1Img from '@/assets/Images/projects/project1.png'
+import landingImg from '@/assets/Images/projects/landing.png'
 
 const { t } = useI18n()
 const store = useStore()
