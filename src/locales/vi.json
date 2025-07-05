@@ -72,5 +72,32 @@
       "achievement2": "Nuôi dưỡng cộng đồng người chơi sôi động thông qua các sự kiện thường xuyên và kiểm duyệt tích cực",
       "achievement3": "Hợp tác với An Phat Computer, Mixi City, NimoTV, BigCity và các tích hợp phát triển tùy chỉnh cũng như đồng tổ chức sự kiện"
     }
+  },
+   "projects": {
+    "project1": {
+      "name": "Gyn's Portfolio",
+      "description": "A personal portfolio website built with Vue.js, showcasing my skills, projects, and experiences.",
+      "technologies": ["Vue.js", "Tailwind CSS", "Three.js"]
+    },
+    "project2": {
+      "name": "Lucky Draw Application",
+      "description": "A promotional application developed in PHP for managing lucky draw events.",
+      "technologies": ["PHP", "MySQL"]
+    },
+    "project3": {
+      "name": "Visitor Check-in System",
+      "description": "A web-based system for managing visitor check-ins, developed using JavaScript.",
+      "technologies": ["JavaScript", "Node.js"]
+    },
+    "project4": {
+      "name": "HD Creative Agency",
+      "description": "A project management and creative agency platform developed for HD Creative Agency.",
+      "technologies": [".NET 8", "SQL Server", "Figma"]
+    },
+    "project5": {
+      "name": "Mobile Store",
+      "description": "A mobile store application developed to manage products and sales.",
+      "technologies": ["React Native", "Firebase", "Redux"]
+    }
   }
 }

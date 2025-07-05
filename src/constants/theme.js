@@ -9,6 +9,7 @@ export const colors = {
       hover: 'hover:bg-gray-100/95',
       active: 'active:bg-gray-200/95',
       overlay: 'bg-gray-300/80',
+      line: 'bg-blue-500',
     },
     pattern: {
       color: 'text-slate-400',
@@ -37,7 +38,7 @@ export const colors = {
       error: 'border-red-500',
       success: 'border-green-500',
       warning: 'border-yellow-500',
-      accent: 'border-purple-500'
+      line: 'border-blue-500'
     },
     socialIcons: {
       linkedin: 'text-[#0A66C2]',
@@ -77,6 +78,34 @@ export const colors = {
     logo: {
       text: 'text-gray-800',
       hover: 'hover:text-red-600'
+    },
+    shadow: {
+      primary: 'shadow-md',
+      hover: 'hover:shadow-lg',
+      card: 'shadow-sm',
+      timeline: 'shadow-md'
+    },
+    badge: {
+      background: 'bg-gray-100',
+      text: 'text-gray-700',
+      border: 'border-gray-200',
+      tech: {
+        primary: 'bg-blue-50 text-blue-700 border-blue-200',
+        secondary: 'bg-purple-50 text-purple-700 border-purple-200',
+        tertiary: 'bg-green-50 text-green-700 border-green-200'
+      }
+    },
+    timeline: {
+      line: 'bg-gray-300',
+      dot: 'bg-white border-gray-300',
+      dotHover: 'hover:border-blue-500',
+      dotShadow: 'shadow-md'
+    },
+    card: {
+      background: 'bg-white',
+      border: 'border-gray-200',
+      hover: 'hover:bg-gray-50',
+      shadow: 'shadow-sm hover:shadow-md'
     }
   },
   dark: {
@@ -87,6 +116,7 @@ export const colors = {
       hover: 'hover:bg-[#1A1A30]',
       active: 'active:bg-[#222240]',
       overlay: 'bg-black/80',
+      line: 'bg-gray-500',
     },
     pattern: {
       color: 'text-white',
@@ -115,7 +145,7 @@ export const colors = {
       error: 'border-red-400',
       success: 'border-green-400',
       warning: 'border-yellow-400',
-      accent: 'border-white-500'
+      line: 'border-gray-500'
     },
     socialIcons: {
       all: 'text-white/50',
@@ -147,6 +177,34 @@ export const colors = {
     logo: {
       text: 'text-gray-100',
       hover: 'hover:text-blue-400'
+    },
+    shadow: {
+      primary: 'shadow-md shadow-black/20',
+      hover: 'hover:shadow-lg hover:shadow-black/30',
+      card: 'shadow-sm shadow-black/10',
+      timeline: 'shadow-md shadow-black/25'
+    },
+    badge: {
+      background: 'bg-gray-800',
+      text: 'text-gray-200',
+      border: 'border-gray-700',
+      tech: {
+        primary: 'bg-blue-900/30 text-blue-300 border-blue-700',
+        secondary: 'bg-purple-900/30 text-purple-300 border-purple-700',
+        tertiary: 'bg-green-900/30 text-green-300 border-green-700'
+      }
+    },
+    timeline: {
+      line: 'bg-gray-700',
+      dot: 'bg-gray-800 border-gray-600',
+      dotHover: 'hover:border-blue-400',
+      dotShadow: 'shadow-md shadow-black/25'
+    },
+    card: {
+      background: 'bg-[#1A1A30]',
+      border: 'border-white/[0.08]',
+      hover: 'hover:bg-[#222240]',
+      shadow: 'shadow-sm shadow-black/10 hover:shadow-md hover:shadow-black/20'
     }
   }
 }
