@@ -1,37 +1,51 @@
-<template>  <div :class="[
-    'flex flex-col min-h-screen px-4 py-8',
+<template>
+  <div :class="[
+    'flex flex-col px-4 py-8',
     isDark ? colors.dark.text.primary : colors.light.text.primary
   ]">
     <!-- Main Content Container -->
     <div class="flex-1 flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12">
-      
+
       <!-- Left Side: Maintain Content -->
       <div class="flex flex-col items-center justify-center lg:w-2/3">
         <!-- 404 Image -->
         <div class="mb-6">
-          <img 
-            src="../../assets/Images/404.png" 
-            alt="Maintenance" 
-            class="w-[300px] sm:w-[400px] lg:w-[500px] h-auto object-contain opacity-80 mx-auto" 
-          />
+          <img src="../../assets/Images/404.png" alt="Maintenance"
+            class="w-[300px] sm:w-[400px] lg:w-[500px] h-auto object-contain opacity-80 mx-auto" />
+
         </div>
 
         <!-- Text Content Below Image -->
         <div class="flex flex-col items-center justify-center text-center w-full">
           <!-- Title -->
-          <h1 :class="['w-full text-lg sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 text-center px-4',       
-          isDark ? colors.dark.text.primary : colors.light.text.primary
+          <h1 :class="['w-full text-lg sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 text-center px-4',
+            isDark ? colors.dark.text.primary : colors.light.text.primary
           ]">
             {{ $t('maintain.title') }}
           </h1>
-          
+
           <!-- Description -->
-          <div :class="['w-full mx-auto space-y-2 text-center px-4',    
-          isDark ? colors.dark.text.primary : colors.light.text.primary
+          <div :class="['w-full mx-auto space-y-2 text-center px-4',
+            isDark ? colors.dark.text.primary : colors.light.text.primary
           ]">
             <p class="text-sm sm:text-base lg:text-lg">{{ $t('maintain.description') }}</p>
             <p class="text-sm sm:text-base lg:text-lg">{{ $t('maintain.returnLater') }}</p>
           </div>
+        </div>
+
+        <!-- Back to Home Button -->
+        <div class="mt-10 text-center">
+          <router-link to="/" :class="[
+            'inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg',
+            isDark
+              ? 'bg-gradient-to-r from-purple-200 to-purple-500 text-white hover:from-purple-100 hover:to-purple-400'
+              : 'bg-gradient-to-r from-purple-400 to-purple-800 text-white hover:from-purple-300 hover:to-purple-600'
+          ]">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            {{ $t('maintain.backToHome') }}
+          </router-link>
         </div>
       </div>
 
@@ -49,32 +63,24 @@
           ]">
             {{ $t('maintain.gameTitle') }}
           </h2>
-          
+
           <!-- Game Container -->
           <div class="relative">
-            <canvas
-              ref="gameCanvas"
-              :width="gameWidth"
-              :height="gameHeight"
-              :class="[
-                'border-2 rounded-lg cursor-pointer mx-auto',
-                isDark ? colors.dark.border.secondary : colors.light.border.secondary
-              ]"
-              :style="{ background: currentBackground }"
-              @click="jump"
-              @touchstart.prevent="jump"
-            ></canvas>
-            
+            <canvas ref="gameCanvas" :width="gameWidth" :height="gameHeight" :class="[
+              'border-2 rounded-lg cursor-pointer mx-auto',
+              isDark ? colors.dark.border.secondary : colors.light.border.secondary
+            ]" :style="{ background: currentBackground }" @click="jump" @touchstart.prevent="jump"></canvas>
+
             <!-- Game UI Overlay -->
-            <div v-if="!gameStarted" class="absolute inset-0 flex flex-col items-center justify-center cursor-pointer" @click="jump" @touchstart.prevent="jump">
+            <div v-if="!gameStarted" class="absolute inset-0 flex flex-col items-center justify-center cursor-pointer"
+              @click="jump" @touchstart.prevent="jump">
               <div class="mb-4">
                 <!-- Animated Bird in waiting state -->
                 <div class="relative">
                   <div :class="[
                     'w-8 h-8 rounded transition-all duration-500',
                     isDark ? 'bg-purple-600' : 'bg-blue-600'
-                  ]" 
-                  style="animation: float 2s ease-in-out infinite;">
+                  ]" style="animation: float 2s ease-in-out infinite;">
                   </div>
                   <!-- Bird eye -->
                   <div class="absolute top-1 right-1 w-1 h-1 bg-white rounded-full"></div>
@@ -98,7 +104,7 @@
                 {{ $t('maintain.tapOrSpace') }}
               </p>
             </div>
-            
+
             <!-- Score Display -->
             <div v-if="gameStarted" class="absolute top-4 left-4">
               <span :class="[
@@ -108,7 +114,7 @@
                 {{ $t('maintain.score') }}: {{ score }}
               </span>
             </div>
-            
+
             <!-- Game Over Screen -->
             <div v-if="gameOver" class="absolute inset-0 flex items-center justify-center">
               <div :class="[
@@ -116,21 +122,18 @@
               ]">
                 <h3 class="text-xl font-bold mb-2">{{ $t('maintain.gameOver') }}</h3>
                 <p class="mb-4">{{ $t('maintain.finalScore') }}: {{ score }}</p>
-                <button
-                  @click="resetGame"
-                  :class="[
-                    'px-4 py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105',
-                    isDark 
-                      ? 'bg-gradient-to-r from-red-400 to-red-500 text-white hover:from-red-300 hover:to-red-400' 
-                      : 'bg-gradient-to-r from-red-400 to-red-800 text-white hover:from-red-300 hover:to-red-600'
-                  ]"
-                >
+                <button @click="resetGame" :class="[
+                  'px-4 py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105',
+                  isDark
+                    ? 'bg-gradient-to-r from-red-400 to-red-500 text-white hover:from-red-300 hover:to-red-400'
+                    : 'bg-gradient-to-r from-red-400 to-red-800 text-white hover:from-red-300 hover:to-red-600'
+                ]">
                   {{ $t('maintain.playAgain') }}
                 </button>
               </div>
             </div>
           </div>
-          
+
           <!-- Game Instructions -->
           <p :class="[
             'text-sm mt-4',
@@ -142,23 +145,7 @@
       </div>
     </div>
 
-    <!-- Back to Home Button -->
-    <div class="text-center">
-      <router-link 
-        to="/" 
-        :class="[
-          'inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg',
-          isDark 
-            ? 'bg-gradient-to-r from-purple-200 to-purple-500 text-white hover:from-purple-100 hover:to-purple-400' 
-            : 'bg-gradient-to-r from-purple-400 to-purple-800 text-white hover:from-purple-300 hover:to-purple-600'
-        ]"
-      >
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
-        </svg>
-        {{ $t('maintain.backToHome') }}
-      </router-link>
-    </div>
+
   </div>
 </template>
 
@@ -213,7 +200,7 @@ const updateCanvasSize = () => {
   const isMobile = window.innerWidth < 640
   gameWidth.value = isMobile ? 320 : 400
   gameHeight.value = isMobile ? 240 : 300
-  
+
   // Update bird position relative to new canvas size
   if (bird && gameHeight.value) {
     bird.y = Math.min(bird.y, gameHeight.value - bird.height - 10)
@@ -245,32 +232,32 @@ const startGame = () => {
   if (!ctx && gameCanvas.value) {
     ctx = gameCanvas.value.getContext('2d')
   }
-  
+
   if (!ctx) {
     return
   }
-  
+
   gameStarted.value = true
   gameOver.value = false
   score.value = 0
   gameSpeed = 1
-  
+
   // Reset bird
   bird.x = 50
   bird.y = gameHeight.value / 2
   bird.velocity = 0
-  
+
   // Reset pipes
   pipes = []
-  
+
   // Clear any existing animation frame
   if (animationFrame) {
     cancelAnimationFrame(animationFrame)
   }
-  
+
   // Start background rotation
   startBackgroundRotation()
-  
+
   // Start game loop
   gameLoop()
 }
@@ -294,30 +281,30 @@ const jump = () => {
       return
     }
   }
-  
+
   if (!gameStarted.value) {
     startGame()
     return
   }
-  
+
   if (gameOver.value) {
     resetGame()
     return
   }
-  
+
   bird.velocity = bird.jumpStrength
 }
 
 const gameLoop = () => {
   if (gameOver.value || !gameStarted.value) return
-  
+
   // Clear canvas with transparent background
   ctx.clearRect(0, 0, gameWidth.value, gameHeight.value)
-  
+
   // Update bird physics
   bird.velocity += bird.gravity * gameSpeed
   bird.y += bird.velocity * gameSpeed
-  
+
   // Check boundaries
   if (bird.y < 0) {
     bird.y = 0
@@ -327,17 +314,17 @@ const gameLoop = () => {
     endGame()
     return
   }
-  
+
   // Spawn pipes
   if (pipes.length === 0 || pipes[pipes.length - 1].x < gameWidth.value - 200) {
     addPipe()
   }
-  
+
   // Update pipes
   for (let i = pipes.length - 1; i >= 0; i--) {
     const pipe = pipes[i]
     pipe.x -= pipeSpeed * gameSpeed
-    
+
     // Remove off-screen pipes and increment score
     if (pipe.x + pipeWidth < 0) {
       pipes.splice(i, 1)
@@ -347,18 +334,18 @@ const gameLoop = () => {
         gameSpeed += 0.05
       }
     }
-    
+
     // Check collision
     if (checkCollision(bird, pipe)) {
       endGame()
       return
     }
   }
-  
+
   // Draw everything
   drawPipes()
   drawBird()
-  
+
   // Continue game loop
   animationFrame = requestAnimationFrame(gameLoop)
 }
@@ -367,7 +354,7 @@ const addPipe = () => {
   const minGapTop = 30
   const maxGapTop = gameHeight.value - pipeGap - 30
   const gapStart = Math.random() * (maxGapTop - minGapTop) + minGapTop
-  
+
   pipes.push({
     x: gameWidth.value,
     topHeight: gapStart,
@@ -380,11 +367,11 @@ const drawBird = () => {
   // Bird body
   ctx.fillStyle = isDark.value ? '#60A5FA' : '#3B82F6'
   ctx.fillRect(bird.x, bird.y, bird.width, bird.height)
-  
+
   // Bird eye
   ctx.fillStyle = '#FFF'
   ctx.fillRect(bird.x + 14, bird.y + 4, 4, 4)
-  
+
   // Bird beak
   ctx.fillStyle = '#FFA500'
   ctx.fillRect(bird.x + bird.width, bird.y + 8, 4, 4)
@@ -392,19 +379,19 @@ const drawBird = () => {
 
 const drawPipes = () => {
   ctx.fillStyle = isDark.value ? '#10B981' : '#059669'
-  
+
   pipes.forEach(pipe => {
     // Top pipe
     ctx.fillRect(pipe.x, 0, pipeWidth, pipe.topHeight)
-    
+
     // Bottom pipe
     ctx.fillRect(pipe.x, pipe.bottomY, pipeWidth, pipe.bottomHeight)
-    
+
     // Pipe caps
     ctx.fillStyle = isDark.value ? '#065F46' : '#047857'
     ctx.fillRect(pipe.x - 5, pipe.topHeight - 20, pipeWidth + 10, 20)
     ctx.fillRect(pipe.x - 5, pipe.bottomY, pipeWidth + 10, 20)
-    
+
     // Reset pipe color
     ctx.fillStyle = isDark.value ? '#10B981' : '#059669'
   })
@@ -416,10 +403,10 @@ const checkCollision = (bird, pipe) => {
   const birdRight = bird.x + bird.width - 2
   const birdTop = bird.y + 2
   const birdBottom = bird.y + bird.height - 2
-  
+
   const pipeLeft = pipe.x
   const pipeRight = pipe.x + pipeWidth
-  
+
   // Check if bird is within pipe x-range
   if (birdRight > pipeLeft && birdLeft < pipeRight) {
     // Check if bird hits top pipe or bottom pipe
@@ -427,7 +414,7 @@ const checkCollision = (bird, pipe) => {
       return true
     }
   }
-  
+
   return false
 }
 
@@ -451,12 +438,12 @@ onMounted(() => {
   updateCanvasSize()
   window.addEventListener('resize', updateCanvasSize)
   window.addEventListener('keydown', handleKeydown)
-  
+
   // Initialize canvas context with delay to ensure DOM is ready
   setTimeout(() => {
     if (gameCanvas.value) {
       ctx = gameCanvas.value.getContext('2d')
-      
+
       // Draw initial state with transparent background
       drawInitialState()
     }
@@ -475,9 +462,12 @@ onUnmounted(() => {
 
 <style scoped>
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-8px);
   }
