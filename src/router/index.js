@@ -20,13 +20,22 @@ const routes = [
         path: 'hub',
         name: 'hub',
         component: () => import('@/components/views/hub.vue')
-      },
-      {
+      },      {
         path: 'contact',
         name: 'contact',
         component: () => import('@/components/views/contact.vue')
+      },      {
+        path: 'notfound',
+        name: 'notfound',
+        component: () => import('@/components/layouts/Maintain.vue')
       }
+
     ]
+  },
+  // Catch-all route để chuyển hướng các đường dẫn không tồn tại về contact
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/notfound'
   }
 ]
 
