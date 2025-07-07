@@ -57,7 +57,7 @@ const projects = ref([
     description: 'projects.project5.description',
     image: landingImg,
     technologies: ["Node.js", "HTML", "Figma"],
-    github: 'https://github.com/hiimgyn/M-Pro-LandingPage',
+    github: 'https://github.com/hiimgyn/MasterDX_Landing',
   },
 ])
 

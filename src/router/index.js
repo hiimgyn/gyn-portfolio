@@ -32,7 +32,7 @@ const routes = [
 
     ]
   },
-  // Catch-all route để chuyển hướng các đường dẫn không tồn tại về contact
+  
   {
     path: '/:pathMatch(.*)*',
     redirect: '/notfound'
