@@ -2,7 +2,7 @@
   "nav": {
     "logo": "gyn-nguyen",
     "about": "_about-me",
-    "hub": "_my-hub",
+    "hub": "_my-workbench",
     "contact": "_contact-me",
     "language": "Language",
     "toggleTheme": "Toggle Theme",
@@ -14,98 +14,126 @@
     "greeting": "Hi all, I am",
     "name": "Gyn Nguyen",
     "roles": {
-      "analyst": "Business Analyst",
-      "developer": "Back-end Developer"
+      "analyst": "Business Analyst"
     },
-    "cta": "Check my portfolio"
+    "availableStatus": "Available for Business Analyst Opportunities",
+    "tagline": "Bridging business visions and software architecture with airtight requirements, BPMN 2.0 flows, and data modeling.",
+    "cta": "Explore Qualifications & Work",
+    "ctaContact": "Let's Talk",
+    "clickHint": "Interact with 3D AI companion"
   },
   "about": {
     "portfolio": "Portfolio",
     "overview": "Overview",
-    "professionalIntroContent": "Passionate about the ever-evolving world of technology, I am on a continuous journey to broaden my horizons. I am eagerly looking forward to delving into new tech, refining my existing skills",
+    "overviewContent": "Overview of competencies, methodologies, and achievements.",
+    "professionalIntroContent": "A dedicated Business Analyst with a strong engineering foundation in C#, .NET, and SQL databases. Specializing in translating complex stakeholder visions into airtight business requirements (BRD/PRD), optimizing end-to-end workflows (BPMN 2.0), and collaborating seamlessly with cross-functional development squads to deliver high-impact enterprise solutions.",
     "name": "Gyn Nguyen",
-    "role": "Back-end Developer/ Business Analyst",
+    "role": "Business Analyst",
     "address": "Ho Chi Minh City, Vietnam",
     "skills": "My Skills",
-    "skill1": "Code",
-    "skill2": "Other",
-    "skill3": "Tools",
-    "visionContent_1": "With accumulated experience, I serve as a Back-end Developer specializing in designing and maintaining servers, databases, and developing APIs for system integration, ensuring applications are secure, efficient, and scalable. I am proficient in SQL database management systems such as MySQL and SQL Server for flexible structured data processing.",
-    "visionContent_2": "Simultaneously, in my role as a Business Analyst, I gather requirements from stakeholders, analyze business processes and data to support decision-making. I act as a bridge between technical teams and business stakeholders, ensuring requirements are understood and resolved effectively. My strength lies in evaluating the efficiency of current processes, identifying bottlenecks, and proposing improvements.",
-    "visionContent_3": "Long-term goals: Develop professional capabilities to solve complex problems more effectively, learn new technologies, enhance skills, and tackle challenges requiring high precision and reliability.",
+    "skill1": "BA Competencies",
+    "skill2": "Data & Systems",
+    "skill3": "Tools & Platforms",
+    "visionContent_1": "Requirements Engineering & Business Process Optimization: Experienced in eliciting, structuring, and validating business requirements from diverse stakeholders. Proficient in crafting comprehensive Business Requirements Documents (BRD), Product Requirements Documents (PRD), User Stories with Acceptance Criteria (Gherkin/BDD), and modeling clear As-Is / To-Be business processes using BPMN 2.0.",
+    "visionContent_2": "Technical Foundation & Data Modeling (The Competitive Edge): Leveraged over 4 years of software development (.NET, SQL Server, MySQL, RESTful APIs) to evaluate technical feasibility early, design normalized entity-relationship schemas (ERD), write analytical SQL queries (PIVOT, Stored Procedures), and define unambiguous API contracts with engineering squads.",
+    "visionContent_3": "Long-term Objectives: Drive digital transformation by championing agile methodologies, reducing delivery risks, eliminating requirements churn, and architecting robust digital solutions that maximize operational efficiency and enterprise value.",
     "projects": "Projects",
     "contact": "Contact",
     "email": "Email",
     "emailAddress": "nguyenminhhung.work{'@'}gmail.com",
     "phone": "Phone",
     "phoneNumber": "+84 942 451 385",
-     "experiences": "Experiences"
+    "experiences": "Experiences",
+    "loading": "Loading..."
   },
-   "experience": {
-    "keyAchievements": "Achievements",
-    "technologiesUsed": "Tech stack",
-    "experienceSummary": "Achievements",
-    "experienceSummaryContent": "Với hơn 4 năm kinh nghiệm trong phát triển phần mềm, tôi đã làm việc với nhiều công nghệ và dự án đa dạng, từ hệ thống quản lý đến ứng dụng web phức tạp.",
+  "experience": {
+    "keyAchievements": "Professional Career & Highlights",
+    "technologiesUsed": "Tech & Methodology Stack",
+    "experienceSummary": "Career Overview",
+    "experienceSummaryContent": "Proven track record bridging business stakeholders, product managers, and engineering teams to deliver mission-critical software, enterprise portals, and high-concurrency systems.",
     "hd": {
-      "title": "Business Analyst & Developer",
+      "title": "Technical Business Analyst & Systems Developer",
       "company": "HD Creative Agency",
-      "achievement1": "Gathered, analyzed, and evaluated stakeholder requirements, then identified and proposed technical solution approaches",
-      "achievement2": "Built and maintained servers, email hosting solutions, and centralized system management platforms",
-      "achievement3": "Designed, developed, and coordinated IT systems, policies, and standard operating procedures across the organization",
-      "achievement4": "Developed and launched audit tools (.Net 8), promotional 'Lucky Draw' applications (PHP), visitor check-in systems (Javascript), and ongoing maintenance projects (.NET 8)",
-      "achievement5": "UX/UI design initiatives—producing key visuals, standees, product mockups, and animated graphics (Figma)"
+      "achievement1": "Led requirement elicitation workshops with key business stakeholders; formulated BRD, PRD, and BPMN 2.0 workflows for internal operations and enterprise client projects.",
+      "achievement2": "Defined system architecture, API contracts (OpenAPI/Swagger), and database schemas for centralized enterprise management platforms.",
+      "achievement3": "Coordinated cross-functional teams, standardized IT operating procedures, and conducted User Acceptance Testing (UAT) to ensure deliverable alignment with business goals.",
+      "achievement4": "Delivered production systems including automated audit tools (.NET 8), promotional applications, and real-time visitor check-in solutions.",
+      "achievement5": "Facilitated UI/UX ideation and wireframing in Figma, ensuring design system compliance and seamless developer handoff."
     },
     "acacy": {
-      "title": "Back-end Developer",
+      "title": "Systems & Data Analyst / .NET Developer",
       "company": "Acacy",
-      "achievement1": "Developed and extended software features using .NET 8 and Dapper",
-      "achievement2": "Built and optimized complex SQL queries and stored procedures for high-performance data access",
-      "achievement3": "Performed data analysis with SQL PIVOT to generate actionable business insights",
-      "achievement4": "Designed and implemented RESTful APIs to meet stakeholder requirements"
+      "achievement1": "Analyzed complex operational data requirements and engineered high-performance SQL queries and stored procedures for reporting and analytics.",
+      "achievement2": "Utilized advanced SQL PIVOT techniques to transform raw transactional data into actionable business intelligence dashboards.",
+      "achievement3": "Collaborated with product owners to draft API specifications and implemented backend services using .NET 8 and Dapper ORM.",
+      "achievement4": "Participated in agile ceremonies, sprint backlog refinement, and acceptance criteria verification."
     },
     "xteam": {
-      "title": "Server Administrator & Developer",
+      "title": "Systems Analyst & Platform Administrator",
       "company": "XTEAM",
-      "achievement1": "Developed, managed and optimized FiveM GTA V servers (Lua, JavaScript, C#) for high performance and security with over 2000 users online",
-      "achievement2": "Cultivated a vibrant player community through regular events and active moderation",
-      "achievement3": "Collaborated with An Phat Computer, Mixi City, NimoTV, BigCity and custom development integrations as well as co-hosting events"
+      "achievement1": "Architected, tuned, and monitored multi-server real-time infrastructure supporting 2,000+ concurrent active users with 99.9% uptime.",
+      "achievement2": "Analyzed system performance bottlenecks, telemetry logs, and implemented automated security and moderation mechanisms.",
+      "achievement3": "Coordinated cross-partner integrations with external gaming and tech brands, defining workflow specifications and SLA metrics."
     }
-  },  "projects": {
+  },
+  "projects": {
     "next": "Next",
     "previous": "Previous",
     "project1": {
-      "name": "Portfolio",
-      "description": "Designed a modern responsive interface optimized for both desktop and mobile platforms, enabling visitors to explore personal information, skills, and featured projects."
+      "name": "Interactive Portfolio & System Showcase",
+      "description": "Engineered a high-performance portfolio featuring interactive 3D WebGL, GSAP micro-animations, and an interactive BA Workbench illustrating real-world business flows and API contract validation."
     },
     "project2": {
-      "name": "Mobile Store Management",
-      "description": "Designed and implemented a scalable database schema to efficiently store and retrieve data. Created intuitive user interfaces that enhance usability and functionality."
+      "name": "Mobile Store Operations & Inventory System",
+      "description": "Analyzed business retail workflows, designed a normalized relational database schema (3NF) in SQL Server, and delivered an intuitive inventory and sales transaction platform."
     },
     "project3": {
-      "name": "Chat App",
-      "description": "Multithreaded TCP Engine with 3-stream model for low-latency auth, presence and real-time messaging. Private & Group Chat with custom protocol for 1:1 and group conversations."
+      "name": "TunaApp High-Throughput Socket Engine",
+      "description": "Authored low-level communication protocol specifications; implemented a 3-stream multi-threaded TCP architecture in .NET 8 for low-latency authentication, presence, and chat."
     },
     "project4": {
-      "name": "HDC Systems",
-      "description": "Created intuitive and user-friendly sample interfaces to enhance user experience. Built and deployed a secure and efficient Web API to facilitate seamless data integration and access."
+      "name": "HDC Enterprise Operations & Web Services",
+      "description": "Conducted stakeholder discovery sessions, translated business operations into API specs, and developed secure RESTful services integrated with centralized audit workflows."
     },
     "project5": {
-      "name": "Landing Page",
-      "description": "Designed sample interfaces according to customer requirements and optimized for SEO. Developed the application using Node.js based on the designed templates."
+      "name": "Digital Campaign & Lead Conversion Portal",
+      "description": "Mapped customer acquisition journeys, structured data capture pipelines, and optimized web performance and SEO for enterprise promotional campaigns."
     }
-  },"maintain": {
+  },
+  "contactPage": {
+    "title": "Get in Touch",
+    "subtitle": "Open for Business Analyst positions, consulting opportunities, or exploring business process & system challenges.",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Location",
+    "socials": "Professional Profiles",
+    "copySuccess": "Copied to clipboard!",
+    "copy": "Copy",
+    "sendEmail": "Send an Email"
+  },
+  "hub": {
+    "title": "Business Analysis & Systems Workbench",
+    "subtitle": "Interactive sandbox demonstrating real-world Business Process Flows (BPMN 2.0), Requirement Acceptance Criteria (Gherkin/BDD), and API Contract Validations.",
+    "tabProcess": "Process Flow & API Contracts",
+    "tabArch": "System Architecture & Data Model",
+    "stepSim": "Execute Step Simulation",
+    "resetFlow": "Reset Process",
+    "businessContext": "Business Context & Requirements",
+    "acceptanceCriteria": "Acceptance Criteria (Gherkin / BDD)",
+    "technicalContract": "Technical Contract (API / Schema)",
+    "simulatedResponse": "Execution State & Telemetry Log",
+    "sendRequest": "Execute Request",
+    "status": "Status",
+    "latency": "Latency",
+    "headers": "Headers",
+    "response": "Response Body",
+    "archOverview": "Enterprise Systems Architecture Blueprint",
+    "archDesc": "Click any architectural node to inspect communication patterns, data integrity, and system scalability."
+  },
+  "maintain": {
     "title": "Page Under Maintenance",
-    "description": "We are currently upgrading or maintaining this page.",
+    "description": "We are currently upgrading this module.",
     "returnLater": "Please come back later!",
-    "backToHome": "Back to Home",
-    "gameTitle": "🎮 Mini Game",
-    "startGame": "Start Game",
-    "score": "Score",
-    "gameOver": "Game Over!",
-    "finalScore": "Final Score",
-    "playAgain": "Play Again",
-    "gameInstructions": "Click or press Space to jump. Avoid the pipes!",
-    "clickToStart": "Click to Start",
-    "tapOrSpace": "Tap screen or press Space"
+    "backToHome": "Back to Home"
   }
 }

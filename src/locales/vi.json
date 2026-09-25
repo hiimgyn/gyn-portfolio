@@ -2,7 +2,7 @@
   "nav": {
     "logo": "gyn-nguyen",
     "about": "_ve-toi",
-    "hub": "_du-an-cua-toi",
+    "hub": "_ban-lam-viec",
     "contact": "_lien-he",
     "language": "Ngôn ngữ",
     "toggleTheme": "Chuyển giao diện",
@@ -11,103 +11,129 @@
     "toggleLight": "Chuyển sang Chế độ Sáng"
   },
   "hero": {
-    "greeting": "Chào mọi người, tôi là",
+    "greeting": "Xin chào, tôi là",
     "name": "Nguyễn Minh Hùng",
     "roles": {
-      "analyst": "Business Analyst",
-      "developer": "Back-end Developer"
+      "analyst": "Business Analyst"
     },
-    "cta": "Xem chi tiết"
+    "availableStatus": "Sẵn sàng cho dự án & vị trí Business Analyst",
+    "tagline": "Kết nối bài toán nghiệp vụ phức tạp với kiến trúc phần mềm thông qua tài liệu hóa chuẩn xác và mô hình hóa quy trình BPMN 2.0.",
+    "cta": "Xem hồ sơ & dự án",
+    "ctaContact": "Liên hệ ngay",
+    "clickHint": "Tương tác với trợ lý 3D AI"
   },
   "about": {
-    "portfolio": "Thông tin",
+    "portfolio": "Hồ sơ",
     "overview": "Tổng quan",
-    "overviewContent": "Đây là nội dung tổng quan.",
-    "professionalIntroContent": "Đam mê với thế giới công nghệ không ngừng phát triển, tôi đang trên hành trình liên tục mở rộng tầm nhìn của mình. Tôi háo hức mong chờ được khám phá những công nghệ mới, hoàn thiện các kỹ năng hiện có",
+    "overviewContent": "Tổng quan năng lực chuyên môn, phương pháp luận và các cột mốc thực tế.",
+    "professionalIntroContent": "Chuyên viên Phân tích Nghiệp vụ (Business Analyst) với nền tảng kỹ thuật vững chắc về C#, .NET và hệ quản trị cơ sở dữ liệu SQL. Thế mạnh của tôi là chuyển hóa các yêu cầu nghiệp vụ phức tạp thành đặc tả kỹ thuật chuẩn xác (BRD/PRD), tối ưu hóa luồng quy trình vận hành (BPMN 2.0) và làm việc chặt chẽ cùng đội ngũ kỹ thuật để hiện thực hóa giải pháp phần mềm tối ưu.",
     "name": "Nguyễn Minh Hùng",
-    "role": "Back-end Developer/ Business Analyst",
-    "address": "Thành Phố Hồ Chí Minh, Việt Nam",
-    "skills": "Kỹ năng",
-    "skill1": "Ngôn ngữ lập trình",
-    "skill2": "Công nghệ khác",
-    "skill3": "Công cụ",
-    "visionContent_1": "Với kinh nghiệm tích lũy, tôi đảm nhận vai trò Back-end Developer chuyên thiết kế và duy trì server, cơ sở dữ liệu, phát triển API tích hợp hệ thống, đảm bảo ứng dụng an toàn, hiệu quả và có khả năng mở rộng. Tôi thành thạo các hệ quản trị cơ sở dữ liệu SQL như MySQL, SQL Server để xử lý dữ liệu có cấu trúc linh hoạt.",
-    "visionContent_2": "Đồng thời, với vai trò Business Analyst, tôi thu thập yêu cầu từ stakeholders, phân tích quy trình kinh doanh và dữ liệu để hỗ trợ ra quyết định. Đảm bảo yêu cầu được hiểu và giải quyết hiệu quả. Thế mạnh của tôi là đánh giá hiệu quả quy trình hiện tại, xác định điểm nghẽn và đề xuất cải tiến.",
-    "visionContent_3": "Mục tiêu dài hạn: Phát triển năng lực chuyên môn để giải quyết vấn đề phức tạp hiệu quả hơn, học tập công nghệ mới, nâng cao kỹ năng và đương đầu với thách thức đòi hỏi độ chính xác, tin cậy cao.",
+    "role": "Business Analyst",
+    "address": "Thành phố Hồ Chí Minh, Việt Nam",
+    "skills": "Kỹ năng chuyên môn",
+    "skill1": "Kỹ năng Phân tích Nghiệp vụ",
+    "skill2": "Hệ thống & Dữ liệu",
+    "skill3": "Công cụ & Nền tảng",
+    "visionContent_1": "Kỹ thuật Đặc tả Yêu cầu & Tối ưu Quy trình Nghiệp vụ: Chuyên sâu trong việc khảo sát, thu thập và chuẩn hóa yêu cầu từ các bên liên quan. Thành thạo xây dựng tài liệu BRD, PRD, User Stories kèm tiêu chí nghiệm thu chi tiết (Acceptance Criteria/Gherkin), cũng như mô hình hóa trực quan quy trình nghiệp vụ hiện tại (As-Is) và tương lai (To-Be) theo chuẩn BPMN 2.0.",
+    "visionContent_2": "Nền tảng Kỹ thuật & Mô hình hóa Dữ liệu (Lợi thế Dị biệt): Tận dụng hơn 4 năm kinh nghiệm phát triển phần mềm (.NET, SQL Server, MySQL, RESTful APIs) để đánh giá tính khả thi kỹ thuật ngay từ đầu, thiết kế lược đồ quan hệ thực thể (ERD), phân tích dữ liệu chuyên sâu bằng truy vấn SQL (PIVOT, Stored Procedures) và định nghĩa hợp đồng API rõ ràng cho đội ngũ lập trình.",
+    "visionContent_3": "Mục tiêu Dài hạn: Thúc đẩy chuyển đổi số và chuẩn hóa quy trình phát triển, giảm thiểu rủi ro bàn giao và chi phí sửa lỗi, đồng thời định hình những giải pháp phần mềm giải quyết triệt để bài toán kinh doanh và gia tăng giá trị cho doanh nghiệp.",
     "projects": "Dự án",
     "contact": "Liên hệ",
     "email": "Email",
     "emailAddress": "nguyenminhhung.work{'@'}gmail.com",
     "phone": "Điện thoại",
     "phoneNumber": "+84 942 451 385",
-    "experiences": "Kinh nghiệm"
+    "experiences": "Kinh nghiệm",
+    "loading": "Đang tải..."
   },
-
   "experience": {
-    "keyAchievements": "Thành tựu chính",
-    "technologiesUsed": "Công nghệ sử dụng",
-    "experienceSummary": "Tổng kết kinh nghiệm",
-    "experienceSummaryContent": "Với hơn 4 năm kinh nghiệm trong phát triển phần mềm, tôi đã làm việc với nhiều công nghệ và dự án đa dạng, từ hệ thống quản lý đến ứng dụng web phức tạp.",
+    "keyAchievements": "Kinh nghiệm Làm việc & Thành tựu",
+    "technologiesUsed": "Công nghệ & Phương pháp luận",
+    "experienceSummary": "Tổng kết Sự nghiệp",
+    "experienceSummaryContent": "Kinh nghiệm thực chiến trong việc kết nối giữa stakeholders, ban điều hành và đội ngũ kỹ thuật để triển khai thành công các hệ sinh thái phần mềm, hệ thống quản trị và dịch vụ chịu tải cao.",
     "hd": {
-      "title": "Business Analyst & Developer",
+      "title": "Technical Business Analyst & Systems Developer",
       "company": "HD Creative Agency",
-      "achievement1": "Thu thập, phân tích và đánh giá yêu cầu của các bên liên quan, sau đó xác định và đề xuất các phương pháp giải pháp kỹ thuật",
-      "achievement2": "Xây dựng và duy trì máy chủ, giải pháp lưu trữ email và nền tảng quản lý hệ thống tập trung",
-      "achievement3": "Thiết kế, phát triển và điều phối các hệ thống CNTT, chính sách và quy trình vận hành tiêu chuẩn trong toàn tổ chức",
-      "achievement4": "Phát triển và ra mắt các công cụ kiểm toán (.Net 8), ứng dụng khuyến mại 'Lucky Draw' (PHP), hệ thống check-in khách (Javascript) và các dự án bảo trì liên tục (.NET 8)",
-      "achievement5": "Các sáng kiến thiết kế UX/UI - tạo ra các hình ảnh chính, standees, mockup sản phẩm và đồ họa hoạt hình (Figma)"
+      "achievement1": "Chủ trì các buổi khảo sát yêu cầu với các bên liên quan; xây dựng tài liệu BRD, PRD và sơ đồ quy trình BPMN 2.0 cho các hệ thống vận hành nội bộ và dự án khách hàng.",
+      "achievement2": "Xác định kiến trúc hệ thống, chuẩn hóa hợp đồng API (OpenAPI/Swagger) và thiết kế lược đồ cơ sở dữ liệu cho nền tảng quản trị tập trung.",
+      "achievement3": "Điều phối liên phòng ban, chuẩn hóa quy trình vận hành CNTT và tổ chức kiểm thử nghiệm thu (UAT) đảm bảo bàn giao đúng mục tiêu kinh doanh.",
+      "achievement4": "Trực tiếp phát triển và bàn giao công cụ kiểm toán tự động (.NET 8), ứng dụng khuyến mại và hệ thống check-in khách thời gian thực.",
+      "achievement5": "Xây dựng wireframe và thiết kế UI/UX trên Figma, đồng bộ design system để tối ưu hóa quá trình bàn giao cho lập trình viên."
     },
     "acacy": {
-      "title": "Back-end Developer",
+      "title": "Systems & Data Analyst / .NET Developer",
       "company": "Acacy",
-      "achievement1": "Phát triển và mở rộng các tính năng phần mềm sử dụng .NET 8 và Dapper",
-      "achievement2": "Xây dựng và tối ưu hóa các truy vấn SQL phức tạp và stored procedures để truy cập dữ liệu hiệu suất cao",
-      "achievement3": "Thực hiện phân tích dữ liệu với SQL PIVOT để tạo ra những hiểu biết kinh doanh có thể hành động",
-      "achievement4": "Thiết kế và triển khai RESTful APIs để đáp ứng yêu cầu của các bên liên quan"
+      "achievement1": "Phân tích yêu cầu dữ liệu vận hành phức tạp, xây dựng và tối ưu hóa các truy vấn SQL và stored procedures hiệu năng cao cho báo cáo quản trị.",
+      "achievement2": "Ứng dụng kỹ thuật SQL PIVOT để chuyển đổi dữ liệu giao dịch thành các báo cáo trực quan phục vụ việc ra quyết định của ban điều hành.",
+      "achievement3": "Phối hợp với Product Owner để đặc tả API và triển khai các dịch vụ backend bằng .NET 8 và Dapper ORM.",
+      "achievement4": "Tham gia các quy trình Agile/Scrum, làm rõ backlog yêu cầu và thẩm định tiêu chí nghiệm thu cho từng sprint."
     },
     "xteam": {
-      "title": "Server Administrator & Developer",
+      "title": "Systems Analyst & Platform Administrator",
       "company": "XTEAM",
-      "achievement1": "Phát triển, quản lý và tối ưu hóa máy chủ FiveM GTA V (Lua, JavaScript, C#) cho hiệu suất cao và bảo mật với hơn 2000 người dùng trực tuyến",
-      "achievement2": "Nuôi dưỡng cộng đồng người chơi sôi động thông qua các sự kiện thường xuyên và kiểm duyệt tích cực",
-      "achievement3": "Hợp tác với An Phat Computer, Mixi City, NimoTV, BigCity và các tích hợp phát triển tùy chỉnh cũng như đồng tổ chức sự kiện"
+      "achievement1": "Quy hoạch kiến trúc, tối ưu và giám sát hạ tầng thời gian thực hỗ trợ hơn 2.000 người dùng đồng thời với độ ổn định 99.9%.",
+      "achievement2": "Phân tích điểm nghẽn hiệu năng, theo dõi telemetry logs và triển khai các cơ chế bảo mật, điều tiết tải tự động.",
+      "achievement3": "Chủ trì tích hợp kỹ thuật với các đối tác lớn, định nghĩa quy chuẩn tích hợp dữ liệu và cam kết chất lượng dịch vụ (SLA)."
     }
-  },   "projects": {
+  },
+  "projects": {
     "next": "Tiếp theo",
     "previous": "Trước đó",
     "project1": {
-      "name": "Portfolio",
-      "description": "Thiết kế giao diện hiện đại, responsive được tối ưu hóa cho cả nền tảng desktop và mobile, cho phép khách truy cập khám phá thông tin cá nhân, kỹ năng và các dự án nổi bật."
+      "name": "Portfolio Cá nhân & Bàn làm việc Kỹ thuật",
+      "description": "Thiết kế và phát triển nền tảng portfolio hiệu năng cao kết hợp WebGL 3D, micro-animations GSAP và BA Workbench tương tác mô phỏng quy trình nghiệp vụ thực tế."
     },
     "project2": {
-      "name": "Quản lý cửa hàng di động",
-      "description": "Thiết kế và triển khai lược đồ cơ sở dữ liệu có thể mở rộng để lưu trữ và truy xuất dữ liệu hiệu quả. Tạo giao diện người dùng trực quan giúp tăng cường khả năng sử dụng và chức năng."
+      "name": "Hệ thống Quản lý Bán lẻ & Tồn kho Thiết bị Di động",
+      "description": "Khảo sát quy trình bán lẻ, thiết kế lược đồ cơ sở dữ liệu quan hệ chuẩn 3NF trên SQL Server và triển khai phần mềm quản lý tồn kho, giao dịch bán hàng trực quan."
     },
     "project3": {
-      "name": "Ứng dụng Chat",
-      "description": "TCP Engine đa luồng với mô hình 3 luồng cho xác thực độ trễ thấp, hiện diện và nhắn tin thời gian thực. Chat riêng tư & nhóm với giao thức tùy chỉnh cho cuộc trò chuyện 1:1 và nhóm."
+      "name": "TunaApp - Động cơ Truyền thông TCP Đa luồng",
+      "description": "Đặc tả giao thức truyền thông tùy chỉnh; triển khai kiến trúc TCP 3 luồng đa nhiệm trên .NET 8 phục vụ xác thực độ trễ thấp, quản lý trạng thái và truyền tin thời gian thực."
     },
     "project4": {
-      "name": "Hệ thống HDC",
-      "description": "Tạo giao diện mẫu trực quan và thân thiện với người dùng để nâng cao trải nghiệm người dùng. Xây dựng và triển khai Web API an toàn và hiệu quả để tạo điều kiện tích hợp và truy cập dữ liệu liền mạch."
+      "name": "Hệ thống Quản lý Vận hành & Web Services HDC",
+      "description": "Thu thập yêu cầu vận hành, chuyển hóa bài toán nghiệp vụ thành đặc tả API và phát triển các dịch vụ RESTful bảo mật kết hợp quy trình kiểm toán tập trung."
     },
     "project5": {
-      "name": "Landing Page",
-      "description": "Thiết kế giao diện mẫu theo yêu cầu khách hàng và tối ưu hóa cho SEO. Phát triển ứng dụng sử dụng Node.js dựa trên các mẫu được thiết kế."
+      "name": "Cổng Thông tin Chiến dịch & Chuyển đổi Khách hàng",
+      "description": "Mô hình hóa hành trình khách hàng, thiết lập đường ống thu thập dữ liệu khách hàng tiềm năng và tối ưu hóa SEO cho các chiến dịch quy mô lớn."
     }
-  },"maintain": {
+  },
+  "contactPage": {
+    "title": "Liên hệ với tôi",
+    "subtitle": "Sẵn sàng đón nhận cơ hội nghề nghiệp Business Analyst, hợp tác tư vấn và trao đổi giải pháp.",
+    "email": "Email",
+    "phone": "Điện thoại",
+    "address": "Địa chỉ",
+    "socials": "Mạng xã hội & Hồ sơ",
+    "copySuccess": "Đã sao chép vào bộ nhớ tạm!",
+    "copy": "Sao chép",
+    "sendEmail": "Gửi email"
+  },
+  "hub": {
+    "title": "Bàn làm việc Phân tích Nghiệp vụ & Hệ thống",
+    "subtitle": "Khu vực thử nghiệm tương tác mô phỏng luồng quy trình nghiệp vụ (BPMN 2.0), tiêu chí nghiệm thu (Gherkin/BDD) và thẩm định hợp đồng API thực tế.",
+    "tabProcess": "Quy trình Nghiệp vụ & Hợp đồng API",
+    "tabArch": "Kiến trúc Hệ thống & Lược đồ Dữ liệu",
+    "stepSim": "Thực thi Mô phỏng Bước",
+    "resetFlow": "Làm mới Quy trình",
+    "businessContext": "Bối cảnh Nghiệp vụ & Đặc tả Yêu cầu",
+    "acceptanceCriteria": "Tiêu chí Nghiệm thu (Gherkin / BDD)",
+    "technicalContract": "Đặc tả Kỹ thuật (API / Schema)",
+    "simulatedResponse": "Trạng thái Thực thi & Nhật ký Hệ thống",
+    "sendRequest": "Gửi yêu cầu",
+    "status": "Trạng thái",
+    "latency": "Độ trễ",
+    "headers": "Headers",
+    "response": "Dữ liệu phản hồi",
+    "archOverview": "Sơ đồ Kiến trúc Hệ thống Doanh nghiệp",
+    "archDesc": "Nhấp vào từng node kiến trúc để kiểm tra mẫu giao tiếp, tính toàn vẹn dữ liệu và khả năng mở rộng hệ thống."
+  },
+  "maintain": {
     "title": "Trang đang bảo trì",
-    "description": "Chúng tôi đang nâng cấp hoặc bảo trì trang này.",
+    "description": "Chúng tôi đang nâng cấp phân hệ này.",
     "returnLater": "Vui lòng quay lại sau!",
-    "backToHome": "Quay về trang chủ",
-    "gameTitle": "🎮 Mini Game",
-    "startGame": "Bắt đầu chơi",
-    "score": "Điểm",
-    "gameOver": "Trò chơi kết thúc!",
-    "finalScore": "Điểm số cuối cùng",
-    "playAgain": "Chơi lại",
-    "gameInstructions": "Nhấp chuột hoặc nhấn phím Space để nhảy. Tránh các ống nước!",
-    "clickToStart": "Nhấp để bắt đầu",
-    "tapOrSpace": "Chạm màn hình hoặc nhấn Space"
+    "backToHome": "Quay về trang chủ"
   }
 }

@@ -1,108 +1,95 @@
 <template>
-  <div class="flex min-h-[calc(100vh-4rem-1.4rem)] relative">
-    <!-- Mobile Overlay -->
-    <div v-if="isMobileMenuOpen" :class="['fixed inset-0 bg-opacity-95 z-40 lg:hidden',
-      isDark ? colors.dark.background.overlay : colors.light.background.overlay
-    ]" @click="closeMobileMenu"></div>
+  <div class="max-w-6xl mx-auto px-4 py-6 sm:py-10 space-y-8">
+    <!-- Top Segmented Navigation Tabs -->
+    <div
+      class="flex flex-col sm:flex-row items-center justify-between gap-4 border-b pb-6"
+      :class="isDark ? 'border-white/10' : 'border-slate-200'"
+    >
+      <div
+        class="flex flex-wrap items-center justify-center gap-1.5 p-1.5 rounded-2xl border backdrop-blur-xl"
+        :class="isDark 
+          ? 'bg-[#11131f]/90 border-white/[0.08] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]' 
+          : 'bg-violet-50/70 border-violet-100 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.8)]'"
+      >
+        <button
+          v-for="sec in sections"
+          :key="sec.id"
+          @click="selectSection(sec.id)"
+          :class="[
+            'flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 active:scale-95',
+            currentSection === sec.id
+              ? (isDark 
+                  ? 'bg-violet-600 text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25),0_2px_8px_rgba(139,92,246,0.35)]' 
+                  : 'bg-white text-violet-800 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.9),0_1px_4px_rgba(0,0,0,0.06)]')
+              : (isDark ? 'text-slate-400 hover:text-white hover:bg-white/5' : 'text-slate-600 hover:text-slate-900 hover:bg-white/50')
+          ]"
+        >
+          <component :is="sec.icon" class="w-4 h-4" />
+          <span>{{ $t(sec.label) }}</span>
+        </button>
+      </div>
 
-    <!-- Sidebar -->
-    <div :class="[
-      'transition-transform duration-300 ease-in-out z-50',
-      'lg:relative lg:translate-x-0 lg:w-auto',
-      'fixed min-h-full left-0 overflow-y-auto shadow-lg',
-      isMobileMenuOpen ? 'h-full translate-x-0' : '-translate-x-full lg:translate-x-0' 
-    ]">
-      <Sidebar @select="handleSectionSelect" :selectedSection="currentSection" />
+      <!-- Quick Contact Info -->
+      <div
+        class="hidden lg:flex items-center gap-4 text-xs font-mono"
+        :class="isDark ? 'text-slate-400' : 'text-slate-600'"
+      >
+        <a :href="`mailto:${email}`" class="hover:text-violet-300 transition-colors flex items-center gap-1.5">
+          <EnvelopeIcon class="w-4 h-4 text-amber-400" />
+          <span>{{ email }}</span>
+        </a>
+        <span>•</span>
+        <span class="flex items-center gap-1.5">
+          <MapPinIcon class="w-4 h-4 text-violet-400" />
+          <span>{{ $t('about.address') }}</span>
+        </span>
+      </div>
     </div>
 
-    <!-- Mobile Toggle Button -->
-    <button @click="toggleMobileMenu" :class="[
-      'fixed top-1/2 -translate-y-1/2 z-50 lg:hidden rounded-r p-0.5',
-      isDark ? colors.light.background.primary : colors.dark.background.primary,
-      isDark ? colors.light.text.primary : colors.dark.text.primary,
-      'transition-transform duration-300 ease-in-out',
-      isMobileMenuOpen ? 'translate-x-[18rem]' : 'translate-x-0'
-    ]">
-      <svg :class="{ 'rotate-180': isMobileMenuOpen }" class="w-6 h-6 transition-transform duration-300" fill="none"
-        stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-      </svg>
-    </button>
-
-    <!-- Main Content -->
-    <div class="flex-1 overflow-y-auto lg:ml-0">
-      <Suspense>
-        <Content :section="currentSection" />
-        <template #fallback>
-          <div class="flex items-center justify-center h-64">
-            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-500"></div>
-            <span class="ml-2">Đang tải...</span>
-          </div>
-        </template>
-      </Suspense>
-    </div>
+    <!-- Active Section Content with GSAP Transition -->
+    <main ref="contentContainer" class="transition-all duration-300">
+      <Content :section="currentSection" />
+    </main>
   </div>
 </template>
 
 <script setup>
-import { ref } from '@vue/reactivity'
-import { computed, defineAsyncComponent, onMounted, onUnmounted, watch } from '@vue/runtime-core'
-import { colors } from '@/constants/theme'
+import { ref, computed, onMounted, watch } from 'vue'
 import { useStore } from '@/stores/theme'
+import Content from '@/components/views/AboutSections/Content.vue'
+import {
+  UserCircleIcon,
+  BriefcaseIcon,
+  FolderIcon,
+  EnvelopeIcon,
+  MapPinIcon
+} from '@heroicons/vue/24/outline'
 
 const store = useStore()
 const isDark = computed(() => store.isDark)
-// Lazy load Sidebar và Content
-const Sidebar = defineAsyncComponent(() =>
-  import('@/components/views/AboutSections/Sidebar.vue')
-)
 
-const Content = defineAsyncComponent(() =>
-  import('@/components/views/AboutSections/Content.vue')
-)
+const email = 'nguyenminhhung.work@gmail.com'
+
+const sections = [
+  { id: 'overview', label: 'about.overview', icon: UserCircleIcon },
+  { id: 'experiences', label: 'about.experiences', icon: BriefcaseIcon },
+  { id: 'projects', label: 'about.projects', icon: FolderIcon }
+]
 
 const currentSection = ref('overview')
-const isMobileMenuOpen = ref(false)
 
-// Toggle mobile menu
-const toggleMobileMenu = () => {
-  isMobileMenuOpen.value = !isMobileMenuOpen.value
-}
-
-// Close mobile menu
-const closeMobileMenu = () => {
-  isMobileMenuOpen.value = false
-}
-
-// Handle section selection
-const handleSectionSelect = (section) => {
-  currentSection.value = section
-  // Auto close mobile menu when selecting on mobile
-  if (window.innerWidth < 1024) {
-    closeMobileMenu()
-  }
-}
-
-// Close menu on window resize to desktop
-const handleResize = () => {
-  if (window.innerWidth >= 1024) {
-    isMobileMenuOpen.value = false
-  }
+const selectSection = (sectionId) => {
+  currentSection.value = sectionId
 }
 
 onMounted(() => {
   const saved = localStorage.getItem('selectedSection')
-  if (saved) {
+  if (saved && sections.some(s => s.id === saved)) {
     currentSection.value = saved
   }
-  window.addEventListener('resize', handleResize)
 })
 
 watch(currentSection, (newSection) => {
   localStorage.setItem('selectedSection', newSection)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('resize', handleResize)
 })
 </script>

@@ -10,7 +10,7 @@
     <Header class="z-20 " />
 
     <!-- Main content -->
-    <main class="flex-1 overflow-y-auto z-10 mt-10">
+    <main class="flex-1 overflow-y-auto z-10 pt-16 sm:pt-20">
         <router-view />
     </main>
 

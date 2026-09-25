@@ -6,18 +6,7 @@ import viteCompression from 'vite-plugin-compression'
 
 // https://vite.dev/config/
 export default defineConfig({
-  content: [
-    "./index.html",
-    "./src/**/*.{vue,js,ts,jsx,tsx}",
-  ],
   assetsInclude: ['**/*.glb'],
-  theme: {
-    extend: {
-      fontFamily: {
-        sans: ['Outfit', 'sans-serif'],
-      },
-    },
-  },
   plugins: [
     vue(),
     tailwindcss(),
@@ -30,8 +19,19 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      // Đặt @ trỏ vào thư mục src. Giờ import '@/assets/flags/us.svg' sẽ chạy được
       '@': path.resolve(__dirname, 'src'),
     },
   },
+  build: {
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          three: ['three'],
+          vendor: ['vue', 'vue-router', 'pinia', 'vue-i18n'],
+          animations: ['gsap']
+        }
+      }
+    }
+  }
 })

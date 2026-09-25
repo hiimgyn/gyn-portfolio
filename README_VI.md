@@ -1,31 +1,30 @@
-
 # Gyn Nguyen Portfolio (Tiếng Việt)
 
-Website portfolio hiện đại, tương tác cho Gyn Nguyen — Back-end Developer & Business Analyst. Xây dựng với Vue 3, Vite, TailwindCSS, Three.js, và Pinia, trang web giới thiệu kinh nghiệm, kỹ năng, dự án cá nhân với giao diện đẹp, hiệu năng cao và thân thiện với người dùng.
+Website portfolio hiện đại, hiệu năng cao cho Nguyễn Minh Hùng (Gyn Nguyen) — Chuyên viên Phân tích Nghiệp vụ Kỹ thuật (Technical Business Analyst) & Phân tích Giải pháp Hệ thống. Xây dựng trên nền tảng Vue 3, Vite 6, TailwindCSS v4, Three.js, và Pinia; trang web giới thiệu năng lực đặc tả yêu cầu, mô hình hóa quy trình BPMN 2.0, thiết kế kiến trúc hệ thống và phân tích dữ liệu với giao diện tím pastel thanh lịch và hiệu năng tối ưu.
 
 ---
 
-## 🚀 Tính năng
+## 🚀 Tính năng nổi bật
 
-- **Giới thiệu bản thân**: Tổng quan, tầm nhìn, mục tiêu dài hạn.
-- **Kinh nghiệm làm việc**: Dòng thời gian các vị trí tại HD Creative Agency, Acacy, XTEAM, kèm thành tựu và công nghệ sử dụng.
-- **Kỹ năng**: Ngôn ngữ lập trình, framework, công cụ, phương pháp.
-- **Dự án**: (Khu vực sẵn sàng để bạn thêm các dự án nổi bật.)
-- **Mô hình 3D tương tác**: Macbook dựng bằng Three.js.
-- **Chế độ sáng/tối**: Chuyển đổi mượt mà.
-- **Đa ngôn ngữ**: Hỗ trợ tiếng Anh và tiếng Việt.
-- **Responsive**: Hiển thị tốt trên mọi thiết bị.
+- **Định vị Technical BA**: Giới thiệu năng lực phân tích nghiệp vụ, tầm nhìn dài hạn và lợi thế nền tảng kỹ thuật.
+- **Góc làm việc 3D tương tác (Low-poly Chill Studio)**: Dựng thuần bằng Three.js với màn hình kép tương tác (BPMN 2.0 / SQL / Telemetry), đèn bàn bật/tắt, khói cà phê và chuyển động xoay theo chuột.
+- **Bàn làm việc Phân tích Nghiệp vụ (Interactive BA Workbench)**: Mô phỏng quy trình nghiệp vụ thực tế với State Machine BPMN, tiêu chí nghiệm thu Gherkin BDD, hợp đồng API và sơ đồ kiến trúc hệ thống.
+- **Kinh nghiệm làm việc**: Dòng thời gian chi tiết với các cột mốc khảo sát yêu cầu, chuẩn hóa quy trình, thiết kế lược đồ ERD và kiểm thử nghiệm thu UAT.
+- **Dự án bàn giao**: Portfolio, Hệ thống quản lý bán lẻ & tồn kho (3NF SQL Server), Động cơ Socket đa luồng, Web API kiểm toán tập trung.
+- **Chế độ sáng/tối**: Chuyển đổi mượt mà với tông màu tím pastel chủ đạo.
+- **Đa ngôn ngữ**: Hỗ trợ tiếng Anh và tiếng Việt đầy đủ.
+- **Responsive**: Tối ưu hiển thị hoàn hảo trên mobile, tablet và desktop.
 
 ---
 
 ## 🛠️ Công nghệ sử dụng
 
-- **Vue 3** + **Vite** + **Pinia**
-- **TailwindCSS** cho giao diện
-- **Three.js** dựng mô hình 3D
+- **Vue 3 (Composition API)** + **Vite 6** + **Pinia**
+- **TailwindCSS v4** với design system tím pastel
+- **Three.js** dựng trạm làm việc 3D low-poly tương tác (0kB asset ngoài)
 - **vue-i18n** đa ngôn ngữ
-- **GSAP**, **Anime.js** cho animation
-- **@heroicons/vue** cho icon
+- **GSAP** cho toàn bộ hiệu ứng chuyển động
+- **@heroicons/vue** cho hệ thống biểu tượng
 
 ---
 
@@ -42,37 +41,6 @@ npm install
 # 3. Chạy môi trường phát triển
 npm run dev
 
-# 4. Build cho production
+# 4. Đóng gói cho production
 npm run build
-
-# 5. Xem thử bản build
-npm run preview
 ```
-
----
-
-## 🌏 Đa ngôn ngữ
-
-- Chuyển đổi tiếng Anh/Việt bằng nút chuyển ngôn ngữ trên giao diện.
-
----
-
-## 📄 Cấu trúc dự án
-
-- `src/components/` — Các thành phần UI (layouts, views, utility)
-- `src/assets/` — Ảnh, icon, mô hình 3D
-- `src/locales/` — File dịch ngôn ngữ
-- `src/stores/` — Pinia store
-- `src/router/` — Cấu hình Vue Router
-- `src/constants/` — Theme và liên kết
-
----
-
-## 👤 Tác giả & Liên hệ
-- **GitHub**: [hiimgyn](https://github.com/hiimgyn)
-
----
-
-## 📄 Bản quyền
-
-Dự án phục vụ mục đích portfolio cá nhân. Mọi quyền được bảo lưu.
