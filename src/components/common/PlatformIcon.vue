@@ -1,5 +1,6 @@
 <template>
   <span
+    v-if="isKnown || !onlyKnown"
     class="inline-flex items-center justify-center shrink-0 transition-transform duration-200 select-none"
     :class="[sizeClass, { 'hover:scale-110': interactive }]"
     :title="title || computedTitle"
@@ -137,6 +138,60 @@
       <path d="M8 7h8M8 11h8M8 15h5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" fill="none" />
     </svg>
 
+    <!-- 21. FACEBOOK -->
+    <svg v-else-if="normalizedName === 'facebook'" viewBox="0 0 24 24" class="w-full h-full">
+      <circle cx="12" cy="12" r="11" fill="#1877F2" />
+      <path fill="#FFFFFF" d="M14.5 12h-2v8h-3v-8H8V9.5h1.5V7.8C9.5 6.2 10.4 5 12.8 5h2.2v2.8h-1.4c-.7 0-.9.4-.9.9v.8h2.3l-.5 2.5z" />
+    </svg>
+
+    <!-- 22. INSTAGRAM -->
+    <svg v-else-if="normalizedName === 'instagram'" viewBox="0 0 24 24" class="w-full h-full">
+      <defs>
+        <radialGradient id="ig-grad-new" r="140%" cx="30%" cy="105%">
+          <stop stop-color="#fdf497" offset="0%" />
+          <stop stop-color="#fd5949" offset="45%" />
+          <stop stop-color="#d6249f" offset="65%" />
+          <stop stop-color="#285AEB" offset="95%" />
+        </radialGradient>
+      </defs>
+      <rect width="24" height="24" rx="6" fill="url(#ig-grad-new)" />
+      <path fill="#FFFFFF" d="M12 7.5A4.5 4.5 0 1 0 16.5 12 4.5 4.5 0 0 0 12 7.5zm0 7.4A2.9 2.9 0 1 1 14.9 12a2.9 2.9 0 0 1-2.9 2.9zm5.3-7.7a1.1 1.1 0 1 1-1.1-1.1 1.1 1.1 0 0 1 1.1 1.1zm2.7 2.3c-.1-2.1-.6-3.9-2.1-5.4s-3.3-2-5.4-2.1C10.4 2 4.5 2 2.5 4.1S.5 9.5.4 12c.1 2.5.6 4.3 2.1 5.8s3.3 2 5.4 2.1c2.1.1 8 .1 10-2s2-3.8 2.1-5.9zM18.4 18c-1.3 1.3-3.1 1.4-6.4 1.4s-5.1-.1-6.4-1.4-1.4-3.1-1.4-6.4.1-5.1 1.4-6.4 3.1-1.4 6.4-1.4 5.1.1 6.4 1.4 1.4 3.1 1.4 6.4-.1 5.1-1.4 6.4z" />
+    </svg>
+
+    <!-- 23. VUE.JS -->
+    <svg v-else-if="normalizedName === 'vue'" viewBox="0 0 24 24" class="w-full h-full">
+      <path fill="#41B883" d="M16.5 2H21L12 17.5 3 2h4.5l4.5 7.8L16.5 2z" />
+      <path fill="#35495E" d="M7.5 2L12 9.8 16.5 2h-3L12 4.6 10.5 2h-3z" />
+    </svg>
+
+    <!-- 24. NODE.JS -->
+    <svg v-else-if="normalizedName === 'node'" viewBox="0 0 24 24" class="w-full h-full">
+      <path fill="#339933" d="M12 2l9 5.2v10.4l-9 5.2-9-5.2V7.2L12 2zm0 2.3L4.8 8.4v7.2L12 19.8l7.2-4.2V8.4L12 4.3z" />
+    </svg>
+
+    <!-- 25. LINUX -->
+    <svg v-else-if="normalizedName === 'linux'" viewBox="0 0 24 24" class="w-full h-full">
+      <rect width="24" height="24" rx="5" fill="#24292E" />
+      <circle cx="12" cy="12" r="7" fill="#FCC624" />
+      <circle cx="9.5" cy="10" r="1.5" fill="#000000" />
+      <circle cx="14.5" cy="10" r="1.5" fill="#000000" />
+      <ellipse cx="12" cy="13.5" rx="2.5" ry="1.2" fill="#E95420" />
+    </svg>
+
+    <!-- 26. JAVA -->
+    <svg v-else-if="normalizedName === 'java'" viewBox="0 0 24 24" class="w-full h-full">
+      <rect width="24" height="24" rx="5" fill="#EA2D2E" />
+      <path fill="#FFFFFF" d="M7 16c2 1 6 1 8 0s1-3-2-3-5 1-6 3zm3-7c-1 2 2 3 4 3s2-2 1-3-3-1-5 0z" />
+    </svg>
+
+    <!-- 27. NETWORK / TCP -->
+    <svg v-else-if="normalizedName === 'network' || normalizedName === 'tcp'" viewBox="0 0 24 24" class="w-full h-full">
+      <rect x="3" y="4" width="6" height="6" rx="1.5" fill="#38BDF8" />
+      <rect x="15" y="4" width="6" height="6" rx="1.5" fill="#38BDF8" />
+      <rect x="9" y="14" width="6" height="6" rx="1.5" fill="#818CF8" />
+      <path d="M6 10v2h12v-2M12 12v2" stroke="#94A3B8" stroke-width="1.8" fill="none" />
+    </svg>
+
     <!-- DEFAULT FALLBACK (Rendered only if not onlyKnown) -->
     <svg v-else-if="!onlyKnown" viewBox="0 0 24 24" class="w-full h-full fill-current text-violet-400">
       <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
@@ -176,7 +231,8 @@ const knownPlatforms = [
   'postgres', 'postgresql', 'docker', 'swagger', 'openapi', 'powerbi',
   'github', 'git', 'linkedin', 'dotnet', 'csharp', 'drawio', 'visio',
   'dapper', 'database', 'bpmn', 'workflow', 'api', 'rest', 'erd', 'schema',
-  'uat', 'qa', 'prd', 'brd', 'doc'
+  'uat', 'qa', 'prd', 'brd', 'doc', 'facebook', 'instagram', 'vue',
+  'node', 'linux', 'java', 'network', 'tcp'
 ]
 
 const normalizedName = computed(() => {
@@ -193,10 +249,17 @@ const normalizedName = computed(() => {
   if (n.includes('powerbi') || n.includes('power bi')) return 'powerbi'
   if (n.includes('github') || n.includes('git')) return 'github'
   if (n.includes('linkedin')) return 'linkedin'
+  if (n.includes('facebook') || n.includes('fb')) return 'facebook'
+  if (n.includes('instagram') || n.includes('ig')) return 'instagram'
+  if (n.includes('vue')) return 'vue'
+  if (n.includes('node')) return 'node'
+  if (n.includes('linux')) return 'linux'
+  if (n.includes('java')) return 'java'
+  if (n.includes('tcp') || n.includes('network') || n.includes('protocol')) return 'network'
   if (n.includes('.net') || n.includes('c#') || n.includes('csharp')) return 'dotnet'
   if (n.includes('draw.io') || n.includes('visio')) return 'drawio'
   if (n.includes('dapper')) return 'dapper'
-  if (n.includes('bpmn')) return 'bpmn'
+  if (n.includes('bpmn') || n.includes('workflow')) return 'bpmn'
   if (n.includes('api') || n.includes('rest')) return 'api'
   if (n.includes('erd') || n.includes('schema')) return 'erd'
   if (n.includes('uat') || n.includes('test')) return 'uat'
@@ -221,9 +284,16 @@ const computedTitle = computed(() => {
     powerbi: 'Power BI (Telemetry & KPI Dashboards)',
     github: 'GitHub (Version Control & CI/CD)',
     linkedin: 'LinkedIn Professional Profile',
+    facebook: 'Facebook Profile',
+    instagram: 'Instagram Profile',
     dotnet: '.NET 8 / C# (Backend Logic Architecture)',
     drawio: 'Draw.io / Visio (BPMN 2.0 & Architecture)',
-    dapper: 'Dapper ORM (High Performance Data Access)'
+    dapper: 'Dapper ORM (High Performance Data Access)',
+    vue: 'Vue 3 Framework',
+    node: 'Node.js Runtime',
+    linux: 'Linux Environments',
+    java: 'Java Enterprise',
+    network: 'TCP/IP Network Protocol'
   }
   return map[normalizedName.value] || props.name
 })

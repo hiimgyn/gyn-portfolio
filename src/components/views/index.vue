@@ -1,12 +1,12 @@
 <template>
-  <section class="relative min-h-[calc(100vh-4rem-4rem)] flex flex-col justify-between overflow-hidden py-6 sm:py-8">
+  <section class="relative min-h-[calc(100vh-4rem-4rem)] flex flex-col justify-center overflow-hidden py-8 sm:py-12">
     <div
-      class="max-w-7xl mx-auto px-4 w-full flex-1 flex flex-col lg:flex-row justify-between items-center relative z-20 gap-8 lg:gap-10 my-auto"
+      class="max-w-7xl mx-auto px-4 w-full flex flex-col lg:flex-row justify-between items-center relative z-20 gap-10 lg:gap-12 my-auto"
     >
-      <!-- Left Content -->
-      <div class="w-full lg:w-7/12 space-y-5 text-center lg:text-left">
+      <!-- Left Content: Executive BA Profile & Value Proposition -->
+      <div class="w-full lg:w-6/12 space-y-6 text-center lg:text-left">
         <!-- Status Badge -->
-        <div ref="statusBadge" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border text-xs font-mono font-medium backdrop-blur-md opacity-0 translate-y-4 shadow-xs"
+        <div ref="statusBadge" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border text-xs font-mono font-medium backdrop-blur-md opacity-0 translate-y-3 shadow-xs"
           :class="isDark ? 'bg-violet-950/40 border-violet-800/60 text-violet-300' : 'bg-violet-50 border-violet-200 text-violet-700'"
         >
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -15,7 +15,7 @@
 
         <!-- Greeting -->
         <p ref="greeting" :class="greetingClasses"
-          class="text-xs sm:text-sm opacity-0 translate-y-4 font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold flex items-center justify-center lg:justify-start gap-2"
+          class="text-xs sm:text-sm opacity-0 translate-y-3 font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold flex items-center justify-center lg:justify-start gap-2"
         >
           <span class="w-1.5 h-1.5 rounded-full bg-violet-400"></span>
           <span>{{ greetingText }}</span>
@@ -31,7 +31,7 @@
 
         <!-- Role: Business Analyst -->
         <div ref="role" :class="roleClasses"
-          class="text-xl sm:text-2xl lg:text-3xl font-mono opacity-0 translate-y-4"
+          class="text-xl sm:text-2xl lg:text-3xl font-mono opacity-0 translate-y-3"
         >
           <div class="flex items-center justify-center lg:justify-start gap-2.5">
             <span class="text-violet-400 font-bold">&gt;</span>
@@ -41,37 +41,50 @@
 
         <!-- Tagline / Value Proposition -->
         <p ref="taglineEl"
-          class="text-sm sm:text-base leading-relaxed opacity-0 translate-y-4 max-w-xl mx-auto lg:mx-0 font-normal"
+          class="text-sm sm:text-base leading-relaxed opacity-0 translate-y-3 max-w-xl mx-auto lg:mx-0 font-normal"
           :class="isDark ? 'text-slate-400' : 'text-slate-600'"
         >
           {{ $t('hero.tagline') }}
         </p>
 
-        <!-- BA & Technical Quick Highlights with Official Icons -->
-        <div ref="techHighlights" class="flex flex-wrap items-center justify-center lg:justify-start gap-2 pt-1 opacity-0 translate-y-4">
+        <!-- BA Core Competency Specifications -->
+        <div ref="techHighlights" class="flex flex-wrap items-center justify-center lg:justify-start gap-2 pt-1 opacity-0 translate-y-3">
           <span v-for="tag in baTags"
             :key="tag.name"
-            class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-mono border backdrop-blur-sm transition-all hover:scale-105"
+            class="shimmer-badge inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono border backdrop-blur-sm transition-all hover:scale-105"
             :class="isDark 
               ? 'bg-white/5 border-white/10 text-slate-300 hover:border-violet-400/50 hover:text-white' 
               : 'bg-white border-slate-200 text-slate-700 hover:border-violet-500/50 hover:text-slate-900 shadow-xs'"
           >
             <PlatformIcon :name="tag.icon" size="xs" />
-            <span>{{ tag.name }}</span>
+            <span class="relative z-10 font-semibold">{{ tag.name }}</span>
           </span>
         </div>
 
         <!-- Tactile Dual CTA Buttons -->
-        <div ref="ctaContainer" class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-3 opacity-0 translate-y-4">
+        <div ref="ctaContainer" class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2 opacity-0 translate-y-3">
           <button
             @click="navigateToPortfolio"
-            class="group relative px-6 py-3.5 rounded-xl font-semibold text-sm transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0.5 active:scale-[0.98] shadow-md flex items-center gap-2"
+            @mousemove="handleMagneticMove"
+            @mouseleave="handleMagneticLeave"
+            class="group relative px-6 py-3.5 rounded-xl font-semibold text-sm transition-transform duration-200 ease-out active:scale-[0.98] shadow-md flex items-center gap-2 overflow-hidden"
+            :style="{
+              transform: `translate(${ctaTransform.x}px, ${ctaTransform.y}px)`
+            }"
             :class="isDark 
               ? 'bg-violet-600 hover:bg-violet-500 text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25),0_4px_16px_rgba(139,92,246,0.35)]' 
               : 'bg-violet-600 hover:bg-violet-700 text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35),0_4px_12px_rgba(139,92,246,0.25)]'"
           >
-            <span>{{ ctaText }}</span>
-            <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <!-- Cursor-driven spotlight beam -->
+            <span
+              class="absolute inset-0 rounded-xl pointer-events-none transition-opacity duration-300"
+              :class="isHoveringCta ? 'opacity-100' : 'opacity-0'"
+              :style="{
+                background: `radial-gradient(110px circle at ${ctaSpotlight.x}px ${ctaSpotlight.y}px, rgba(255,255,255,0.32), transparent)`
+              }"
+            ></span>
+            <span class="relative z-10">{{ ctaText }}</span>
+            <svg class="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
             </svg>
           </button>
@@ -88,23 +101,12 @@
         </div>
       </div>
 
-      <!-- Right Content: Interactive 3D Companion -->
+      <!-- Right Content: Sleek & Borderless 3D Interactive Co-Pilot Model -->
       <div ref="rightContent"
-        class="relative w-full lg:w-5/12 h-[380px] sm:h-[440px] lg:h-[480px] flex items-center justify-center opacity-0"
+        class="relative w-full lg:w-6/12 flex items-center justify-center opacity-0"
       >
-        <div class="relative w-full h-full rounded-3xl overflow-hidden border backdrop-blur-xl transition-all duration-300 shadow-xl"
-          :class="isDark 
-            ? 'border-white/[0.08] bg-[#0f1220]/70 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_12px_36px_rgba(0,0,0,0.5)]' 
-            : 'border-violet-100 bg-white/70 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.9),0_8px_24px_rgba(139,92,246,0.08)]'"
-        >
-          <ChillWorkstation />
-        </div>
+        <Hero3DModel />
       </div>
-    </div>
-
-    <!-- Official Platform Ecosystem Marquee Ribbon -->
-    <div class="w-full mt-10">
-      <PlatformMarquee />
     </div>
   </section>
 </template>
@@ -113,9 +115,8 @@
 import { ref, computed, watch, nextTick, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from '@/stores/theme'
-import ChillWorkstation from '@/components/utility/room/ChillWorkstation.vue'
+import Hero3DModel from '@/components/views/Hero3DModel.vue'
 import PlatformIcon from '@/components/common/PlatformIcon.vue'
-import PlatformMarquee from '@/components/common/PlatformMarquee.vue'
 import { colors } from '@/constants/theme'
 import { useI18n } from 'vue-i18n'
 import { gsap } from 'gsap'
@@ -194,7 +195,7 @@ const resetElements = () => {
   })
 }
 
-const animateText = async (element, text, delay = 35) => {
+const animateText = async (element, text, delay = 20) => {
   if (!element) return
 
   element.innerHTML = text
@@ -206,12 +207,12 @@ const animateText = async (element, text, delay = 35) => {
 
   gsap.fromTo(
     element.querySelectorAll('span'),
-    { opacity: 0, y: 8 },
+    { opacity: 0, y: 6 },
     {
       opacity: 1,
       y: 0,
       stagger: delay / 1000,
-      duration: 0.4,
+      duration: 0.3,
       ease: 'power2.out'
     }
   )
@@ -219,32 +220,32 @@ const animateText = async (element, text, delay = 35) => {
 
 const animateContent = async () => {
   try {
-    const tl = gsap.timeline({ defaults: { ease: 'power2.out', duration: 0.5 } })
+    const tl = gsap.timeline({ defaults: { ease: 'power2.out', duration: 0.35 } })
 
     if (statusBadge.value) {
       tl.to(statusBadge.value, { opacity: 1, y: 0 })
     }
     if (greeting.value) {
-      tl.to(greeting.value, { opacity: 1, y: 0 }, '-=0.3')
+      tl.to(greeting.value, { opacity: 1, y: 0 }, '-=0.25')
     }
 
     tl.add(() => {
-      animateText(nameText.value, nameText_content.value)
-    }, '-=0.2')
+      animateText(nameText.value, nameText_content.value, 18)
+    }, '-=0.15')
 
     if (accentLine.value) {
       accentLine.value.classList.add('accent-line-animation')
     }
 
     if (role.value) {
-      tl.to(role.value, { opacity: 1, y: 0 }, '+=0.2')
+      tl.to(role.value, { opacity: 1, y: 0 }, '-=0.1')
       tl.add(() => {
-        animateText(roleText.value, roleTitle.value, 35)
+        animateText(roleText.value, roleTitle.value, 18)
       })
     }
 
     if (taglineEl.value) {
-      tl.to(taglineEl.value, { opacity: 1, y: 0 }, '+=0.2')
+      tl.to(taglineEl.value, { opacity: 1, y: 0 }, '-=0.1')
     }
 
     if (techHighlights.value) {
@@ -252,15 +253,37 @@ const animateContent = async () => {
     }
 
     if (ctaContainer.value) {
-      tl.to(ctaContainer.value, { opacity: 1, y: 0 }, '-=0.2')
+      tl.to(ctaContainer.value, { opacity: 1, y: 0 }, '-=0.15')
     }
 
     if (rightContent.value) {
-      tl.to(rightContent.value, { opacity: 1, y: 0, duration: 0.8 }, '-=0.4')
+      tl.to(rightContent.value, { opacity: 1, y: 0, duration: 0.5 }, '-=0.25')
     }
   } catch (error) {
     console.error('Animation error:', error)
   }
+}
+
+// Magnetic CTA Physics
+const ctaTransform = ref({ x: 0, y: 0 })
+const ctaSpotlight = ref({ x: 50, y: 50 })
+const isHoveringCta = ref(false)
+
+const handleMagneticMove = (e) => {
+  const btn = e.currentTarget
+  const rect = btn.getBoundingClientRect()
+  const relX = e.clientX - rect.left
+  const relY = e.clientY - rect.top
+  ctaSpotlight.value = { x: relX, y: relY }
+  const pullX = (relX - rect.width / 2) * 0.2
+  const pullY = (relY - rect.height / 2) * 0.2
+  ctaTransform.value = { x: pullX, y: pullY }
+  isHoveringCta.value = true
+}
+
+const handleMagneticLeave = () => {
+  ctaTransform.value = { x: 0, y: 0 }
+  isHoveringCta.value = false
 }
 
 const navigateToPortfolio = () => router.push('/about')
@@ -290,5 +313,33 @@ watch([greetingText, nameText_content, roleTitle, ctaText], async () => {
     width: 100%;
     opacity: 1;
   }
+}
+
+.shimmer-badge {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-badge::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 35%,
+    rgba(167, 139, 250, 0.18) 50%,
+    transparent 65%
+  );
+  transform: rotate(25deg);
+  animation: badgeShimmer 6s infinite linear;
+  pointer-events: none;
+}
+
+@keyframes badgeShimmer {
+  0% { transform: translateX(-100%) rotate(25deg); }
+  100% { transform: translateX(100%) rotate(25deg); }
 }
 </style>

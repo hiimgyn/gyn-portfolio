@@ -20,7 +20,7 @@
     "tagline": "Bridging business visions and software architecture with airtight requirements, BPMN 2.0 flows, and data modeling.",
     "cta": "Explore Qualifications & Work",
     "ctaContact": "Let's Talk",
-    "clickHint": "Interact with 3D AI companion"
+    "clickHint": "Inspect interactive Business Analyst deliverables"
   },
   "about": {
     "portfolio": "Portfolio",
@@ -44,7 +44,15 @@
     "phone": "Phone",
     "phoneNumber": "+84 942 451 385",
     "experiences": "Experiences",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "station1": "Identity & Metrics",
+    "station2": "BA Competencies",
+    "station3": "Systems & Tools",
+    "station4": "Career Track",
+    "station5": "Flagship Systems",
+    "stationTerminal": "Collaboration Hub",
+    "scrollHint": "Continuous Motion Graphic Pipeline",
+    "pipelineLabel": "SYSTEM ARCHITECTURE JOURNEY"
   },
   "experience": {
     "keyAchievements": "Professional Career & Highlights",

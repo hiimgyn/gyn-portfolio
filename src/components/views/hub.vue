@@ -110,50 +110,156 @@
 
         <!-- BPMN 2.0 Process Flow Stepper -->
         <div class="py-6 border-b" :class="isDark ? 'border-white/10' : 'border-slate-200'">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-mono font-semibold" :class="isDark ? 'text-slate-300' : 'text-slate-700'">
-              BPMN 2.0 State Machine Flow
-            </span>
-            <span class="text-xs font-mono text-violet-400">
-              Current State: Step {{ currentStepIndex + 1 }} of {{ currentScenario.steps.length }}
-            </span>
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-violet-400 animate-pulse"></span>
+              <span class="text-xs font-mono font-semibold" :class="isDark ? 'text-slate-300' : 'text-slate-700'">
+                BPMN 2.0 State Machine Pipeline
+              </span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded-full border"
+                :class="isExecuting ? 'text-amber-400 border-amber-400/40 bg-amber-400/10 animate-pulse' : 'text-violet-400 border-violet-400/30 bg-violet-500/10'"
+              >
+                {{ isExecuting ? '⚡ SURGE_SYNCING' : `STATE: 0${currentStepIndex + 1} / 0${currentScenario.steps.length}` }}
+              </span>
+            </div>
           </div>
 
+          <!-- Motion Graphic SVG Data Conduit Track (Desktop View) -->
+          <div class="relative w-full h-7 mb-3 hidden lg:block select-none pointer-events-none">
+            <svg class="w-full h-full overflow-visible" viewBox="0 0 1000 24">
+              <defs>
+                <linearGradient id="bpmnActiveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#8b5cf6" />
+                  <stop offset="60%" stop-color="#c084fc" />
+                  <stop offset="100%" stop-color="#34d399" />
+                </linearGradient>
+                <filter id="bpmnGlow" x="-20%" y="-50%" width="140%" height="200%">
+                  <feGaussianBlur stdDeviation="3" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+
+              <!-- Inactive Rail Track -->
+              <line
+                x1="125" y1="12" x2="875" y2="12"
+                :stroke="isDark ? 'rgba(255,255,255,0.1)' : 'rgba(148,163,184,0.35)'"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-dasharray="6 6"
+              />
+
+              <!-- Active Animated Data Stream Line -->
+              <line
+                x1="125" y1="12"
+                :x2="125 + (currentStepIndex / (currentScenario.steps.length - 1)) * 750"
+                y2="12"
+                stroke="url(#bpmnActiveGradient)"
+                stroke-width="3"
+                stroke-linecap="round"
+                class="transition-all duration-500 ease-out"
+                filter="url(#bpmnGlow)"
+              />
+
+              <!-- Step Checkpoint Rings -->
+              <g v-for="(s, i) in currentScenario.steps" :key="'bpmn-node-' + i">
+                <!-- Outer Halo -->
+                <circle
+                  :cx="125 + (i / (currentScenario.steps.length - 1)) * 750"
+                  cy="12"
+                  :r="i === currentStepIndex ? 9 : 7"
+                  :class="[
+                    i <= currentStepIndex
+                      ? (i === currentStepIndex ? 'fill-violet-600/80 stroke-violet-300 stroke-2' : 'fill-emerald-500 stroke-emerald-300 stroke-1')
+                      : (isDark ? 'fill-[#121524] stroke-white/20 stroke-1' : 'fill-slate-100 stroke-slate-300 stroke-1')
+                  ]"
+                  class="transition-all duration-300"
+                />
+                <!-- Inner Core -->
+                <circle
+                  :cx="125 + (i / (currentScenario.steps.length - 1)) * 750"
+                  cy="12"
+                  :r="i === currentStepIndex ? 4 : 3"
+                  :class="i <= currentStepIndex ? 'fill-white' : (isDark ? 'fill-slate-600' : 'fill-slate-400')"
+                />
+              </g>
+            </svg>
+          </div>
+
+          <!-- 4 Step Cards Grid -->
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             <div
               v-for="(step, idx) in currentScenario.steps"
               :key="idx"
               @click="currentStepIndex = idx"
-              class="p-3.5 rounded-2xl border transition-all duration-200 cursor-pointer relative"
+              class="p-3.5 rounded-2xl border transition-all duration-300 cursor-pointer relative overflow-hidden group hover:-translate-y-0.5"
               :class="[
                 idx === currentStepIndex
-                  ? (isDark ? 'border-violet-400 bg-violet-500/15 shadow-md' : 'border-violet-600 bg-violet-50 shadow-sm')
+                  ? (isDark ? 'border-violet-400 bg-violet-500/15 shadow-[0_0_24px_rgba(139,92,246,0.25)]' : 'border-violet-600 bg-violet-50 shadow-md')
                   : idx < currentStepIndex
                     ? (isDark ? 'border-emerald-500/40 bg-emerald-950/20' : 'border-emerald-200 bg-emerald-50/50')
-                    : (isDark ? 'border-white/10 bg-white/5 opacity-60' : 'border-slate-200 bg-slate-50 opacity-60')
+                    : (isDark ? 'border-white/10 bg-white/5 opacity-60 hover:opacity-85' : 'border-slate-200 bg-slate-50 opacity-60 hover:opacity-85')
               ]"
             >
+              <!-- Top Laser Border for Active Step -->
+              <div
+                v-if="idx === currentStepIndex"
+                class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-violet-400 via-fuchsia-400 to-violet-400 animate-laser"
+              ></div>
+
               <div class="flex items-center justify-between mb-1.5">
-                <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded"
+                <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded transition-colors"
                   :class="idx === currentStepIndex
-                    ? 'bg-violet-600 text-white'
+                    ? 'bg-violet-600 text-white shadow-xs'
                     : idx < currentStepIndex
                       ? 'bg-emerald-500/20 text-emerald-400'
                       : (isDark ? 'bg-white/10 text-slate-400' : 'bg-slate-200 text-slate-600')"
                 >
                   Step 0{{ idx + 1 }}
                 </span>
-                <span v-if="idx < currentStepIndex" class="text-emerald-500 text-xs font-bold">✓ DONE</span>
-                <span v-else-if="idx === currentStepIndex" class="text-violet-400 text-xs font-bold animate-pulse">● ACTIVE</span>
+                
+                <span v-if="idx < currentStepIndex" class="text-emerald-500 text-xs font-bold flex items-center gap-1">
+                  <span>✓</span>
+                  <span>DONE</span>
+                </span>
+                <span v-else-if="idx === currentStepIndex" class="text-violet-400 text-xs font-bold flex items-center gap-1.5">
+                  <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-violet-500"></span>
+                  </span>
+                  <span>ACTIVE</span>
+                </span>
                 <span v-else class="text-slate-500 text-xs font-mono">PENDING</span>
               </div>
-              <h4 class="text-xs font-bold truncate" :class="isDark ? colors.dark.text.primary : colors.light.text.primary">
+              <h4 class="text-xs font-bold truncate group-hover:text-violet-400 transition-colors" :class="isDark ? colors.dark.text.primary : colors.light.text.primary">
                 {{ step.name }}
               </h4>
               <p class="text-[11px] text-slate-400 truncate mt-0.5">
                 {{ step.systemAction }}
               </p>
             </div>
+          </div>
+
+          <!-- Bottom Pipeline Progress Meter -->
+          <div class="mt-4 flex items-center gap-3">
+            <div class="flex-1 bg-white/5 dark:bg-black/20 h-1.5 rounded-full overflow-hidden p-0.5 border"
+              :class="isDark ? 'border-white/10' : 'border-slate-200'"
+            >
+              <div
+                class="h-full rounded-full transition-all duration-500 ease-out bg-gradient-to-r from-violet-600 via-purple-500 to-emerald-400 relative overflow-hidden"
+                :style="{ width: `${((currentStepIndex + 1) / currentScenario.steps.length) * 100}%` }"
+              >
+                <!-- Light sheen gliding across progress bar -->
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-shimmer-fast"></div>
+              </div>
+            </div>
+            <span class="text-[10px] font-mono font-semibold" :class="isDark ? 'text-slate-400' : 'text-slate-600'">
+              {{ Math.round(((currentStepIndex + 1) / currentScenario.steps.length) * 100) }}% PIPELINE_EXEC
+            </span>
           </div>
         </div>
 
@@ -666,3 +772,32 @@ const architectureNodes = [
 
 const selectedArchNode = ref(architectureNodes[2])
 </script>
+
+<style scoped>
+@keyframes laser {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-laser {
+  background-size: 200% 100%;
+  animation: laser 3s infinite linear;
+}
+
+@keyframes shimmerFast {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(250%);
+  }
+}
+
+.animate-shimmer-fast {
+  animation: shimmerFast 2.2s infinite ease-in-out;
+}
+</style>

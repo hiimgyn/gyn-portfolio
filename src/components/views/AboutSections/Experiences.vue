@@ -22,16 +22,21 @@
     </div>
 
     <!-- Timeline List -->
-    <div class="relative pl-6 sm:pl-8 border-l-2 space-y-8"
-      :class="isDark ? 'border-violet-900/40' : 'border-violet-200'"
-    >
+    <div class="relative pl-6 sm:pl-8 space-y-8">
+      <!-- Animated Vertical Energy Flowline Beam -->
+      <div class="absolute left-0 top-2 bottom-2 w-[2px] rounded-full overflow-hidden"
+        :class="isDark ? 'bg-violet-950/70' : 'bg-violet-200/80'"
+      >
+        <div class="w-full h-36 bg-gradient-to-b from-transparent via-violet-400 to-transparent animate-beam-flow"></div>
+      </div>
+
       <div
         v-for="exp in experiences"
         :key="exp.id"
         class="relative group"
       >
         <!-- Glowing Timeline Node -->
-        <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-6 h-6 rounded-full border-2 bg-white dark:bg-[#0b0d14] flex items-center justify-center transition-transform duration-300 group-hover:scale-125 group-hover:border-violet-400 shadow-md"
+        <div class="absolute -left-[35px] sm:-left-[43px] top-1.5 w-6 h-6 rounded-full border-2 bg-white dark:bg-[#0b0d14] flex items-center justify-center transition-all duration-300 group-hover:scale-125 group-hover:border-violet-400 group-hover:shadow-[0_0_16px_rgba(139,92,246,0.6)] shadow-md z-10"
           :class="isDark ? 'border-violet-400' : 'border-violet-500'"
         >
           <span class="w-2 h-2 rounded-full bg-violet-400 animate-pulse"></span>
@@ -252,5 +257,18 @@ const handleCardMouseMove = (e) => {
 
 .group:hover::before {
   opacity: 1;
+}
+
+@keyframes beamFlow {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(1200%);
+  }
+}
+
+.animate-beam-flow {
+  animation: beamFlow 4s infinite linear;
 }
 </style>

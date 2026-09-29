@@ -20,7 +20,7 @@
     "tagline": "Kết nối bài toán nghiệp vụ phức tạp với kiến trúc phần mềm thông qua tài liệu hóa chuẩn xác và mô hình hóa quy trình BPMN 2.0.",
     "cta": "Xem hồ sơ & dự án",
     "ctaContact": "Liên hệ ngay",
-    "clickHint": "Tương tác với trợ lý 3D AI"
+    "clickHint": "Khám phá các sản phẩm tài liệu Business Analyst"
   },
   "about": {
     "portfolio": "Hồ sơ",
@@ -44,7 +44,15 @@
     "phone": "Điện thoại",
     "phoneNumber": "+84 942 451 385",
     "experiences": "Kinh nghiệm",
-    "loading": "Đang tải..."
+    "loading": "Đang tải...",
+    "station1": "Hồ sơ & Chỉ số",
+    "station2": "Năng lực BA",
+    "station3": "Hệ thống & Công cụ",
+    "station4": "Kinh nghiệm Thực chiến",
+    "station5": "Dự án Tiêu biểu",
+    "stationTerminal": "Trung tâm Hợp tác",
+    "scrollHint": "Đường ống Motion Graphic Liên tục",
+    "pipelineLabel": "HÀNH TRÌNH KIẾN TRÚC HỆ THỐNG"
   },
   "experience": {
     "keyAchievements": "Kinh nghiệm Làm việc & Thành tựu",

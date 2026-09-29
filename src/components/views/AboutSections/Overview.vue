@@ -70,41 +70,52 @@
           <h3 class="text-xs font-mono uppercase tracking-wider font-semibold" :class="isDark ? colors.dark.text.muted : colors.light.text.muted">
             DELIVERY_SCORECARD
           </h3>
-          <span class="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full border text-emerald-400 border-emerald-500/30 bg-emerald-950/20">
-            ● SLA: 99.4%
+          <span class="text-[10px] font-mono font-semibold px-2.5 py-0.5 rounded-full border text-emerald-400 border-emerald-500/30 bg-emerald-950/20 flex items-center gap-1.5 shadow-xs">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+            <span>SLA: {{ countSla }}%</span>
           </span>
         </div>
         
         <div class="space-y-4 py-2">
           <div>
             <div class="flex items-baseline justify-between">
-              <span class="text-3xl font-extrabold tracking-tight text-violet-400">100+</span>
+              <span class="text-3xl font-extrabold tracking-tight text-violet-400 font-mono">{{ countStories }}+</span>
               <span class="text-[11px] font-mono text-slate-400">100% Accepted</span>
             </div>
             <div class="text-xs font-medium" :class="isDark ? colors.dark.text.secondary : colors.light.text.secondary">
               User Stories & Specifications Delivered
             </div>
-            <div class="w-full bg-white/5 h-1.5 rounded-full mt-2 overflow-hidden">
-              <div class="bg-violet-500 h-full rounded-full w-[94%]"></div>
+            <div class="w-full bg-white/5 h-1.5 rounded-full mt-2 overflow-hidden border border-white/5">
+              <div
+                class="bg-gradient-to-r from-violet-600 via-violet-400 to-purple-300 h-full rounded-full transition-all duration-1000 ease-out relative"
+                :style="{ width: `${barStoriesWidth}%` }"
+              >
+                <div class="absolute right-0 top-0 bottom-0 w-2 bg-white rounded-full blur-[1px]"></div>
+              </div>
             </div>
           </div>
 
           <div class="border-t pt-3" :class="isDark ? 'border-white/5' : 'border-slate-200/60'">
             <div class="flex items-baseline justify-between">
-              <span class="text-3xl font-extrabold tracking-tight text-purple-400">25+</span>
+              <span class="text-3xl font-extrabold tracking-tight text-purple-400 font-mono">{{ countWorkflows }}+</span>
               <span class="text-[11px] font-mono text-slate-400">BPMN 2.0</span>
             </div>
             <div class="text-xs font-medium" :class="isDark ? colors.dark.text.secondary : colors.light.text.secondary">
               Workflows & Data Schemas Mapped
             </div>
-            <div class="w-full bg-white/5 h-1.5 rounded-full mt-2 overflow-hidden">
-              <div class="bg-purple-500 h-full rounded-full w-[88%]"></div>
+            <div class="w-full bg-white/5 h-1.5 rounded-full mt-2 overflow-hidden border border-white/5">
+              <div
+                class="bg-gradient-to-r from-purple-600 via-fuchsia-400 to-pink-300 h-full rounded-full transition-all duration-1000 ease-out relative"
+                :style="{ width: `${barWorkflowsWidth}%` }"
+              >
+                <div class="absolute right-0 top-0 bottom-0 w-2 bg-white rounded-full blur-[1px]"></div>
+              </div>
             </div>
           </div>
 
           <div class="border-t pt-3" :class="isDark ? 'border-white/5' : 'border-slate-200/60'">
             <div class="flex items-baseline justify-between">
-              <span class="text-3xl font-extrabold tracking-tight text-emerald-400">4+</span>
+              <span class="text-3xl font-extrabold tracking-tight text-emerald-400 font-mono">{{ countYears }}+</span>
               <span class="text-[11px] font-mono text-slate-400">Continuous</span>
             </div>
             <div class="text-xs font-medium" :class="isDark ? colors.dark.text.secondary : colors.light.text.secondary">
@@ -275,10 +286,11 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useStore } from '@/stores/theme'
 import { colors } from '@/constants/theme'
 import PlatformIcon from '@/components/common/PlatformIcon.vue'
+import { gsap } from 'gsap'
 import {
   MapPinIcon,
   CheckCircleIcon,
@@ -290,6 +302,37 @@ import {
 const store = useStore()
 const isDark = computed(() => store.isDark)
 const showPrdModal = ref(false)
+
+// Animated Metric Counters & Progress Bars
+const countStories = ref(0)
+const countWorkflows = ref(0)
+const countYears = ref(0)
+const countSla = ref('0.0')
+const barStoriesWidth = ref(0)
+const barWorkflowsWidth = ref(0)
+
+onMounted(() => {
+  const metricObj = { stories: 0, workflows: 0, years: 0, sla: 0 }
+  gsap.to(metricObj, {
+    stories: 100,
+    workflows: 25,
+    years: 4,
+    sla: 99.4,
+    duration: 1.5,
+    ease: 'power2.out',
+    onUpdate: () => {
+      countStories.value = Math.round(metricObj.stories)
+      countWorkflows.value = Math.round(metricObj.workflows)
+      countYears.value = Math.round(metricObj.years)
+      countSla.value = metricObj.sla.toFixed(1)
+    }
+  })
+
+  setTimeout(() => {
+    barStoriesWidth.value = 94
+    barWorkflowsWidth.value = 88
+  }, 120)
+})
 
 const Skills_BA = [
   'BRD / PRD Documentation',
