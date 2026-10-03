@@ -133,7 +133,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
 const store = useStore()
 const route = useRoute()
 const isDark = computed(() => store.isDark)
-const navItems = ref(['about', 'hub'])
+const navItems = ref(['about', 'tetris'])
 const isMobileMenuOpen = ref(false)
 
 const toggleMobileMenu = () => {

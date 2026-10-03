@@ -17,9 +17,9 @@ const routes = [
          component: () => import('@/components/views/about.vue')
       },
       {
-        path: 'hub',
-        name: 'hub',
-        component: () => import('@/components/views/hub.vue')
+        path: 'tetris',
+        name: 'tetris',
+        component: () => import('@/components/views/tetris.vue')
       },      {
         path: 'contact',
         name: 'contact',

@@ -2,13 +2,13 @@
   "nav": {
     "logo": "gyn-nguyen",
     "about": "_ve-toi",
-    "hub": "_ban-lam-viec",
     "contact": "_lien-he",
     "language": "Ngôn ngữ",
     "toggleTheme": "Chuyển giao diện",
     "switchLanguage": "Đổi Ngôn Ngữ",
     "toggleDark": "Chuyển sang Chế độ Tối",
-    "toggleLight": "Chuyển sang Chế độ Sáng"
+    "toggleLight": "Chuyển sang Chế độ Sáng",
+    "tetris": "_tetris-lab"
   },
   "hero": {
     "greeting": "Xin chào, tôi là",
@@ -89,7 +89,7 @@
     "previous": "Trước đó",
     "project1": {
       "name": "Portfolio Cá nhân & Bàn làm việc Kỹ thuật",
-      "description": "Thiết kế và phát triển nền tảng portfolio hiệu năng cao kết hợp WebGL 3D, micro-animations GSAP và BA Workbench tương tác mô phỏng quy trình nghiệp vụ thực tế."
+      "description": "Thiết kế và phát triển nền tảng portfolio hiệu năng cao kết hợp WebGL 3D, micro-animations GSAP và Tetris Lab tích hợp với xoay SRS và luyện T-spin."
     },
     "project2": {
       "name": "Hệ thống Quản lý Bán lẻ & Tồn kho Thiết bị Di động",
@@ -119,29 +119,78 @@
     "copy": "Sao chép",
     "sendEmail": "Gửi email"
   },
-  "hub": {
-    "title": "Bàn làm việc Phân tích Nghiệp vụ & Hệ thống",
-    "subtitle": "Khu vực thử nghiệm tương tác mô phỏng luồng quy trình nghiệp vụ (BPMN 2.0), tiêu chí nghiệm thu (Gherkin/BDD) và thẩm định hợp đồng API thực tế.",
-    "tabProcess": "Quy trình Nghiệp vụ & Hợp đồng API",
-    "tabArch": "Kiến trúc Hệ thống & Lược đồ Dữ liệu",
-    "stepSim": "Thực thi Mô phỏng Bước",
-    "resetFlow": "Làm mới Quy trình",
-    "businessContext": "Bối cảnh Nghiệp vụ & Đặc tả Yêu cầu",
-    "acceptanceCriteria": "Tiêu chí Nghiệm thu (Gherkin / BDD)",
-    "technicalContract": "Đặc tả Kỹ thuật (API / Schema)",
-    "simulatedResponse": "Trạng thái Thực thi & Nhật ký Hệ thống",
-    "sendRequest": "Gửi yêu cầu",
-    "status": "Trạng thái",
-    "latency": "Độ trễ",
-    "headers": "Headers",
-    "response": "Dữ liệu phản hồi",
-    "archOverview": "Sơ đồ Kiến trúc Hệ thống Doanh nghiệp",
-    "archDesc": "Nhấp vào từng node kiến trúc để kiểm tra mẫu giao tiếp, tính toàn vẹn dữ liệu và khả năng mở rộng hệ thống."
-  },
   "maintain": {
     "title": "Trang đang bảo trì",
     "description": "Chúng tôi đang nâng cấp phân hệ này.",
     "returnLater": "Vui lòng quay lại sau!",
     "backToHome": "Quay về trang chủ"
+  },
+  "tetris": {
+    "badge": "PLAY // TETRIS LAB",
+    "title": "Tetris Lab",
+    "subtitle": "Không đăng nhập, không xếp hạng. Chỉ xếp, xoay và phá.",
+    "zen": "Zen",
+    "training": "Luyện tập",
+    "restart": "Chơi lại",
+    "pause": "Tạm dừng",
+    "resume": "Tiếp tục",
+    "paused": "TẠM DỪNG",
+    "score": "Điểm",
+    "lines": "Hàng",
+    "level": "Cấp",
+    "time": "Thời gian",
+    "pps": "PPS",
+    "pieces": "Khối",
+    "zenDesc": "Chế độ vô tận. Tốc độ rơi tăng mỗi 10 hàng; chạm đỉnh chỉ xoá bảng chứ không thua.",
+    "lessons": "Bài luyện",
+    "reset": "Làm lại",
+    "next": "Bài tiếp",
+    "cleared": "HOÀN THÀNH!",
+    "failed": "THỬ LẠI",
+    "clearedHint": "R làm lại · Enter bài tiếp",
+    "controls": "Phím điều khiển",
+    "keyboardOnly": "Cần bàn phím để chơi.",
+    "keys": {
+      "move": "Di chuyển",
+      "soft": "Rơi chậm",
+      "hard": "Thả nhanh",
+      "cw": "Xoay phải",
+      "ccw": "Xoay trái",
+      "r180": "Xoay 180",
+      "hold": "Giữ khối",
+      "reset": "Chơi lại / Reset",
+      "pause": "Tạm dừng"
+    },
+    "lesson": {
+      "tss": "Xoay khối T luồn dưới mái để móc vào khe. Chỉ phá 1 hàng.",
+      "tsd": "Xoay phải, rơi chậm xuống đáy rồi xoay phải lần nữa để T móc vào dưới mái. Thao tác cuối phải là xoay.",
+      "tst": "Trượt T vào dưới mái bên trái rồi xoay phải — kick sẽ đưa T xuống 2 hàng vào khe triple.",
+      "mini": "Đặt T nằm ngang ở góc dưới trái rồi xoay phải vào tường để ra T-Spin Mini.",
+      "quad": "Giữ khối O (C) để lấy I trước — thả vào giếng để ra Quad.",
+      "pc": "Lấp khe bằng L và J để bảng trống hoàn toàn."
+    },
+    "garbage": "Rác (garbage)",
+    "garbageLevels": {
+      "off": "Tắt",
+      "light": "Nhẹ",
+      "heavy": "Nặng"
+    },
+    "garbageDesc": "Bot gửi hàng rác xám. Rác sắp tới nằm ở thanh bên phải bảng (đỏ = sắp đẩy lên). Phá hàng để triệt tiêu — nếu đặt khối mà không phá hàng, rác sẽ dâng lên từ dưới. Single 0 · Double 1 · Triple 2 · Quad 4 · TSD 4 · TST 6 · B2B +1 · combo tăng sát thương.",
+    "boss": "Đấu Boss",
+    "bosses": "Chọn Boss",
+    "nextBoss": "Boss tiếp",
+    "victory": "CHIẾN THẮNG!",
+    "gameOver": "THUA RỒI",
+    "retryHint": "R chơi lại",
+    "bossEvery": "tấn công mỗi {s}s",
+    "bossDesc": "Gửi sát thương để rút cạn HP của boss. Sát thương sẽ triệt tiêu rác đang tới trước — chỉ phần dư mới đánh vào boss. Chạm đỉnh là thua.",
+    "bossNames": {
+      "beginner": "Người mới",
+      "easy": "Dễ",
+      "normal": "Trung bình",
+      "hard": "Khó",
+      "expert": "Cao thủ",
+      "hell": "Địa ngục"
+    }
   }
 }

@@ -90,13 +90,13 @@
           </button>
 
           <router-link
-            to="/hub"
+            to="/tetris"
             class="px-6 py-3.5 rounded-xl font-semibold text-sm transition-all duration-200 border hover:-translate-y-0.5 active:translate-y-0.5 active:scale-[0.98] flex items-center gap-2"
             :class="isDark 
               ? 'border-white/15 bg-white/5 hover:bg-white/10 text-slate-200 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]' 
               : 'border-slate-300 bg-white hover:bg-violet-50/50 text-slate-800 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.9),0_1px_3px_rgba(0,0,0,0.05)]'"
           >
-            <span>{{ $t('nav.hub') }}</span>
+            <span>{{ $t('nav.tetris') }}</span>
           </router-link>
         </div>
       </div>

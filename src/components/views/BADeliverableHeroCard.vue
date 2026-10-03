@@ -172,14 +172,6 @@
         <span>•</span>
         <span class="text-emerald-400 font-bold">99.4% Acceptance</span>
       </div>
-
-      <router-link
-        to="/hub"
-        class="text-[11px] font-semibold text-violet-500 hover:text-violet-400 flex items-center gap-1 group"
-      >
-        <span>Full Workbench</span>
-        <span class="group-hover:translate-x-0.5 transition-transform">→</span>
-      </router-link>
     </div>
   </div>
 </template>

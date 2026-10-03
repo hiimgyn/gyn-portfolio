@@ -33,20 +33,12 @@
             Ready to Translate Complexity into High-Impact Software?
           </h2>
           <p class="text-sm leading-relaxed" :class="isDark ? colors.dark.text.secondary : colors.light.text.secondary">
-            Explore the live BPMN 2.0 process flow simulation in the Workbench, or connect directly to discuss upcoming product initiatives, requirements architecture, or consulting engagements.
+            Connect directly to discuss upcoming product initiatives, requirements architecture, or consulting engagements.
           </p>
         </div>
 
         <!-- Action Buttons -->
         <div class="flex flex-col sm:flex-row md:flex-col gap-3 shrink-0">
-          <router-link
-            to="/hub"
-            class="px-5 py-3 rounded-2xl bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 text-white font-semibold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 active:scale-95"
-          >
-            <CommandLineIcon class="w-4 h-4" />
-            <span>Launch Workbench (SYS_LAB)</span>
-            <span>➔</span>
-          </router-link>
 
           <router-link
             to="/contact"
@@ -95,7 +87,6 @@ import { computed } from 'vue'
 import { useStore } from '@/stores/theme'
 import { colors } from '@/constants/theme'
 import {
-  CommandLineIcon,
   EnvelopeIcon,
   PhoneIcon,
   MapPinIcon

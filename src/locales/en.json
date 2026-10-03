@@ -2,13 +2,13 @@
   "nav": {
     "logo": "gyn-nguyen",
     "about": "_about-me",
-    "hub": "_my-workbench",
     "contact": "_contact-me",
     "language": "Language",
     "toggleTheme": "Toggle Theme",
     "switchLanguage": "Switch Language",
     "toggleDark": "Switch to Dark Mode",
-    "toggleLight": "Switch to Light Mode"
+    "toggleLight": "Switch to Light Mode",
+    "tetris": "_tetris-lab"
   },
   "hero": {
     "greeting": "Hi all, I am",
@@ -89,7 +89,7 @@
     "previous": "Previous",
     "project1": {
       "name": "Interactive Portfolio & System Showcase",
-      "description": "Engineered a high-performance portfolio featuring interactive 3D WebGL, GSAP micro-animations, and an interactive BA Workbench illustrating real-world business flows and API contract validation."
+      "description": "Engineered a high-performance portfolio featuring interactive 3D WebGL, GSAP micro-animations, and a built-in Tetris Lab with SRS rotation and T-spin training."
     },
     "project2": {
       "name": "Mobile Store Operations & Inventory System",
@@ -119,29 +119,78 @@
     "copy": "Copy",
     "sendEmail": "Send an Email"
   },
-  "hub": {
-    "title": "Business Analysis & Systems Workbench",
-    "subtitle": "Interactive sandbox demonstrating real-world Business Process Flows (BPMN 2.0), Requirement Acceptance Criteria (Gherkin/BDD), and API Contract Validations.",
-    "tabProcess": "Process Flow & API Contracts",
-    "tabArch": "System Architecture & Data Model",
-    "stepSim": "Execute Step Simulation",
-    "resetFlow": "Reset Process",
-    "businessContext": "Business Context & Requirements",
-    "acceptanceCriteria": "Acceptance Criteria (Gherkin / BDD)",
-    "technicalContract": "Technical Contract (API / Schema)",
-    "simulatedResponse": "Execution State & Telemetry Log",
-    "sendRequest": "Execute Request",
-    "status": "Status",
-    "latency": "Latency",
-    "headers": "Headers",
-    "response": "Response Body",
-    "archOverview": "Enterprise Systems Architecture Blueprint",
-    "archDesc": "Click any architectural node to inspect communication patterns, data integrity, and system scalability."
-  },
   "maintain": {
     "title": "Page Under Maintenance",
     "description": "We are currently upgrading this module.",
     "returnLater": "Please come back later!",
     "backToHome": "Back to Home"
+  },
+  "tetris": {
+    "badge": "PLAY // TETRIS LAB",
+    "title": "Tetris Lab",
+    "subtitle": "No login, no ranking. Just stack, spin and clear.",
+    "zen": "Zen",
+    "training": "Training",
+    "restart": "Restart",
+    "pause": "Pause",
+    "resume": "Resume",
+    "paused": "PAUSED",
+    "score": "Score",
+    "lines": "Lines",
+    "level": "Level",
+    "time": "Time",
+    "pps": "PPS",
+    "pieces": "Pieces",
+    "zenDesc": "Endless mode. Gravity speeds up every 10 lines; topping out just clears the board.",
+    "lessons": "Lessons",
+    "reset": "Reset",
+    "next": "Next lesson",
+    "cleared": "CLEARED!",
+    "failed": "TRY AGAIN",
+    "clearedHint": "R retry · Enter next",
+    "controls": "Controls",
+    "keyboardOnly": "Keyboard required to play.",
+    "keys": {
+      "move": "Move",
+      "soft": "Soft drop",
+      "hard": "Hard drop",
+      "cw": "Rotate CW",
+      "ccw": "Rotate CCW",
+      "r180": "Rotate 180",
+      "hold": "Hold",
+      "reset": "Restart / Reset",
+      "pause": "Pause"
+    },
+    "lesson": {
+      "tss": "Rotate the T under the overhang so it hooks into the slot. Only one line clears.",
+      "tsd": "Rotate CW, soft drop to the bottom, then rotate CW again so the T hooks under the overhang. The last move must be a rotation.",
+      "tst": "Slide the T under the roof on the left, then rotate CW — the kick drops it 2 rows into the triple slot.",
+      "mini": "Rest the T flat in the bottom-left corner, then rotate CW into the wall for a T-Spin Mini.",
+      "quad": "Hold the O (C) and take the I first — drop it into the well for a Quad.",
+      "pc": "Fill the gaps with L and J so the board is completely empty."
+    },
+    "garbage": "Garbage",
+    "garbageLevels": {
+      "off": "Off",
+      "light": "Light",
+      "heavy": "Heavy"
+    },
+    "garbageDesc": "A bot sends gray garbage. Incoming lines wait in the bar right of the board (red = ready). Clear lines to cancel them — otherwise they rise from the bottom when you place a piece without clearing. Single 0 · Double 1 · Triple 2 · Quad 4 · TSD 4 · TST 6 · B2B +1 · combo boosts attack.",
+    "boss": "Boss",
+    "bosses": "Bosses",
+    "nextBoss": "Next boss",
+    "victory": "VICTORY!",
+    "gameOver": "GAME OVER",
+    "retryHint": "R retry",
+    "bossEvery": "attacks every {s}s",
+    "bossDesc": "Drain the boss's HP with attack. Your attack cancels incoming garbage first — only the leftover hits the boss. Top out and you lose.",
+    "bossNames": {
+      "beginner": "Beginner",
+      "easy": "Easy",
+      "normal": "Normal",
+      "hard": "Hard",
+      "expert": "Expert",
+      "hell": "Hell"
+    }
   }
 }
