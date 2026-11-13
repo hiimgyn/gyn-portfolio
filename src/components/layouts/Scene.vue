@@ -414,7 +414,7 @@ onMounted(() => {
       // Full brightness only within about half a screen of a stage anchor; across dense sections the
       // particles dim so text stays readable.
       const vh = window.innerHeight, y = window.scrollY + vh * 0.5
-      const near = document.querySelector('[data-scene]') ? 1 : Math.max(...[vh * 0.5, anchor(1), anchor(2)].map((a) => 1 - Math.min(1, Math.max(0, (Math.abs(y - a) / vh - 0.1) / 0.3))))
+      const near = document.querySelector('[data-scene]') ? 1 : Math.max(...[vh * 0.5, anchor(1), anchor(2)].map((a) => 1 - Math.min(1, Math.max(0, (Math.abs(y - a) / vh - 0.08) / 0.16))))
       const dim = document.querySelector('[data-dim]') ? 0.18 : 1
       uniforms.uGlow.value = (0.14 + 0.86 * near) * dim
       bgUniforms.uDim.value = dim === 1 ? 1 : 0.6

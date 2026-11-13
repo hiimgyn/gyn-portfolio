@@ -62,6 +62,6 @@ export const PROJECTS = [
     mock: 'vbook',
     host: 'plugin.json — vbook-personal',
     accent: '#38BDF8',
-    links: [{ label: 'source', href: `${GITHUB}/vbook-personal` }]
+    links: []
   }
 ]
