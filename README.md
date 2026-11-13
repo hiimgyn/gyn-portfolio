@@ -1,30 +1,28 @@
 # Gyn Nguyen Portfolio
 
-A modern, high-performance portfolio website for Gyn Nguyen — Business Analyst. Built with Vue 3, Vite, TailwindCSS, Three.js, and Pinia, this site showcases professional experience, business process modeling, systems architecture, and engineering deliverables with a bespoke pastel purple design system and smooth GSAP micro-animations.
+Personal portfolio of Gyn Nguyen, Business Analyst with an engineering background. Built with Vue 3, Vite, Tailwind CSS 4, three.js and GSAP, in the same always-dark visual style as the rest of the hiimgyn ecosystem (GPM Hub, the hub site).
 
 ---
 
 ## 🚀 Features
 
-- **Personal Introduction**: Overview, vision, and long-term career goals as a Technical BA.
-- **Interactive 3D Chill Workstation**: Low-poly procedural isometric BA studio rendered with Three.js featuring interactive screens (BPMN 2.0 / SQL / Telemetry), clickable desk lamp, coffee steam, and cursor swivel.
-- **Interactive BA & Systems Workbench**: Real-world business process simulations with BPMN state machines, Gherkin acceptance criteria, API contracts, and architecture diagrams.
-- **Professional Experience**: Detailed career timeline highlighting requirement elicitation workshops, BPMN modeling, SQL analytics, and system integrations.
-- **Featured Deliverables**: Portfolio, Mobile Store Management (3NF SQL Schema), High-Throughput Socket Engine, and Enterprise Systems.
-- **Dark/Light Theme**: Seamless switching with soft pastel purple accents.
-- **Internationalization**: Full English and Vietnamese localization.
-- **Responsive & Accessible**: Mobile-first glassmorphic architecture with zero layout shifts.
+- **Home**: hero over a fixed full-screen three.js particle scene that morphs on scroll from a BPMN process (start event, tasks, exclusive gateway, end event) to a layered system diagram to a globe. Reduced-motion and no-WebGL fallbacks.
+- **How I work**: BPMN process modelling, system decomposition, requirements, data modelling, delivery/UAT.
+- **Projects**: ReLightHost, Animal Survivor, GFGames, GPM Hub (real screenshots), viet-hoa-game (AI game-localisation ruleset, private repo) and a VBook extension pack, each in a window-frame preview.
+- **About**: profile, a sample user story with Gherkin criteria, toolkit, career timeline and earlier case studies.
+- **Tetris Lab**: Zen, Training (T-spin lessons) and Boss modes with SRS rotation.
+- **Contact** page and English / Vietnamese localisation.
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Vue 3 (Composition API)** + **Vite 6** + **Pinia**
-- **TailwindCSS v4** with custom pastel design system
-- **Three.js** for procedural 3D low-poly workstation
-- **vue-i18n** for bilingual localization
-- **GSAP** for smooth micro-animations
-- **@heroicons/vue** for clean iconography
+- **Vue 3 (Composition API)** + **Vite 6** + **vue-router**
+- **Tailwind CSS 4**, SVN-Gilroy display headings, Geist body
+- **three.js** for the background scene (one Points draw call, morph in the vertex shader)
+- **vue-i18n** for English and Vietnamese
+- **GSAP** for the hero entrance
+- **@heroicons/vue** for icons
 
 ---
 

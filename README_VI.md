@@ -1,30 +1,28 @@
 # Gyn Nguyen Portfolio (Tiếng Việt)
 
-Website portfolio hiện đại, hiệu năng cao cho Nguyễn Minh Hùng (Gyn Nguyen) — Chuyên viên Phân tích Nghiệp vụ Kỹ thuật (Technical Business Analyst) & Phân tích Giải pháp Hệ thống. Xây dựng trên nền tảng Vue 3, Vite 6, TailwindCSS v4, Three.js, và Pinia; trang web giới thiệu năng lực đặc tả yêu cầu, mô hình hóa quy trình BPMN 2.0, thiết kế kiến trúc hệ thống và phân tích dữ liệu với giao diện tím pastel thanh lịch và hiệu năng tối ưu.
+Portfolio cá nhân của Nguyễn Minh Hùng (Gyn Nguyen), Business Analyst có nền tảng kỹ thuật. Xây dựng bằng Vue 3, Vite, Tailwind CSS 4, three.js và GSAP, cùng phong cách tối với các sản phẩm khác trong hệ sinh thái hiimgyn (GPM Hub, trang hub).
 
 ---
 
 ## 🚀 Tính năng nổi bật
 
-- **Định vị Technical BA**: Giới thiệu năng lực phân tích nghiệp vụ, tầm nhìn dài hạn và lợi thế nền tảng kỹ thuật.
-- **Góc làm việc 3D tương tác (Low-poly Chill Studio)**: Dựng thuần bằng Three.js với màn hình kép tương tác (BPMN 2.0 / SQL / Telemetry), đèn bàn bật/tắt, khói cà phê và chuyển động xoay theo chuột.
-- **Bàn làm việc Phân tích Nghiệp vụ (Interactive BA Workbench)**: Mô phỏng quy trình nghiệp vụ thực tế với State Machine BPMN, tiêu chí nghiệm thu Gherkin BDD, hợp đồng API và sơ đồ kiến trúc hệ thống.
-- **Kinh nghiệm làm việc**: Dòng thời gian chi tiết với các cột mốc khảo sát yêu cầu, chuẩn hóa quy trình, thiết kế lược đồ ERD và kiểm thử nghiệm thu UAT.
-- **Dự án bàn giao**: Portfolio, Hệ thống quản lý bán lẻ & tồn kho (3NF SQL Server), Động cơ Socket đa luồng, Web API kiểm toán tập trung.
-- **Chế độ sáng/tối**: Chuyển đổi mượt mà với tông màu tím pastel chủ đạo.
-- **Đa ngôn ngữ**: Hỗ trợ tiếng Anh và tiếng Việt đầy đủ.
-- **Responsive**: Tối ưu hiển thị hoàn hảo trên mobile, tablet và desktop.
+- **Trang chủ**: hero trên nền cảnh hạt three.js toàn màn hình, cuộn trang thì biến hình từ quy trình BPMN (sự kiện bắt đầu, task, gateway, sự kiện kết thúc) sang sơ đồ hệ thống nhiều tầng rồi thành quả cầu. Có xử lý reduced-motion và máy không có WebGL.
+- **Cách tôi làm việc**: mô hình hoá quy trình BPMN, phân rã hệ thống, đặc tả yêu cầu, mô hình dữ liệu, bàn giao/UAT.
+- **Dự án**: ReLightHost, Animal Survivor, GFGames, GPM Hub (ảnh chụp thật), viet-hoa-game (bộ rule việt hoá game cho AI, repo riêng tư) và gói extension VBook.
+- **Giới thiệu**: hồ sơ, mẫu user story kèm tiêu chí Gherkin, bộ công cụ, kinh nghiệm và các case study trước đây.
+- **Tetris Lab**: chế độ Zen, Training (luyện T-spin) và Boss, xoay SRS.
+- Trang **Liên hệ**, song ngữ Anh / Việt.
 
 ---
 
 ## 🛠️ Công nghệ sử dụng
 
-- **Vue 3 (Composition API)** + **Vite 6** + **Pinia**
-- **TailwindCSS v4** với design system tím pastel
-- **Three.js** dựng trạm làm việc 3D low-poly tương tác (0kB asset ngoài)
-- **vue-i18n** đa ngôn ngữ
-- **GSAP** cho toàn bộ hiệu ứng chuyển động
-- **@heroicons/vue** cho hệ thống biểu tượng
+- **Vue 3 (Composition API)** + **Vite 6** + **vue-router**
+- **Tailwind CSS 4**, tiêu đề SVN-Gilroy, chữ thân Geist
+- **three.js** cho cảnh nền (một draw call Points, biến hình trong vertex shader)
+- **vue-i18n** song ngữ
+- **GSAP** cho hiệu ứng vào trang của hero
+- **@heroicons/vue** cho biểu tượng
 
 ---
 

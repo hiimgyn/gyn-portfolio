@@ -1,345 +1,133 @@
 <template>
-  <section class="relative min-h-[calc(100vh-4rem-4rem)] flex flex-col justify-center overflow-hidden py-8 sm:py-12">
-    <div
-      class="max-w-7xl mx-auto px-4 w-full flex flex-col lg:flex-row justify-between items-center relative z-20 gap-10 lg:gap-12 my-auto"
-    >
-      <!-- Left Content: Executive BA Profile & Value Proposition -->
-      <div class="w-full lg:w-6/12 space-y-6 text-center lg:text-left">
-        <!-- Status Badge -->
-        <div ref="statusBadge" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border text-xs font-mono font-medium backdrop-blur-md opacity-0 translate-y-3 shadow-xs"
-          :class="isDark ? 'bg-violet-950/40 border-violet-800/60 text-violet-300' : 'bg-violet-50 border-violet-200 text-violet-700'"
-        >
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span>{{ $t('hero.availableStatus') }}</span>
-        </div>
-
-        <!-- Greeting -->
-        <p ref="greeting" :class="greetingClasses"
-          class="text-xs sm:text-sm opacity-0 translate-y-3 font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold flex items-center justify-center lg:justify-start gap-2"
-        >
-          <span class="w-1.5 h-1.5 rounded-full bg-violet-400"></span>
-          <span>{{ greetingText }}</span>
+  <div>
+    <section class="flex min-h-svh flex-col justify-end px-4 pb-20 sm:px-6">
+      <div ref="hero" :class="`mx-auto w-full max-w-6xl ${shadowText}`">
+        <p class="flex items-center gap-2 font-mono text-xs font-medium uppercase tracking-[0.14em] text-[#A3ACC4]">
+          <span class="size-2 rounded-full bg-[#FBBF24]"></span>{{ $t('home.eyebrow') }}
         </p>
-
-        <!-- Name & Headline -->
-        <div ref="nameContainer" class="relative inline-block">
-          <h1 ref="name" :class="nameClasses" class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-2">
-            <span ref="nameText"></span>
-          </h1>
-          <div ref="accentLine" :class="accentLineClasses" class="h-1 rounded-full opacity-0"></div>
+        <h1 :class="`${h1} mt-5 max-w-4xl`">{{ $t('home.title') }}</h1>
+        <p class="mt-6 max-w-xl text-lg leading-relaxed text-[#B4BCD2]">{{ $t('home.lead') }}</p>
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <router-link to="/#projects" :class="cta">{{ $t('home.ctaWork') }}</router-link>
+          <router-link to="/about" :class="ghost">{{ $t('home.ctaAbout') }} <ArrowRightIcon class="size-4" /></router-link>
         </div>
+      </div>
+    </section>
 
-        <!-- Role: Business Analyst -->
-        <div ref="role" :class="roleClasses"
-          class="text-xl sm:text-2xl lg:text-3xl font-mono opacity-0 translate-y-3"
-        >
-          <div class="flex items-center justify-center lg:justify-start gap-2.5">
-            <span class="text-violet-400 font-bold">&gt;</span>
-            <span ref="roleText" class="font-extrabold tracking-tight" :class="isDark ? 'text-white' : 'text-slate-900'"></span>
+    <section data-stage="1" class="flex min-h-[90svh] items-start px-4 pt-24 sm:px-6">
+      <div :class="`mx-auto w-full max-w-6xl ${shadowText}`">
+        <h2 :class="`${h2} max-w-2xl`">{{ $t('home.approachTitle') }}</h2>
+        <p :class="lead">{{ $t('home.approachLead') }}</p>
+      </div>
+    </section>
+
+    <section class="px-4 py-24 sm:px-6">
+      <div class="mx-auto max-w-6xl">
+        <h2 :class="h2">{{ $t('home.howTitle') }}</h2>
+        <ul class="mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+          <li v-for="(I, i) in HOW" :key="i" class="border-t border-[#262F4D] pt-5">
+            <component :is="I" class="size-5" :class="i === 0 ? 'text-[#FBBF24]' : 'text-[#8B8EF7]'" />
+            <h3 class="mt-3 font-semibold text-white">{{ $t(`home.how.${i}.title`) }}</h3>
+            <p class="mt-1.5 text-[15px] leading-relaxed text-[#A3ACC4]">{{ $t(`home.how.${i}.text`) }}</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="projects" class="scroll-mt-20 px-4 pt-24 sm:px-6">
+      <div :class="`mx-auto w-full max-w-6xl ${shadowText}`">
+        <h2 :class="h2">{{ $t('home.projectsTitle') }}</h2>
+        <p :class="`${lead} max-w-xl`">{{ $t('home.projectsLead') }}</p>
+      </div>
+    </section>
+
+    <section v-for="(p, i) in PROJECTS" :id="p.id" :key="p.id" class="scroll-mt-20 px-4 py-20 sm:px-6 lg:py-28">
+      <div :class="`mx-auto grid max-w-6xl items-center gap-10 lg:gap-16 ${i % 2 ? 'lg:grid-cols-[1.25fr_0.75fr] lg:[&>*:first-child]:order-2' : 'lg:grid-cols-[0.75fr_1.25fr]'}`">
+        <div :class="shadowText">
+          <p class="flex items-center gap-2 text-sm text-[#8F98B5]">
+            <span class="size-2 rounded-full" :style="{ background: p.accent }"></span>{{ $t(`work.${p.id}.kind`) }}
+          </p>
+          <h2 :class="`${h2} mt-3`">{{ p.title }}</h2>
+          <p :class="lead">{{ $t(`work.${p.id}.description`) }}</p>
+          <ul class="mt-6 max-w-md space-y-2.5 text-[15px] text-[#C3C9DB]">
+            <li v-for="k in 3" :key="k" class="flex gap-3">
+              <span aria-hidden="true" class="mt-2.5 h-px w-3 shrink-0" :style="{ background: p.accent }"></span>
+              {{ $t(`work.${p.id}.points.${k - 1}`) }}
+            </li>
+          </ul>
+          <div class="mt-8 flex flex-wrap items-center gap-2">
+            <a v-for="(l, k) in p.links" :key="l.href" :href="l.href" v-bind="ext" :class="k === 0 ? outline : `${ghost} px-4! py-2.5!`">
+              <Github v-if="l.label === 'source'" class="size-4 opacity-70" />
+              {{ $t(`work.links.${l.label}`) }}
+              <ArrowUpRightIcon v-if="k === 0 && l.label !== 'source'" class="size-4" :style="{ color: p.accent }" />
+            </a>
+            <span v-if="p.private" class="inline-flex items-center gap-1.5 rounded-full border border-[#262F4D] px-4 py-2.5 text-sm text-[#8F98B5]">
+              <LockClosedIcon class="size-4" /> {{ $t('work.links.private') }}
+            </span>
           </div>
         </div>
+        <SkillMock v-if="p.mock === 'skill'" :title="p.host" />
+        <VbookMock v-else-if="p.mock === 'vbook'" :title="p.host" />
+        <WindowFrame v-else :title="p.host">
+          <img :src="p.image" :alt="$t(`work.${p.id}.alt`)" width="1600" height="1000" :loading="i === 0 ? 'eager' : 'lazy'" decoding="async" class="aspect-[16/10] w-full object-cover object-top" />
+        </WindowFrame>
+      </div>
+    </section>
 
-        <!-- Tagline / Value Proposition -->
-        <p ref="taglineEl"
-          class="text-sm sm:text-base leading-relaxed opacity-0 translate-y-3 max-w-xl mx-auto lg:mx-0 font-normal"
-          :class="isDark ? 'text-slate-400' : 'text-slate-600'"
-        >
-          {{ $t('hero.tagline') }}
-        </p>
+    <section class="px-4 py-24 sm:px-6">
+      <div class="mx-auto max-w-6xl">
+        <h2 :class="h2">{{ $t('home.moreTitle') }}</h2>
+        <ul class="mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-2">
+          <li v-for="m in MORE" :key="m.to" class="border-t border-[#262F4D] pt-5">
+            <router-link :to="m.to" :class="`group block rounded-lg ${focus}`">
+              <component :is="m.icon" class="size-5 text-[#8B8EF7]" />
+              <h3 class="mt-3 flex items-center gap-2 font-semibold text-white">
+                {{ $t(`home.more.${m.key}.title`) }}
+                <ArrowRightIcon class="size-4 text-[#FBBF24] transition-transform group-hover:translate-x-1" />
+              </h3>
+              <p class="mt-1.5 max-w-md text-[15px] leading-relaxed text-[#A3ACC4]">{{ $t(`home.more.${m.key}.text`) }}</p>
+            </router-link>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-        <!-- BA Core Competency Specifications -->
-        <div ref="techHighlights" class="flex flex-wrap items-center justify-center lg:justify-start gap-2 pt-1 opacity-0 translate-y-3">
-          <span v-for="tag in baTags"
-            :key="tag.name"
-            class="shimmer-badge inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono border backdrop-blur-sm transition-all hover:scale-105"
-            :class="isDark 
-              ? 'bg-white/5 border-white/10 text-slate-300 hover:border-violet-400/50 hover:text-white' 
-              : 'bg-white border-slate-200 text-slate-700 hover:border-violet-500/50 hover:text-slate-900 shadow-xs'"
-          >
-            <PlatformIcon :name="tag.icon" size="xs" />
-            <span class="relative z-10 font-semibold">{{ tag.name }}</span>
-          </span>
-        </div>
-
-        <!-- Tactile Dual CTA Buttons -->
-        <div ref="ctaContainer" class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2 opacity-0 translate-y-3">
-          <button
-            @click="navigateToPortfolio"
-            @mousemove="handleMagneticMove"
-            @mouseleave="handleMagneticLeave"
-            class="group relative px-6 py-3.5 rounded-xl font-semibold text-sm transition-transform duration-200 ease-out active:scale-[0.98] shadow-md flex items-center gap-2 overflow-hidden"
-            :style="{
-              transform: `translate(${ctaTransform.x}px, ${ctaTransform.y}px)`
-            }"
-            :class="isDark 
-              ? 'bg-violet-600 hover:bg-violet-500 text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25),0_4px_16px_rgba(139,92,246,0.35)]' 
-              : 'bg-violet-600 hover:bg-violet-700 text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35),0_4px_12px_rgba(139,92,246,0.25)]'"
-          >
-            <!-- Cursor-driven spotlight beam -->
-            <span
-              class="absolute inset-0 rounded-xl pointer-events-none transition-opacity duration-300"
-              :class="isHoveringCta ? 'opacity-100' : 'opacity-0'"
-              :style="{
-                background: `radial-gradient(110px circle at ${ctaSpotlight.x}px ${ctaSpotlight.y}px, rgba(255,255,255,0.32), transparent)`
-              }"
-            ></span>
-            <span class="relative z-10">{{ ctaText }}</span>
-            <svg class="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-            </svg>
-          </button>
-
-          <router-link
-            to="/tetris"
-            class="px-6 py-3.5 rounded-xl font-semibold text-sm transition-all duration-200 border hover:-translate-y-0.5 active:translate-y-0.5 active:scale-[0.98] flex items-center gap-2"
-            :class="isDark 
-              ? 'border-white/15 bg-white/5 hover:bg-white/10 text-slate-200 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]' 
-              : 'border-slate-300 bg-white hover:bg-violet-50/50 text-slate-800 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.9),0_1px_3px_rgba(0,0,0,0.05)]'"
-          >
-            <span>{{ $t('nav.tetris') }}</span>
-          </router-link>
+    <section data-stage="2" class="flex min-h-[110svh] items-center px-4 sm:px-6">
+      <div :class="`mx-auto w-full max-w-6xl ${shadowText}`">
+        <h2 :class="`${h2} max-w-md`">{{ $t('home.closeTitle') }}</h2>
+        <p :class="lead">{{ $t('home.closeLead') }}</p>
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <a :href="`mailto:${EMAIL}`" :class="`${cta} max-w-full break-all`">{{ EMAIL }}</a>
+          <router-link to="/contact" :class="ghost">{{ $t('home.closeContact') }} <ArrowRightIcon class="size-4" /></router-link>
         </div>
       </div>
-
-      <!-- Right Content: Sleek & Borderless 3D Interactive Co-Pilot Model -->
-      <div ref="rightContent"
-        class="relative w-full lg:w-6/12 flex items-center justify-center opacity-0"
-      >
-        <Hero3DModel />
-      </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </template>
 
 <script setup>
-import { ref, computed, watch, nextTick, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
-import { useStore } from '@/stores/theme'
-import Hero3DModel from '@/components/views/Hero3DModel.vue'
-import PlatformIcon from '@/components/common/PlatformIcon.vue'
-import { colors } from '@/constants/theme'
-import { useI18n } from 'vue-i18n'
+import { ref, onMounted } from 'vue'
 import { gsap } from 'gsap'
+import {
+  ArrowRightIcon, ArrowUpRightIcon, LockClosedIcon, ShareIcon, Square3Stack3DIcon, DocumentTextIcon,
+  CircleStackIcon, CheckBadgeIcon, CodeBracketIcon, UserIcon, Squares2X2Icon
+} from '@heroicons/vue/24/outline'
+import Github from '@/assets/Icons/Github.vue'
+import WindowFrame from '@/components/common/WindowFrame.vue'
+import SkillMock from '@/components/common/SkillMock.vue'
+import VbookMock from '@/components/common/VbookMock.vue'
+import { PROJECTS } from '@/data/projects'
+import { cta, ghost, outline, h1, h2, lead, focus, ext, shadowText, EMAIL } from '@/ui'
 
-// Composables
-const { t } = useI18n()
-const router = useRouter()
-const store = useStore()
-
-// Reactive state
-const isDark = computed(() => store.isDark)
-const isInitialMount = ref(true)
-
-// Template refs
-const statusBadge = ref(null)
-const greeting = ref(null)
-const nameContainer = ref(null)
-const nameText = ref(null)
-const role = ref(null)
-const roleText = ref(null)
-const taglineEl = ref(null)
-const accentLine = ref(null)
-const techHighlights = ref(null)
-const ctaContainer = ref(null)
-const rightContent = ref(null)
-
-// Computed properties for i18n content
-const greetingText = computed(() => t('hero.greeting'))
-const nameText_content = computed(() => t('hero.name'))
-
-// Primary role: Business Analyst
-const roleTitle = computed(() => t('hero.roles.analyst'))
-
-const baTags = [
-  { name: 'BRD / PRD Specs', icon: 'prd' },
-  { name: 'BPMN 2.0 Workflows', icon: 'bpmn' },
-  { name: 'SQL & Relational DB', icon: 'sqlserver' },
-  { name: 'API Contracts', icon: 'postman' },
-  { name: 'Jira / Agile Delivery', icon: 'jira' }
+const HOW = [ShareIcon, Square3Stack3DIcon, DocumentTextIcon, CircleStackIcon, CheckBadgeIcon, CodeBracketIcon]
+const MORE = [
+  { key: 'about', to: '/about', icon: UserIcon },
+  { key: 'tetris', to: '/tetris', icon: Squares2X2Icon }
 ]
 
-const ctaText = computed(() => t('hero.cta'))
-
-// Computed classes
-const greetingClasses = computed(() => [
-  'transition-colors duration-200',
-  isDark.value ? colors.dark.text.secondary : colors.light.text.secondary
-])
-
-const nameClasses = computed(() => [
-  'transition-colors duration-200',
-  isDark.value ? colors.dark.text.primary : colors.light.text.primary
-])
-
-const roleClasses = computed(() => [
-  'transition-colors duration-200',
-  isDark.value ? colors.dark.text.secondary : colors.light.text.secondary
-])
-
-const accentLineClasses = computed(() => [
-  'transition-all duration-300',
-  isDark.value ? 'bg-gradient-to-r from-violet-400 via-purple-300 to-transparent' : 'bg-gradient-to-r from-violet-600 via-purple-400 to-transparent',
-  isInitialMount.value ? 'accent-line-animation' : ''
-])
-
-const resetElements = () => {
-  if (nameText.value) nameText.value.textContent = ''
-  if (roleText.value) roleText.value.textContent = ''
-
-  const elements = [statusBadge.value, greeting.value, role.value, taglineEl.value, techHighlights.value, ctaContainer.value, rightContent.value]
-  elements.forEach(el => {
-    if (el) {
-      el.style.opacity = '0'
-      el.style.transform = 'translateY(16px)'
-    }
-  })
-}
-
-const animateText = async (element, text, delay = 20) => {
-  if (!element) return
-
-  element.innerHTML = text
-    .split('')
-    .map(c => c === ' ' ? `<span class="inline-block opacity-0">&nbsp;</span>` : `<span class="inline-block opacity-0">${c}</span>`)
-    .join('')
-
-  await nextTick()
-
-  gsap.fromTo(
-    element.querySelectorAll('span'),
-    { opacity: 0, y: 6 },
-    {
-      opacity: 1,
-      y: 0,
-      stagger: delay / 1000,
-      duration: 0.3,
-      ease: 'power2.out'
-    }
-  )
-}
-
-const animateContent = async () => {
-  try {
-    const tl = gsap.timeline({ defaults: { ease: 'power2.out', duration: 0.35 } })
-
-    if (statusBadge.value) {
-      tl.to(statusBadge.value, { opacity: 1, y: 0 })
-    }
-    if (greeting.value) {
-      tl.to(greeting.value, { opacity: 1, y: 0 }, '-=0.25')
-    }
-
-    tl.add(() => {
-      animateText(nameText.value, nameText_content.value, 18)
-    }, '-=0.15')
-
-    if (accentLine.value) {
-      accentLine.value.classList.add('accent-line-animation')
-    }
-
-    if (role.value) {
-      tl.to(role.value, { opacity: 1, y: 0 }, '-=0.1')
-      tl.add(() => {
-        animateText(roleText.value, roleTitle.value, 18)
-      })
-    }
-
-    if (taglineEl.value) {
-      tl.to(taglineEl.value, { opacity: 1, y: 0 }, '-=0.1')
-    }
-
-    if (techHighlights.value) {
-      tl.to(techHighlights.value, { opacity: 1, y: 0 }, '-=0.1')
-    }
-
-    if (ctaContainer.value) {
-      tl.to(ctaContainer.value, { opacity: 1, y: 0 }, '-=0.15')
-    }
-
-    if (rightContent.value) {
-      tl.to(rightContent.value, { opacity: 1, y: 0, duration: 0.5 }, '-=0.25')
-    }
-  } catch (error) {
-    console.error('Animation error:', error)
-  }
-}
-
-// Magnetic CTA Physics
-const ctaTransform = ref({ x: 0, y: 0 })
-const ctaSpotlight = ref({ x: 50, y: 50 })
-const isHoveringCta = ref(false)
-
-const handleMagneticMove = (e) => {
-  const btn = e.currentTarget
-  const rect = btn.getBoundingClientRect()
-  const relX = e.clientX - rect.left
-  const relY = e.clientY - rect.top
-  ctaSpotlight.value = { x: relX, y: relY }
-  const pullX = (relX - rect.width / 2) * 0.2
-  const pullY = (relY - rect.height / 2) * 0.2
-  ctaTransform.value = { x: pullX, y: pullY }
-  isHoveringCta.value = true
-}
-
-const handleMagneticLeave = () => {
-  ctaTransform.value = { x: 0, y: 0 }
-  isHoveringCta.value = false
-}
-
-const navigateToPortfolio = () => router.push('/about')
-
+const hero = ref(null)
 onMounted(() => {
-  animateContent()
+  if (!hero.value || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+  gsap.from(hero.value.children, { opacity: 0, y: 24, duration: 0.8, stagger: 0.09, ease: 'power3.out', delay: 0.1 })
 })
-
-watch([greetingText, nameText_content, roleTitle, ctaText], async () => {
-  resetElements()
-  animateContent()
-}, { deep: true })
 </script>
-
-<style scoped>
-.accent-line-animation {
-  animation: accentLineIn 0.6s ease forwards;
-  will-change: width, opacity;
-}
-
-@keyframes accentLineIn {
-  0% {
-    width: 0;
-    opacity: 0;
-  }
-  100% {
-    width: 100%;
-    opacity: 1;
-  }
-}
-
-.shimmer-badge {
-  position: relative;
-  overflow: hidden;
-}
-
-.shimmer-badge::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    60deg,
-    transparent 35%,
-    rgba(167, 139, 250, 0.18) 50%,
-    transparent 65%
-  );
-  transform: rotate(25deg);
-  animation: badgeShimmer 6s infinite linear;
-  pointer-events: none;
-}
-
-@keyframes badgeShimmer {
-  0% { transform: translateX(-100%) rotate(25deg); }
-  100% { transform: translateX(100%) rotate(25deg); }
-}
-</style>

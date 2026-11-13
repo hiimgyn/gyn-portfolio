@@ -1,58 +1,186 @@
 {
   "nav": {
-    "logo": "gyn-nguyen",
-    "about": "_about-me",
-    "contact": "_contact-me",
-    "language": "Language",
-    "toggleTheme": "Toggle Theme",
-    "switchLanguage": "Switch Language",
-    "toggleDark": "Switch to Dark Mode",
-    "toggleLight": "Switch to Light Mode",
-    "tetris": "_tetris-lab"
+    "main": "Main",
+    "projects": "Projects",
+    "about": "About",
+    "tetris": "Tetris Lab",
+    "contact": "Contact",
+    "switchLanguage": "Switch language",
+    "menu": "Menu"
   },
   "hero": {
-    "greeting": "Hi all, I am",
-    "name": "Gyn Nguyen",
-    "roles": {
-      "analyst": "Business Analyst"
+    "ctaContact": "Let's Talk"
+  },
+  "home": {
+    "eyebrow": "Business Analyst · Ho Chi Minh City",
+    "title": "I turn messy processes into systems people can build.",
+    "lead": "I'm Gyn Nguyen, a Business Analyst with an engineering background. I map processes in BPMN, break systems into parts, write the requirements and model the data. On the side, I build and ship my own apps and games.",
+    "ctaWork": "See the work",
+    "ctaAbout": "About me",
+    "approachTitle": "From a process to a system",
+    "approachLead": "Start with how the work actually flows, then decide where each step lives: interface, API, services or data. That stretch between a stakeholder's idea and a developer's ticket is where I'm most useful.",
+    "howTitle": "How I work",
+    "how": [
+      {
+        "title": "BPMN process modelling",
+        "text": "As-Is and To-Be flows in BPMN 2.0, including the gateways and exceptions people forget to mention."
+      },
+      {
+        "title": "System decomposition",
+        "text": "Breaking a product into modules, interfaces and integrations before anyone estimates it."
+      },
+      {
+        "title": "Requirements",
+        "text": "BRD and PRD, user stories with Gherkin acceptance criteria, agreed with stakeholders before the sprint starts."
+      },
+      {
+        "title": "Data modelling",
+        "text": "ERDs normalised to 3NF, SQL for analysis and reporting, API contracts the team can build against."
+      },
+      {
+        "title": "Delivery and UAT",
+        "text": "Backlog refinement, UAT plans and sign-off, so what ships matches what was agreed."
+      },
+      {
+        "title": "Building it myself",
+        "text": "Over four years of .NET and SQL, plus the projects below. I can judge feasibility early because I write the code too."
+      }
+    ],
+    "projectsTitle": "Six things I build and run",
+    "projectsLead": "Outside the day job I design, build and ship my own tools: an audio plugin host, two browser games, a project tracker, an AI localisation ruleset and a reader extension pack.",
+    "moreTitle": "More on this site",
+    "more": {
+      "about": {
+        "title": "About me",
+        "text": "Career, toolkit, a sample spec and earlier case studies."
+      },
+      "tetris": {
+        "title": "Tetris Lab",
+        "text": "Browser Tetris with SRS rotation: Zen, T-spin training lessons and six bosses. No login, no ranking."
+      }
     },
-    "availableStatus": "Available for Business Analyst Opportunities",
-    "tagline": "Bridging business visions and software architecture with airtight requirements, BPMN 2.0 flows, and data modeling.",
-    "cta": "Explore Qualifications & Work",
-    "ctaContact": "Let's Talk",
-    "clickHint": "Inspect interactive Business Analyst deliverables"
+    "closeTitle": "Got a process worth untangling?",
+    "closeLead": "Open to Business Analyst roles and consulting. Write to me, or read the code first.",
+    "closeContact": "All contact details"
+  },
+  "work": {
+    "links": {
+      "website": "Website",
+      "play": "Play",
+      "open": "Open",
+      "source": "Source",
+      "private": "Private repo"
+    },
+    "relighthost": {
+      "kind": "Desktop app · Rust + Tauri",
+      "description": "A real-time audio plugin host for Windows. Chain VST3, VST2 and CLAP plugins, route a live mic through them over ASIO or WASAPI, and clean up your voice with built-in AI noise suppression.",
+      "points": [
+        "Hosts VST3, VST2 and CLAP natively, editors open in real native windows",
+        "A plugin that keeps crashing is reloaded in an isolated child process",
+        "Devices, chain and plugin state come back exactly as you left them"
+      ],
+      "alt": "ReLightHost main window with a signal chain and two plugin editors open"
+    },
+    "anivor": {
+      "kind": "Browser game · TypeScript + Canvas 2D",
+      "description": "A survivors-style roguelite in cute pixel art. Pick a hero, outlast swarms and bosses, build your weapons each level-up. Runs entirely in the browser, no game engine.",
+      "points": [
+        "12 heroes, boss waves, weapon evolutions and chests",
+        "Online co-op and battle royale",
+        "Name + PIN accounts that sync progress across devices"
+      ],
+      "alt": "Animal Survivor gameplay: a dragon hero fighting the Spore Mushroom King boss among a swarm"
+    },
+    "gfgames": {
+      "kind": "Browser arcade · React + WebAssembly",
+      "description": "Retro fighting games in the browser: arcade, Neo-Geo, PlayStation and Flash. Every game gets its own room, so you share a link and players 2 to 4 join from their own device.",
+      "points": [
+        "38 fighting games, no install",
+        "Rooms per game with P2–P4 invite links over LAN",
+        "Gamepads detected automatically, keys fully remappable"
+      ],
+      "alt": "GFGames lobby: the hero above the list of fighting games"
+    },
+    "gpm": {
+      "kind": "Web app · Next.js + Postgres",
+      "description": "Weekly task boards, project docs and client-ready weekly reports for teams running many projects at once. Paste a long report and AI turns it into task updates.",
+      "points": [
+        "Workspaces per team, clients, PICs and member roles",
+        "Weekly reports clients open without an account",
+        "Claude reads progress and updates tasks over MCP"
+      ],
+      "alt": "GPM Hub landing page"
+    },
+    "viethoa": {
+      "kind": "Agent Skill · Claude Code plugin",
+      "description": "A ruleset that teaches an AI to localise games into Vietnamese. Hand it the game's text files and the developer's description: it analyses the game into a Game Bible, then translates, edits and checks its own work.",
+      "points": [
+        "An 8-step workflow with a review stop: Game Bible, pronoun matrix and glossary are approved before bulk translation",
+        "Rules per string type (UI, dialogue, choices, items, quests, lore) and for removing translationese",
+        "A Python validator with no dependencies: placeholders and tags for Unity, Unreal, RPG Maker, Ren'Py and Godot, glossary, NFC and length"
+      ],
+      "mock": {
+        "workflow": "Workflow · SKILL.md",
+        "steps": [
+          "Identify format, engine and placeholders",
+          "Analyse the game into a Game Bible",
+          "Characters and the pronoun matrix",
+          "Glossary of names and terms",
+          "Translate by scene and string type",
+          "Edit out translationese",
+          "Run the validator until clean",
+          "Deliver in the original format"
+        ],
+        "stop": "Review stop: approved before bulk translation",
+        "matrix": "Pronoun matrix",
+        "pair": "Speaker → listener",
+        "pronouns": "I – you",
+        "pairs": [
+          "Master → disciple",
+          "Disciple → master",
+          "Sworn enemies"
+        ]
+      }
+    },
+    "vbook": {
+      "kind": "Extension pack · JavaScript",
+      "description": "A personal extension pack for VBook, a reader app for comics and novels. Each source is a small plugin: a plugin.json plus scripts for the home feed, search, details, chapter list and chapter content.",
+      "points": [
+        "Source plugins for comics, novels and video",
+        "Text-to-speech plugins (Google, Gemini, Bing and more) for listening to novels",
+        "Comic, novel and video templates, plus a tutorial for writing new plugins"
+      ],
+      "mock": {
+        "installed": "Extensions"
+      }
+    }
+  },
+  "footer": {
+    "tagline": "Business Analyst and engineer, Ho Chi Minh City.",
+    "projects": "Projects"
+  },
+  "aboutPage": {
+    "eyebrow": "About me",
+    "portrait": "portrait.png",
+    "howTitle": "What I bring",
+    "specTitle": "What a requirement looks like",
+    "specLead": "A story is ready when the team can build it and QA can test it without coming back to ask. This is the shape I aim for.",
+    "specFrame": "Sample · user story with acceptance criteria",
+    "toolsTitle": "Toolkit",
+    "toolsLead": "What I use to model, specify, check and ship.",
+    "casesTitle": "Earlier case studies",
+    "casesLead": "Work from before the current projects: data models, protocols and specs.",
+    "closeTitle": "Let's talk about your next project"
   },
   "about": {
-    "portfolio": "Portfolio",
-    "overview": "Overview",
-    "overviewContent": "Overview of competencies, methodologies, and achievements.",
-    "professionalIntroContent": "A dedicated Business Analyst with a strong engineering foundation in C#, .NET, and SQL databases. Specializing in translating complex stakeholder visions into airtight business requirements (BRD/PRD), optimizing end-to-end workflows (BPMN 2.0), and collaborating seamlessly with cross-functional development squads to deliver high-impact enterprise solutions.",
     "name": "Gyn Nguyen",
     "role": "Business Analyst",
     "address": "Ho Chi Minh City, Vietnam",
-    "skills": "My Skills",
-    "skill1": "BA Competencies",
-    "skill2": "Data & Systems",
-    "skill3": "Tools & Platforms",
+    "professionalIntroContent": "A dedicated Business Analyst with a strong engineering foundation in C#, .NET, and SQL databases. Specializing in translating complex stakeholder visions into airtight business requirements (BRD/PRD), optimizing end-to-end workflows (BPMN 2.0), and collaborating seamlessly with cross-functional development squads to deliver high-impact enterprise solutions.",
     "visionContent_1": "Requirements Engineering & Business Process Optimization: Experienced in eliciting, structuring, and validating business requirements from diverse stakeholders. Proficient in crafting comprehensive Business Requirements Documents (BRD), Product Requirements Documents (PRD), User Stories with Acceptance Criteria (Gherkin/BDD), and modeling clear As-Is / To-Be business processes using BPMN 2.0.",
     "visionContent_2": "Technical Foundation & Data Modeling (The Competitive Edge): Leveraged over 4 years of software development (.NET, SQL Server, MySQL, RESTful APIs) to evaluate technical feasibility early, design normalized entity-relationship schemas (ERD), write analytical SQL queries (PIVOT, Stored Procedures), and define unambiguous API contracts with engineering squads.",
     "visionContent_3": "Long-term Objectives: Drive digital transformation by championing agile methodologies, reducing delivery risks, eliminating requirements churn, and architecting robust digital solutions that maximize operational efficiency and enterprise value.",
-    "projects": "Projects",
-    "contact": "Contact",
-    "email": "Email",
-    "emailAddress": "nguyenminhhung.work{'@'}gmail.com",
-    "phone": "Phone",
-    "phoneNumber": "+84 942 451 385",
-    "experiences": "Experiences",
-    "loading": "Loading...",
-    "station1": "Identity & Metrics",
-    "station2": "BA Competencies",
-    "station3": "Systems & Tools",
-    "station4": "Career Track",
-    "station5": "Flagship Systems",
-    "stationTerminal": "Collaboration Hub",
-    "scrollHint": "Continuous Motion Graphic Pipeline",
-    "pipelineLabel": "SYSTEM ARCHITECTURE JOURNEY"
+    "experiences": "Experiences"
   },
   "experience": {
     "keyAchievements": "Professional Career & Highlights",
@@ -85,8 +213,6 @@
     }
   },
   "projects": {
-    "next": "Next",
-    "previous": "Previous",
     "project1": {
       "name": "Interactive Portfolio & System Showcase",
       "description": "Engineered a high-performance portfolio featuring interactive 3D WebGL, GSAP micro-animations, and a built-in Tetris Lab with SRS rotation and T-spin training."

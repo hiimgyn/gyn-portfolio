@@ -1,152 +1,73 @@
 <template>
-  <header
-    class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3 px-4"
-  >
-    <div
-      :class="[
-        'max-w-5xl mx-auto rounded-full px-5 py-2.5 backdrop-blur-xl border transition-all duration-200 flex justify-between items-center',
-        isDark 
-          ? 'bg-[#0b0d14]/85 border-white/[0.08] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_4px_20px_rgba(0,0,0,0.4)]' 
-          : 'bg-white/85 border-slate-200/90 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.9),0_2px_12px_rgba(15,23,42,0.06)]'
-      ]"
-    >
-      <!-- Logo -->
-      <router-link
-        to="/"
-        class="flex items-center gap-2 font-bold text-sm tracking-tight transition-colors group"
-        :class="isDark ? 'text-white' : 'text-slate-900'"
-      >
-        <span class="w-6 h-6 rounded-lg bg-violet-600 text-white flex items-center justify-center text-xs font-mono font-bold group-hover:scale-105 transition-transform shadow-xs">
-          G
-        </span>
-        <span class="font-mono tracking-wider group-hover:text-violet-400 transition-colors">gyn.dev</span>
-      </router-link>
-
-      <!-- Desktop Nav Items -->
-      <nav class="hidden md:flex items-center gap-1">
+  <header class="fixed inset-x-0 top-0 z-30 bg-[#070A14]/30 backdrop-blur-md">
+    <div class="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-4 sm:px-6">
+      <Wordmark @navigate="open = false" />
+      <nav class="flex items-center gap-1 sm:gap-2" :aria-label="$t('nav.main')">
         <router-link
-          v-for="item in navItems"
-          :key="item"
-          :to="`/${item}`"
-          :class="[
-            'px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200 relative',
-            isCurrentPage(item)
-              ? (isDark 
-                  ? 'bg-white/10 text-white font-semibold shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]' 
-                  : 'bg-violet-50 text-violet-800 font-semibold shadow-[inset_0_1px_0_0_rgba(255,255,255,0.8)]')
-              : (isDark ? 'text-slate-400 hover:text-white hover:bg-white/5' : 'text-slate-600 hover:text-slate-900 hover:bg-violet-50/50')
-          ]"
-        >
-          <span>{{ $t(`nav.${item}`) }}</span>
-        </router-link>
-
-        <router-link
-          to="/contact"
-          :class="[
-            'px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200',
-            isCurrentPage('contact')
-              ? (isDark 
-                  ? 'bg-white/10 text-white font-semibold shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]' 
-                  : 'bg-violet-50 text-violet-800 font-semibold shadow-[inset_0_1px_0_0_rgba(255,255,255,0.8)]')
-              : (isDark ? 'text-slate-400 hover:text-white hover:bg-white/5' : 'text-slate-600 hover:text-slate-900 hover:bg-violet-50/50')
-          ]"
-        >
-          {{ $t('nav.contact') }}
-        </router-link>
-      </nav>
-
-      <!-- Right Action / Mobile Menu Toggle -->
-      <div class="flex items-center gap-2">
-        <router-link
-          to="/contact"
-          class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-violet-600 text-white hover:bg-violet-500 transition-all shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25),0_2px_8px_rgba(139,92,246,0.35)] active:scale-95"
-        >
-          <span>{{ $t('hero.ctaContact') }}</span>
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-        </router-link>
-
+          v-for="l in links"
+          :key="l.to"
+          :to="l.to"
+          :class="`hidden rounded-full px-4 py-2 text-sm transition-colors md:block ${focus} ${active(l.to) ? 'text-white' : 'text-[#C3C9DB] hover:text-white'}`"
+        >{{ $t(l.label) }}</router-link>
         <button
-          @click="toggleMobileMenu"
-          class="md:hidden p-1.5 rounded-lg border focus:outline-none transition-colors"
-          :class="isDark ? 'border-white/10 text-slate-300 hover:bg-white/5' : 'border-slate-200 text-slate-700 hover:bg-slate-100'"
-          aria-label="Toggle Navigation"
+          type="button"
+          :class="`rounded-full px-3 py-2 font-mono text-xs font-medium uppercase tracking-wider text-[#C3C9DB] transition-colors hover:text-white ${focus}`"
+          :aria-label="$t('nav.switchLanguage')"
+          @click="setLocale(locale === 'en' ? 'vi' : 'en')"
         >
-          <Bars3Icon v-if="!isMobileMenuOpen" class="w-5 h-5" />
-          <XMarkIcon v-else class="w-5 h-5" />
+          <span :class="locale === 'en' ? 'text-white' : 'text-[#5A6380]'">EN</span>
+          <span class="text-[#5A6380]"> / </span>
+          <span :class="locale === 'vi' ? 'text-white' : 'text-[#5A6380]'">VI</span>
         </button>
-      </div>
+        <a :href="GITHUB" v-bind="ext" :class="`hidden items-center gap-2 rounded-full border border-white/20 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-white/10 sm:inline-flex ${focus}`">
+          <Github class="size-4" /> GitHub
+        </a>
+        <button
+          type="button"
+          :class="`grid size-10 place-items-center rounded-full border border-white/20 text-white md:hidden ${focus}`"
+          :aria-expanded="open"
+          aria-controls="mobile-nav"
+          :aria-label="$t('nav.menu')"
+          @click="open = !open"
+        >
+          <XMarkIcon v-if="open" class="size-5" />
+          <Bars2Icon v-else class="size-5" />
+        </button>
+      </nav>
     </div>
-
-    <!-- Mobile Drawer -->
-    <div
-      v-if="isMobileMenuOpen"
-      class="fixed inset-0 top-[4.5rem] bg-black/50 backdrop-blur-sm z-40 md:hidden transition-opacity"
-      @click="closeMobileMenu"
-    ></div>
-
-    <div
-      :class="[
-        'md:hidden fixed top-[4.5rem] left-4 right-4 rounded-2xl p-4 border backdrop-blur-xl z-50 transition-all duration-300 shadow-2xl space-y-2',
-        isDark ? 'bg-[#11131f]/95 border-white/10' : 'bg-white/95 border-slate-200',
-        isMobileMenuOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
-      ]"
-    >
+    <div v-if="open" id="mobile-nav" class="border-t border-[#1E2642] bg-[#070A14]/95 px-4 pb-6 pt-2 md:hidden">
       <router-link
-        v-for="item in navItems"
-        :key="item"
-        :to="`/${item}`"
-        @click="closeMobileMenu"
-        :class="[
-          'block px-4 py-2.5 rounded-xl text-sm font-medium transition-colors',
-          isCurrentPage(item)
-            ? (isDark ? 'bg-violet-600 text-white font-semibold' : 'bg-violet-50 text-violet-800 font-semibold')
-            : (isDark ? 'text-slate-300 hover:bg-white/5' : 'text-slate-700 hover:bg-violet-50')
-        ]"
-      >
-        {{ $t(`nav.${item}`) }}
-      </router-link>
-
-      <router-link
-        to="/contact"
-        @click="closeMobileMenu"
-        :class="[
-          'block px-4 py-2.5 rounded-xl text-sm font-medium transition-colors',
-          isCurrentPage('contact')
-            ? (isDark ? 'bg-violet-600 text-white font-semibold' : 'bg-violet-50 text-violet-800 font-semibold')
-            : (isDark ? 'text-slate-300 hover:bg-white/5' : 'text-slate-700 hover:bg-violet-50')
-        ]"
-      >
-        {{ $t('nav.contact') }}
-      </router-link>
+        v-for="l in links"
+        :key="l.to"
+        :to="l.to"
+        :class="`block border-b border-[#1E2642] py-4 font-display text-2xl font-extrabold ${focus} ${active(l.to) ? 'text-white' : 'text-[#A3ACC4]'}`"
+        @click="open = false"
+      >{{ $t(l.label) }}</router-link>
+      <a :href="GITHUB" v-bind="ext" :class="`mt-5 inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2 text-sm font-medium text-white ${focus}`">
+        <Github class="size-4" /> GitHub
+      </a>
     </div>
   </header>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { useStore } from '@/stores/theme'
-import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
+import { useI18n } from 'vue-i18n'
+import { Bars2Icon, XMarkIcon } from '@heroicons/vue/24/outline'
+import Wordmark from '@/components/layouts/Wordmark.vue'
+import Github from '@/assets/Icons/Github.vue'
+import { setLocale } from '@/i18n'
+import { focus, ext, GITHUB } from '@/ui'
 
-const store = useStore()
+const { locale } = useI18n()
 const route = useRoute()
-const isDark = computed(() => store.isDark)
-const navItems = ref(['about', 'tetris'])
-const isMobileMenuOpen = ref(false)
-
-const toggleMobileMenu = () => {
-  isMobileMenuOpen.value = !isMobileMenuOpen.value
-}
-
-const closeMobileMenu = () => {
-  isMobileMenuOpen.value = false
-}
-
-const isCurrentPage = (page) => {
-  const currentPath = route.path
-  if (page === 'home' && currentPath === '/') return true
-  return currentPath === `/${page}` || currentPath.startsWith(`/${page}/`)
-}
+const open = ref(false)
+const links = [
+  { to: '/#projects', label: 'nav.projects' },
+  { to: '/about', label: 'nav.about' },
+  { to: '/tetris', label: 'nav.tetris' },
+  { to: '/contact', label: 'nav.contact' }
+]
+const active = (to) => !to.includes('#') && route.path === to
 </script>

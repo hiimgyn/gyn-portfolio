@@ -1,58 +1,186 @@
 {
   "nav": {
-    "logo": "gyn-nguyen",
-    "about": "_ve-toi",
-    "contact": "_lien-he",
-    "language": "Ngôn ngữ",
-    "toggleTheme": "Chuyển giao diện",
-    "switchLanguage": "Đổi Ngôn Ngữ",
-    "toggleDark": "Chuyển sang Chế độ Tối",
-    "toggleLight": "Chuyển sang Chế độ Sáng",
-    "tetris": "_tetris-lab"
+    "main": "Điều hướng",
+    "projects": "Dự án",
+    "about": "Giới thiệu",
+    "tetris": "Tetris Lab",
+    "contact": "Liên hệ",
+    "switchLanguage": "Đổi ngôn ngữ",
+    "menu": "Menu"
   },
   "hero": {
-    "greeting": "Xin chào, tôi là",
-    "name": "Nguyễn Minh Hùng",
-    "roles": {
-      "analyst": "Business Analyst"
+    "ctaContact": "Liên hệ ngay"
+  },
+  "home": {
+    "eyebrow": "Business Analyst · TP. Hồ Chí Minh",
+    "title": "Tôi biến quy trình rối thành hệ thống đội dev làm được.",
+    "lead": "Tôi là Nguyễn Minh Hùng (Gyn), Business Analyst có nền tảng kỹ thuật. Tôi vẽ quy trình bằng BPMN, tách hệ thống thành từng phần, viết yêu cầu và mô hình hoá dữ liệu. Ngoài giờ, tôi tự làm và vận hành ứng dụng, game của riêng mình.",
+    "ctaWork": "Xem dự án",
+    "ctaAbout": "Về tôi",
+    "approachTitle": "Từ quy trình đến hệ thống",
+    "approachLead": "Bắt đầu từ việc công việc thực sự chạy thế nào, rồi quyết định mỗi bước nằm ở đâu: giao diện, API, dịch vụ hay dữ liệu. Khoảng giữa ý tưởng của khách hàng và ticket của lập trình viên là chỗ tôi làm tốt nhất.",
+    "howTitle": "Cách tôi làm việc",
+    "how": [
+      {
+        "title": "Mô hình hoá quy trình BPMN",
+        "text": "Luồng As-Is và To-Be theo BPMN 2.0, kể cả các nhánh rẽ và ngoại lệ mà mọi người hay quên kể."
+      },
+      {
+        "title": "Phân rã hệ thống",
+        "text": "Tách sản phẩm thành module, giao diện và các điểm tích hợp trước khi ai đó ước lượng."
+      },
+      {
+        "title": "Đặc tả yêu cầu",
+        "text": "BRD, PRD, user story kèm tiêu chí nghiệm thu Gherkin, chốt với các bên trước khi sprint bắt đầu."
+      },
+      {
+        "title": "Mô hình dữ liệu",
+        "text": "ERD chuẩn hoá 3NF, SQL cho phân tích và báo cáo, hợp đồng API để đội dev bám theo."
+      },
+      {
+        "title": "Bàn giao và UAT",
+        "text": "Làm mịn backlog, lập kế hoạch UAT và nghiệm thu, để thứ được giao đúng với thứ đã thống nhất."
+      },
+      {
+        "title": "Tự tay làm",
+        "text": "Hơn bốn năm làm .NET và SQL, cùng các dự án bên dưới. Tôi đánh giá được tính khả thi sớm vì tôi cũng viết code."
+      }
+    ],
+    "projectsTitle": "Sáu thứ tôi làm và vận hành",
+    "projectsLead": "Ngoài công việc chính, tôi tự thiết kế, xây dựng và phát hành công cụ của mình: một audio plugin host, hai game chạy trên trình duyệt, một công cụ quản lý dự án, một bộ rule việt hoá game cho AI và một gói extension cho app đọc truyện.",
+    "moreTitle": "Còn gì trên trang này",
+    "more": {
+      "about": {
+        "title": "Về tôi",
+        "text": "Kinh nghiệm, bộ công cụ, một mẫu đặc tả và các case study trước đây."
+      },
+      "tetris": {
+        "title": "Tetris Lab",
+        "text": "Tetris trên trình duyệt với xoay SRS: Zen, bài luyện T-spin và sáu boss. Không đăng nhập, không xếp hạng."
+      }
     },
-    "availableStatus": "Sẵn sàng cho dự án & vị trí Business Analyst",
-    "tagline": "Kết nối bài toán nghiệp vụ phức tạp với kiến trúc phần mềm thông qua tài liệu hóa chuẩn xác và mô hình hóa quy trình BPMN 2.0.",
-    "cta": "Xem hồ sơ & dự án",
-    "ctaContact": "Liên hệ ngay",
-    "clickHint": "Khám phá các sản phẩm tài liệu Business Analyst"
+    "closeTitle": "Có quy trình cần gỡ rối?",
+    "closeLead": "Sẵn sàng cho vị trí Business Analyst và hợp tác tư vấn. Viết cho tôi, hoặc đọc code trước.",
+    "closeContact": "Tất cả thông tin liên hệ"
+  },
+  "work": {
+    "links": {
+      "website": "Trang web",
+      "play": "Chơi",
+      "open": "Mở",
+      "source": "Mã nguồn",
+      "private": "Repo riêng tư"
+    },
+    "relighthost": {
+      "kind": "Ứng dụng desktop · Rust + Tauri",
+      "description": "Audio plugin host thời gian thực cho Windows. Nối chuỗi plugin VST3, VST2 và CLAP, đưa micro qua chuỗi đó bằng ASIO hoặc WASAPI, và lọc giọng bằng AI khử ồn tích hợp sẵn.",
+      "points": [
+        "Chạy VST3, VST2 và CLAP trực tiếp, editor mở trong cửa sổ native thật",
+        "Plugin hay crash được nạp lại trong tiến trình con cô lập",
+        "Thiết bị, chuỗi plugin và trạng thái plugin trở lại đúng như lúc bạn rời đi"
+      ],
+      "alt": "Cửa sổ chính của ReLightHost với chuỗi tín hiệu và hai editor plugin đang mở"
+    },
+    "anivor": {
+      "kind": "Game trình duyệt · TypeScript + Canvas 2D",
+      "description": "Roguelite kiểu survivors với pixel art dễ thương. Chọn nhân vật, sống sót qua bầy quái và boss, nâng cấp vũ khí mỗi lần lên cấp. Chạy hoàn toàn trên trình duyệt, không dùng game engine.",
+      "points": [
+        "12 nhân vật, đợt boss, tiến hoá vũ khí và rương",
+        "Co-op online và battle royale",
+        "Tài khoản tên + PIN đồng bộ tiến trình giữa các thiết bị"
+      ],
+      "alt": "Gameplay Animal Survivor: nhân vật rồng đánh boss Vua Nấm Bào Tử giữa bầy quái"
+    },
+    "gfgames": {
+      "kind": "Arcade trình duyệt · React + WebAssembly",
+      "description": "Game đối kháng cổ điển ngay trên trình duyệt: arcade, Neo-Geo, PlayStation và Flash. Mỗi game có phòng riêng, gửi link là người chơi 2 đến 4 vào từ thiết bị của họ.",
+      "points": [
+        "38 game đối kháng, không cần cài đặt",
+        "Phòng riêng cho từng game, link mời P2–P4 qua LAN",
+        "Tự nhận tay cầm, phím đổi được hoàn toàn"
+      ],
+      "alt": "Sảnh GFGames: phần đầu trang phía trên danh sách game đối kháng"
+    },
+    "gpm": {
+      "kind": "Ứng dụng web · Next.js + Postgres",
+      "description": "Bảng công việc theo tuần, tài liệu dự án và báo cáo tuần gửi khách cho các đội chạy nhiều dự án cùng lúc. Dán một báo cáo dài, AI chuyển thành cập nhật công việc.",
+      "points": [
+        "Workspace theo đội, khách hàng, PIC và vai trò thành viên",
+        "Khách mở báo cáo tuần không cần tài khoản",
+        "Claude đọc tiến độ và cập nhật công việc qua MCP"
+      ],
+      "alt": "Trang giới thiệu GPM Hub"
+    },
+    "viethoa": {
+      "kind": "Agent Skill · plugin Claude Code",
+      "description": "Bộ rule dạy AI việt hoá game. Đưa vào file chữ của game kèm mô tả của nhà phát triển: AI phân tích game thành Game Bible, rồi dịch, biên tập và tự kiểm tra bản dịch.",
+      "points": [
+        "Quy trình 8 bước có điểm dừng: Game Bible, ma trận xưng hô và glossary được duyệt trước khi dịch hàng loạt",
+        "Luật riêng cho từng loại chuỗi (UI, hội thoại, lựa chọn, vật phẩm, nhiệm vụ, lore) và cho việc khử văn dịch",
+        "Validator Python không cần cài thư viện: placeholder và tag của Unity, Unreal, RPG Maker, Ren'Py, Godot, glossary, NFC và độ dài"
+      ],
+      "mock": {
+        "workflow": "Quy trình · SKILL.md",
+        "steps": [
+          "Nhận diện định dạng, engine, placeholder",
+          "Phân tích game thành Game Bible",
+          "Nhân vật và ma trận xưng hô",
+          "Glossary tên riêng và thuật ngữ",
+          "Dịch theo cảnh và loại chuỗi",
+          "Biên tập, khử văn dịch",
+          "Chạy validator đến khi sạch lỗi",
+          "Giao đúng định dạng gốc"
+        ],
+        "stop": "Điểm dừng: duyệt trước khi dịch hàng loạt",
+        "matrix": "Ma trận xưng hô",
+        "pair": "Người nói → người nghe",
+        "pronouns": "Xưng – gọi",
+        "pairs": [
+          "Sư phụ → đệ tử",
+          "Đệ tử → sư phụ",
+          "Kẻ thù"
+        ]
+      }
+    },
+    "vbook": {
+      "kind": "Gói extension · JavaScript",
+      "description": "Gói extension cá nhân cho VBook, app đọc truyện tranh và truyện chữ. Mỗi nguồn là một plugin nhỏ: một plugin.json cùng các script cho trang chủ, tìm kiếm, thông tin truyện, mục lục và nội dung chương.",
+      "points": [
+        "Plugin nguồn cho truyện tranh, truyện chữ và video",
+        "Plugin đọc truyện bằng giọng nói (Google, Gemini, Bing và khác)",
+        "Mẫu cho comic, novel, video và hướng dẫn viết plugin mới"
+      ],
+      "mock": {
+        "installed": "Extension"
+      }
+    }
+  },
+  "footer": {
+    "tagline": "Business Analyst và kỹ sư, TP. Hồ Chí Minh.",
+    "projects": "Dự án"
+  },
+  "aboutPage": {
+    "eyebrow": "Về tôi",
+    "portrait": "portrait.png",
+    "howTitle": "Tôi mang lại gì",
+    "specTitle": "Một yêu cầu trông như thế nào",
+    "specLead": "Một story sẵn sàng khi đội dev làm được và QA kiểm thử được mà không phải quay lại hỏi. Đây là dạng tôi hướng tới.",
+    "specFrame": "Mẫu · user story kèm tiêu chí nghiệm thu",
+    "toolsTitle": "Bộ công cụ",
+    "toolsLead": "Những gì tôi dùng để mô hình hoá, đặc tả, kiểm tra và bàn giao.",
+    "casesTitle": "Case study trước đây",
+    "casesLead": "Các việc trước những dự án hiện tại: mô hình dữ liệu, giao thức và đặc tả.",
+    "closeTitle": "Cùng bàn về dự án tiếp theo của bạn"
   },
   "about": {
-    "portfolio": "Hồ sơ",
-    "overview": "Tổng quan",
-    "overviewContent": "Tổng quan năng lực chuyên môn, phương pháp luận và các cột mốc thực tế.",
-    "professionalIntroContent": "Chuyên viên Phân tích Nghiệp vụ (Business Analyst) với nền tảng kỹ thuật vững chắc về C#, .NET và hệ quản trị cơ sở dữ liệu SQL. Thế mạnh của tôi là chuyển hóa các yêu cầu nghiệp vụ phức tạp thành đặc tả kỹ thuật chuẩn xác (BRD/PRD), tối ưu hóa luồng quy trình vận hành (BPMN 2.0) và làm việc chặt chẽ cùng đội ngũ kỹ thuật để hiện thực hóa giải pháp phần mềm tối ưu.",
     "name": "Nguyễn Minh Hùng",
     "role": "Business Analyst",
     "address": "Thành phố Hồ Chí Minh, Việt Nam",
-    "skills": "Kỹ năng chuyên môn",
-    "skill1": "Kỹ năng Phân tích Nghiệp vụ",
-    "skill2": "Hệ thống & Dữ liệu",
-    "skill3": "Công cụ & Nền tảng",
+    "professionalIntroContent": "Chuyên viên Phân tích Nghiệp vụ (Business Analyst) với nền tảng kỹ thuật vững chắc về C#, .NET và hệ quản trị cơ sở dữ liệu SQL. Thế mạnh của tôi là chuyển hóa các yêu cầu nghiệp vụ phức tạp thành đặc tả kỹ thuật chuẩn xác (BRD/PRD), tối ưu hóa luồng quy trình vận hành (BPMN 2.0) và làm việc chặt chẽ cùng đội ngũ kỹ thuật để hiện thực hóa giải pháp phần mềm tối ưu.",
     "visionContent_1": "Kỹ thuật Đặc tả Yêu cầu & Tối ưu Quy trình Nghiệp vụ: Chuyên sâu trong việc khảo sát, thu thập và chuẩn hóa yêu cầu từ các bên liên quan. Thành thạo xây dựng tài liệu BRD, PRD, User Stories kèm tiêu chí nghiệm thu chi tiết (Acceptance Criteria/Gherkin), cũng như mô hình hóa trực quan quy trình nghiệp vụ hiện tại (As-Is) và tương lai (To-Be) theo chuẩn BPMN 2.0.",
     "visionContent_2": "Nền tảng Kỹ thuật & Mô hình hóa Dữ liệu (Lợi thế Dị biệt): Tận dụng hơn 4 năm kinh nghiệm phát triển phần mềm (.NET, SQL Server, MySQL, RESTful APIs) để đánh giá tính khả thi kỹ thuật ngay từ đầu, thiết kế lược đồ quan hệ thực thể (ERD), phân tích dữ liệu chuyên sâu bằng truy vấn SQL (PIVOT, Stored Procedures) và định nghĩa hợp đồng API rõ ràng cho đội ngũ lập trình.",
     "visionContent_3": "Mục tiêu Dài hạn: Thúc đẩy chuyển đổi số và chuẩn hóa quy trình phát triển, giảm thiểu rủi ro bàn giao và chi phí sửa lỗi, đồng thời định hình những giải pháp phần mềm giải quyết triệt để bài toán kinh doanh và gia tăng giá trị cho doanh nghiệp.",
-    "projects": "Dự án",
-    "contact": "Liên hệ",
-    "email": "Email",
-    "emailAddress": "nguyenminhhung.work{'@'}gmail.com",
-    "phone": "Điện thoại",
-    "phoneNumber": "+84 942 451 385",
-    "experiences": "Kinh nghiệm",
-    "loading": "Đang tải...",
-    "station1": "Hồ sơ & Chỉ số",
-    "station2": "Năng lực BA",
-    "station3": "Hệ thống & Công cụ",
-    "station4": "Kinh nghiệm Thực chiến",
-    "station5": "Dự án Tiêu biểu",
-    "stationTerminal": "Trung tâm Hợp tác",
-    "scrollHint": "Đường ống Motion Graphic Liên tục",
-    "pipelineLabel": "HÀNH TRÌNH KIẾN TRÚC HỆ THỐNG"
+    "experiences": "Kinh nghiệm"
   },
   "experience": {
     "keyAchievements": "Kinh nghiệm Làm việc & Thành tựu",
@@ -85,8 +213,6 @@
     }
   },
   "projects": {
-    "next": "Tiếp theo",
-    "previous": "Trước đó",
     "project1": {
       "name": "Portfolio Cá nhân & Bàn làm việc Kỹ thuật",
       "description": "Thiết kế và phát triển nền tảng portfolio hiệu năng cao kết hợp WebGL 3D, micro-animations GSAP và Tetris Lab tích hợp với xoay SRS và luyện T-spin."

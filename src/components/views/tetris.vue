@@ -1,25 +1,18 @@
 <template>
-  <div class="max-w-6xl mx-auto px-4 py-8 space-y-6">
+  <div data-scene="1" data-dim class="mx-auto max-w-6xl space-y-8 px-4 pb-20 pt-28 sm:px-6 lg:pt-32">
     <!-- Header -->
-    <div class="text-center space-y-3">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono border backdrop-blur-md"
-        :class="isDark ? 'bg-violet-950/40 border-violet-800/60 text-violet-300' : 'bg-violet-50 border-violet-200 text-violet-700'"
-      >
-        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-        <span class="tracking-wider font-semibold">{{ $t('tetris.badge') }}</span>
+    <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+      <div>
+        <p class="flex items-center gap-2 font-mono text-xs font-medium uppercase tracking-[0.14em] text-[#A3ACC4]">
+          <span class="size-2 rounded-full bg-[#FBBF24]"></span>{{ $t('tetris.badge') }}
+        </p>
+        <h1 class="mt-4 font-display text-4xl font-extrabold leading-tight tracking-[-0.02em] text-white sm:text-5xl">{{ $t('tetris.title') }}</h1>
+        <p class="mt-3 max-w-xl text-[17px] leading-relaxed text-[#A3ACC4]">{{ $t('tetris.subtitle') }}</p>
       </div>
-      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight" :class="isDark ? colors.dark.text.primary : colors.light.text.primary">
-        {{ $t('tetris.title') }}
-      </h1>
-      <p class="text-sm sm:text-base max-w-2xl mx-auto" :class="isDark ? colors.dark.text.secondary : colors.light.text.secondary">
-        {{ $t('tetris.subtitle') }}
-      </p>
-    </div>
-
-    <!-- Mode Switcher -->
-    <div class="flex justify-center">
-      <div class="inline-flex p-1.5 rounded-2xl border backdrop-blur-xl"
-        :class="isDark ? 'bg-[#11131f]/90 border-white/[0.08]' : 'bg-violet-50/70 border-violet-100'"
+      <!-- Mode Switcher -->
+      <div class="flex">
+      <div class="inline-flex p-1 rounded-full border backdrop-blur-xl"
+        :class="'bg-[#0E1428]/90 border-[#262F4D]'"
       >
         <button
           v-for="m in ['zen', 'training', 'boss']"
@@ -27,20 +20,21 @@
           @mousedown.prevent
           @click="setMode(m)"
           :class="[
-            'px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200',
+            'px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200',
             mode === m
-              ? (isDark ? 'bg-violet-600 text-white shadow-[0_2px_8px_rgba(139,92,246,0.35)]' : 'bg-white text-violet-800 shadow-[0_1px_4px_rgba(0,0,0,0.06)]')
-              : (isDark ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-slate-900')
+              ? 'bg-[#5B5FEF] text-white'
+              : 'text-[#8F98B5] hover:text-white'
           ]"
         >
           {{ $t(`tetris.${m}`) }}
         </button>
       </div>
+      </div>
     </div>
 
     <div class="flex flex-col lg:flex-row gap-6 items-center lg:items-start justify-center">
       <!-- Game -->
-      <div class="w-full max-w-[680px] select-none rounded-2xl p-3 bg-black border border-white/10">
+      <div class="w-full max-w-[680px] select-none rounded-2xl p-3 bg-black border border-[#262F4D]">
        <div class="relative">
         <canvas ref="canvas" class="w-full h-auto block"></canvas>
         <div
@@ -53,9 +47,9 @@
           >
             {{ overlayTitle }}
           </p>
-          <p v-if="status === 'win'" class="text-xs font-mono text-slate-300">{{ $t('tetris.clearedHint') }}</p>
-          <p v-if="status === 'fail' && mode === 'boss'" class="text-xs font-mono text-slate-300">{{ $t('tetris.retryHint') }}</p>
-          <p v-if="status === 'paused'" class="text-xs font-mono text-slate-300">Esc</p>
+          <p v-if="status === 'win'" class="text-xs font-mono text-[#C3C9DB]">{{ $t('tetris.clearedHint') }}</p>
+          <p v-if="status === 'fail' && mode === 'boss'" class="text-xs font-mono text-[#C3C9DB]">{{ $t('tetris.retryHint') }}</p>
+          <p v-if="status === 'paused'" class="text-xs font-mono text-[#C3C9DB]">Esc</p>
         </div>
        </div>
       </div>
@@ -63,9 +57,9 @@
       <!-- Side panel -->
       <aside class="w-full lg:w-72 space-y-4">
         <div v-if="mode === 'zen'" class="rounded-2xl border p-4 space-y-3 backdrop-blur-xl" :class="card">
-          <p class="text-sm" :class="isDark ? colors.dark.text.secondary : colors.light.text.secondary">{{ $t('tetris.zenDesc') }}</p>
+          <p class="text-sm" :class="'text-[#A3ACC4]'">{{ $t('tetris.zenDesc') }}</p>
           <div class="space-y-1.5">
-            <p class="text-xs font-mono font-semibold tracking-wider" :class="isDark ? 'text-violet-300' : 'text-violet-700'">{{ $t('tetris.garbage') }}</p>
+            <p class="text-xs font-mono font-semibold tracking-wider" :class="'text-[#B9BBFA]'">{{ $t('tetris.garbage') }}</p>
             <div class="grid grid-cols-3 gap-1.5">
               <button
                 v-for="lvl in ['off', 'light', 'heavy']"
@@ -74,24 +68,24 @@
                 @click="setGarbage(lvl)"
                 :class="[
                   'px-2 py-1.5 rounded-lg text-xs font-semibold transition-colors',
-                  garbage === lvl ? 'bg-violet-600 text-white' : (isDark ? 'bg-white/5 text-slate-300 hover:bg-white/10' : 'bg-violet-50 text-slate-700 hover:bg-violet-100')
+                  garbage === lvl ? 'bg-[#5B5FEF] text-white' : 'bg-white/5 text-[#C3C9DB] hover:bg-white/10'
                 ]"
               >
                 {{ $t(`tetris.garbageLevels.${lvl}`) }}
               </button>
             </div>
-            <p v-if="garbage !== 'off'" class="text-xs" :class="isDark ? 'text-slate-400' : 'text-slate-500'">{{ $t('tetris.garbageDesc') }}</p>
+            <p v-if="garbage !== 'off'" class="text-xs" :class="'text-[#8F98B5]'">{{ $t('tetris.garbageDesc') }}</p>
           </div>
           <div class="flex gap-2">
-            <button @mousedown.prevent @click="newGame" class="flex-1 px-3 py-2 rounded-xl text-xs font-semibold bg-violet-600 text-white hover:bg-violet-500">{{ $t('tetris.restart') }}</button>
-            <button @mousedown.prevent @click="togglePause" class="flex-1 px-3 py-2 rounded-xl text-xs font-semibold border" :class="isDark ? 'border-white/10 text-slate-200 hover:bg-white/5' : 'border-slate-200 text-slate-700 hover:bg-slate-50'">
+            <button @mousedown.prevent @click="newGame" class="flex-1 px-3 py-2 rounded-full text-xs font-semibold bg-[#5B5FEF] text-white hover:bg-[#4A4EDB]">{{ $t('tetris.restart') }}</button>
+            <button @mousedown.prevent @click="togglePause" class="flex-1 px-3 py-2 rounded-full text-xs font-semibold border" :class="'border-white/10 text-[#E7EAF3] hover:bg-white/5'">
               {{ status === 'paused' ? $t('tetris.resume') : $t('tetris.pause') }}
             </button>
           </div>
         </div>
 
         <div v-else-if="mode === 'boss'" class="rounded-2xl border p-4 space-y-3 backdrop-blur-xl" :class="card">
-          <p class="text-xs font-mono font-semibold tracking-wider" :class="isDark ? 'text-violet-300' : 'text-violet-700'">{{ $t('tetris.bosses') }}</p>
+          <p class="text-xs font-mono font-semibold tracking-wider" :class="'text-[#B9BBFA]'">{{ $t('tetris.bosses') }}</p>
           <div class="grid grid-cols-2 gap-1.5">
             <button
               v-for="(b, i) in BOSSES"
@@ -101,26 +95,26 @@
               :class="[
                 'px-2.5 py-2 rounded-lg text-xs font-semibold text-left flex items-center justify-between gap-1 transition-colors border',
                 i === bossIdx
-                  ? (isDark ? 'bg-white/10 border-white/30' : 'bg-slate-900 border-slate-900')
-                  : (isDark ? 'bg-white/5 border-transparent hover:bg-white/10' : 'bg-slate-100 border-transparent hover:bg-slate-200')
+                  ? 'bg-white/10 border-white/30'
+                  : 'bg-white/5 border-transparent hover:bg-white/10'
               ]"
             >
-              <span :style="{ color: i === bossIdx || isDark ? b.color : undefined }" :class="i !== bossIdx && !isDark ? 'text-slate-700' : ''">{{ i + 1 }}. {{ $t(`tetris.bossNames.${b.id}`) }}</span>
+              <span :style="{ color: b.color }">{{ i + 1 }}. {{ $t(`tetris.bossNames.${b.id}`) }}</span>
               <span v-if="done[`boss-${b.id}`]" class="text-emerald-400">✓</span>
             </button>
           </div>
-          <p class="text-sm" :class="isDark ? colors.dark.text.secondary : colors.light.text.secondary">{{ $t('tetris.bossDesc') }}</p>
-          <p class="text-xs font-mono" :class="isDark ? 'text-slate-400' : 'text-slate-500'">
+          <p class="text-sm" :class="'text-[#A3ACC4]'">{{ $t('tetris.bossDesc') }}</p>
+          <p class="text-xs font-mono" :class="'text-[#8F98B5]'">
             HP {{ boss.hp }} · {{ $t('tetris.bossEvery', { s: boss.every / 1000 }) }} · {{ Math.min(...boss.sizes) }}–{{ Math.max(...boss.sizes) }} {{ $t('tetris.lines') }} · LV {{ boss.level }}
           </p>
           <div class="flex gap-2">
-            <button @mousedown.prevent @click="newGame" class="flex-1 px-3 py-2 rounded-xl text-xs font-semibold border" :class="isDark ? 'border-white/10 text-slate-200 hover:bg-white/5' : 'border-slate-200 text-slate-700 hover:bg-slate-50'">{{ $t('tetris.reset') }}</button>
-            <button @mousedown.prevent @click="pickBoss(bossIdx + 1)" class="flex-1 px-3 py-2 rounded-xl text-xs font-semibold bg-violet-600 text-white hover:bg-violet-500">{{ $t('tetris.nextBoss') }}</button>
+            <button @mousedown.prevent @click="newGame" class="flex-1 px-3 py-2 rounded-full text-xs font-semibold border" :class="'border-white/10 text-[#E7EAF3] hover:bg-white/5'">{{ $t('tetris.reset') }}</button>
+            <button @mousedown.prevent @click="pickBoss(bossIdx + 1)" class="flex-1 px-3 py-2 rounded-full text-xs font-semibold bg-[#5B5FEF] text-white hover:bg-[#4A4EDB]">{{ $t('tetris.nextBoss') }}</button>
           </div>
         </div>
 
         <div v-else class="rounded-2xl border p-4 space-y-3 backdrop-blur-xl" :class="card">
-          <p class="text-xs font-mono font-semibold tracking-wider" :class="isDark ? 'text-violet-300' : 'text-violet-700'">{{ $t('tetris.lessons') }}</p>
+          <p class="text-xs font-mono font-semibold tracking-wider" :class="'text-[#B9BBFA]'">{{ $t('tetris.lessons') }}</p>
           <div class="grid grid-cols-2 gap-1.5">
             <button
               v-for="(l, i) in LESSONS"
@@ -130,28 +124,28 @@
               :class="[
                 'px-2.5 py-2 rounded-lg text-xs font-semibold text-left flex items-center justify-between gap-1 transition-colors',
                 i === lessonIdx
-                  ? 'bg-violet-600 text-white'
-                  : (isDark ? 'bg-white/5 text-slate-300 hover:bg-white/10' : 'bg-violet-50 text-slate-700 hover:bg-violet-100')
+                  ? 'bg-[#5B5FEF] text-white'
+                  : 'bg-white/5 text-[#C3C9DB] hover:bg-white/10'
               ]"
             >
               <span>{{ l.name }}</span>
               <span v-if="done[l.id]" class="text-emerald-400">✓</span>
             </button>
           </div>
-          <p class="text-sm" :class="isDark ? colors.dark.text.secondary : colors.light.text.secondary">{{ $t(`tetris.lesson.${lesson.id}`) }}</p>
+          <p class="text-sm" :class="'text-[#A3ACC4]'">{{ $t(`tetris.lesson.${lesson.id}`) }}</p>
           <div class="flex gap-2">
-            <button @mousedown.prevent @click="newGame" class="flex-1 px-3 py-2 rounded-xl text-xs font-semibold border" :class="isDark ? 'border-white/10 text-slate-200 hover:bg-white/5' : 'border-slate-200 text-slate-700 hover:bg-slate-50'">{{ $t('tetris.reset') }}</button>
-            <button @mousedown.prevent @click="pickLesson(lessonIdx + 1)" class="flex-1 px-3 py-2 rounded-xl text-xs font-semibold bg-violet-600 text-white hover:bg-violet-500">{{ $t('tetris.next') }}</button>
+            <button @mousedown.prevent @click="newGame" class="flex-1 px-3 py-2 rounded-full text-xs font-semibold border" :class="'border-white/10 text-[#E7EAF3] hover:bg-white/5'">{{ $t('tetris.reset') }}</button>
+            <button @mousedown.prevent @click="pickLesson(lessonIdx + 1)" class="flex-1 px-3 py-2 rounded-full text-xs font-semibold bg-[#5B5FEF] text-white hover:bg-[#4A4EDB]">{{ $t('tetris.next') }}</button>
           </div>
         </div>
 
         <div class="rounded-2xl border p-4 space-y-2 backdrop-blur-xl" :class="card">
-          <p class="text-xs font-mono font-semibold tracking-wider" :class="isDark ? 'text-violet-300' : 'text-violet-700'">{{ $t('tetris.controls') }}</p>
+          <p class="text-xs font-mono font-semibold tracking-wider" :class="'text-[#B9BBFA]'">{{ $t('tetris.controls') }}</p>
           <div v-for="[k, label] in controls" :key="label" class="flex justify-between gap-3 text-xs">
-            <span :class="isDark ? 'text-slate-400' : 'text-slate-600'">{{ $t(`tetris.keys.${label}`) }}</span>
-            <kbd class="font-mono" :class="isDark ? 'text-slate-200' : 'text-slate-800'">{{ k }}</kbd>
+            <span :class="'text-[#8F98B5]'">{{ $t(`tetris.keys.${label}`) }}</span>
+            <kbd class="font-mono" :class="'text-[#E7EAF3]'">{{ k }}</kbd>
           </div>
-          <p class="text-[11px] pt-1 lg:hidden" :class="isDark ? 'text-slate-500' : 'text-slate-400'">{{ $t('tetris.keyboardOnly') }}</p>
+          <p class="text-[11px] pt-1 lg:hidden" :class="'text-[#6F7894]'">{{ $t('tetris.keyboardOnly') }}</p>
         </div>
       </aside>
     </div>
@@ -161,22 +155,18 @@
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useStore } from '@/stores/theme'
-import { colors } from '@/constants/theme'
 import {
   W, H, HIDDEN, COLORS, CELLS, LESSONS, emptyBoard, parseBoard, collides, spawnPiece,
   rotate, dropDistance, spinType, lockPiece, actionName, bag, attackFor, addGarbage, GARBAGE_CAP
 } from './TetrisLab/engine'
 
 const { t } = useI18n()
-const store = useStore()
-const isDark = computed(() => store.isDark)
 const overlayTitle = computed(() => {
   if (status.value === 'paused') return t('tetris.paused')
   if (mode.value === 'boss') return t(status.value === 'win' ? 'tetris.victory' : 'tetris.gameOver')
   return t(status.value === 'win' ? 'tetris.cleared' : 'tetris.failed')
 })
-const card = computed(() => (isDark.value ? 'bg-[#11131f]/90 border-white/[0.08]' : 'bg-white/85 border-violet-100'))
+const card = 'bg-[#0E1428]/90 border-[#262F4D]'
 
 // Handling (tetr.io defaults are DAS 10f / ARR 2f)
 const DAS = 133, ARR = 33, SOFT_MS = 20, LOCK_MS = 500, MAX_RESETS = 15
@@ -209,7 +199,7 @@ const METER_W = 0.9 * C
 const NX = BX + BW + METER_W, NEXT_W = 5.4 * C
 const VY = HIDDEN * C, BH = (H - HIDDEN) * C
 const CW = NX + NEXT_W, CH = H * C + 0.4 * C
-const FONT = 'Rajdhani, Outfit, sans-serif'
+const FONT = 'Rajdhani, Geist, sans-serif'
 const overlayStyle = {
   left: `${(BX / CW) * 100}%`, width: `${(BW / CW) * 100}%`,
   top: `${(VY / CH) * 100}%`, height: `${(BH / CH) * 100}%`

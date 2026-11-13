@@ -6,7 +6,6 @@ import viteCompression from 'vite-plugin-compression'
 
 // https://vite.dev/config/
 export default defineConfig({
-  assetsInclude: ['**/*.glb'],
   plugins: [
     vue(),
     tailwindcss(),
@@ -28,7 +27,7 @@ export default defineConfig({
       output: {
         manualChunks: {
           three: ['three'],
-          vendor: ['vue', 'vue-router', 'pinia', 'vue-i18n'],
+          vendor: ['vue', 'vue-router', 'vue-i18n'],
           animations: ['gsap']
         }
       }
